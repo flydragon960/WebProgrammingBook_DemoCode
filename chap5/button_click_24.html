@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- button_click.hmtl
+     -->
+<html lang = "en">
+  <head>
+    <title> radio_click.html </title>
+    <meta charset = "utf-8">
+  </head>
+  <body>
+    <h1> Demo Button </h1>
+      <p id="myID"></p>
+      <button style="margin: 10px;">Change Color</button>      
+    
+      <script>
+    
+        
+        const btn = document.querySelector("button");
+
+        function random(number) {
+          return Math.floor(Math.random() * (number + 1));
+        }
+
+        function changeBackground() {
+          const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+          document.body.style.backgroundColor = rndCol;
+        }
+
+        btn.addEventListener("click", changeBackground);
+
+        //btn.removeEventListener("click", changeBackground );   
+      </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml">
+  <head> <title> Object test</title>
+  <script type="text/javascript">
+    function Person() { }
+	
+	Person.prototype.sayHello = function(){
+        document.write("Hello, I am a Person.<br/>");};
+	
+    //create deep a copy
+    function object(o){
+	    function F(){};
+	    F.prototype =o;
+	    return new F();
+    } 
+
+    // define the Student constructor function
+    function Student() { }
+
+    // inherit from Person
+    Student.prototype = new Person();	
+
+    // correct the constructor pointer because it points to Person
+    Student.prototype.constructor = Student;
+
+     // replace the sayHello method
+     Student.prototype.sayHello = function () {
+          document.write('hi, I am a student. <br/>');
+     }
+
+     var student1 = new Student();
+     student1.sayHello();
+	 var c = object(student1);
+     var person1 = new Person();
+      person1.sayHello();
+    
+	 
+	 document.write("c is instance of student: " + (c instanceof Student) + "<br/>");
+	 document.write("student1.constructor is:" + student1.constructor + "<br/>");
+     document.write("student1 instance of Student: "+ (student1 instanceof Student)+"<br/>");
+     document.write("student1 instance of Person: "+ (student1 instanceof Person)+"<br/>" );
+     document.write("student1 instance of Object: "+ (student1 instanceof Object)+"<br/>");   
+    </script>
+  
+  </head>
+<body>
+
+</body>
+ 
+</html>

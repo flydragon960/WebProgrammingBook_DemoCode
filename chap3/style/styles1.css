@@ -1,0 +1,8 @@
+/* styles1.css - an external style sheet
+     for use with style_first_example.html
+   */
+  h1, em {color:red; background-color: black }
+  p {margin-left:20px}
+  h1 em {color:blue}
+  /*body {background-image:url("../images/c172.gif")}*/
+  

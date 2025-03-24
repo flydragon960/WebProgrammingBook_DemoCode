@@ -1,0 +1,82 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- popcorn.html 
+     This describes popcorn sales form page>
+     -->
+<html xmlns = "http://www.w3.org/1999/xhtml">
+  <head> <title> Object test</title>
+  <script type="text/javascript">
+    function Person(aName) {
+	    //alert("in person constructor");
+        this.name = aName;
+	}
+	
+	Person.prototype.sayHello = function(){
+  		//alert ('hello');
+        document.write("Hello, I am "+this.name);
+	};
+	
+	Person.prototype.copy = function() {  
+        document.write("in Person.prototype.copy");
+		return new this.constructor(this.name);
+	};  
+
+
+    // define the Student constructor function
+    function Student(aName, aID) {
+	    //alert("in student constructor");
+        this.name = aName;
+        this.ID = aID;
+	}
+      
+      
+
+
+    // inherit from Person
+    Student.prototype = new Person('aName');
+	
+
+    // correct the constructor pointer because it points to Person
+    Student.prototype.constructor = Student;
+    
+      Student.prototype.copy = function() {  
+        // return new Person(this.name); // just as bad
+        document.write("in Student.prototype.copy");
+		return new this.constructor(this.name, this.ID);
+	};
+
+    // replace the sayHello method (a polymorphism example)
+     Student.prototype.sayHello = function () {
+          document.write("Hello, I am a student. My name is "+this.name+
+                           " ID is "+this.ID+"<br/>");
+
+     }
+
+     var student1 = new Student("Joel", 123);
+     student1.sayHello();
+	 
+	 var c = student1.copy();
+      
+      c.sayHello();
+	 
+	 document.write("c is instance of student: " + (c instanceof Student) + "<br/>");
+     
+	 document.write("student1.constructor is:" + student1.constructor + "<br/>");
+     document.write("student1 instance of Student: "+ (student1 instanceof Student)+"<br/>");
+     document.write("student1 instance of Person: "+ (student1 instanceof Person)+"<br/>" );
+     document.write("student1 instance of Object: "+ (student1 instanceof Object)+"<br/>");
+
+	    
+    </script>
+  
+  </head>
+<body>
+
+</body>
+
+
+
+  
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-elements Demo</title>
+    <style>
+        p::before {
+            content: "Note: ";
+            font-weight: bold;
+        }
+
+        p::after {
+            content: ".";
+        }
+    </style>
+</head>
+<body>
+    <h1>Pseudo-elements Demo</h1>
+    <p>This is a paragraph to demonstrate the use of ::before and ::after pseudo-elements.</p>
+</body>
+</html>

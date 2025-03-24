@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<!-- dynColors.html
+     Illustrates dynamic fonts for links
+     -->
+<html lang="5">
+  <head>
+    <title> Dynamic fonts for links </title>
+    <style type = "text/css" >
+      .regText {font:Times; font-size:16pt;}
+    </style>
+  </head>
+  <body>
+      <h2 style = "color: blue"  
+                   onmouseover = "style.color = 'red';
+                                  style.font = 'italic 16pt Times';"
+                   onmouseout = "style.color = 'blue';
+                                  style.font = 'italic 16pt Times';">
+             The Montreal Jazz Festival</h2>
+    
+      <p class = "regText">
+        is usually in June each year.
+      </p>
+   
+  </body>
+</html>

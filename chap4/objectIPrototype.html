@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Object Prototype</title>
+    <meta charset="UTF-8">
+  </head>
+<body>
+    
+    <h2>myPlane properties</h2>
+    <p id="d1"></p>
+    
+    <h2>myPlane properties after adding price</h2>
+    <p id="d2"></p>
+    
+    <h2>myPlane2 properties</h2>
+    <p id="d3"></p>
+    
+    <h2>Type testing ...</h2>
+    <p id="d4"></p>
+    
+    <h2>Mileages</h2>
+    <p id="d5"></p>
+    
+    <script>
+     function plane(newMake, newModel, newYear){   
+         this.make = newMake;
+         this.model = newModel;
+         this.year = newYear;
+          
+     }
+     
+    const myPlane = new plane("Cessna", "Centurnian", "1970");
+        
+    let tmpStr="";    
+    
+    for(let name in myPlane){
+	    tmpStr =tmpStr + name +": "+myPlane[name] + "<br>";
+    }
+    document.getElementById("d1").innerHTML = tmpStr;
+    
+    plane.prototype.price = 1000;
+        
+    tmpStr="";    
+    
+    for(let name in myPlane){
+	    tmpStr =tmpStr + name +": "+myPlane[name] + "<br>";
+    }
+    tmpStr = tmpStr+"<br>";
+    document.getElementById("d2").innerHTML = tmpStr;
+    
+    
+    /*for(let name in myPlane){
+	    document.write(name +": "+myPlane[name] + "<br/>");
+    }
+    
+     document.write("<br/>"); */
+    
+     const myPlane2 = new plane("Beechcraft", "Bonanza", "2001");
+        
+    tmpStr="";    
+    
+    for(let name in myPlane2){
+	    tmpStr =tmpStr + name +": "+myPlane2[name] + "<br>";
+    }
+    tmpStr = tmpStr+"<br>";
+    document.getElementById("d3").innerHTML = tmpStr;
+
+        
+    tmpStr=""; 
+    
+    tmpStr = tmpStr + "myPlane2 type is "+ typeof(myPlane2)+"<br>";
+    document.getElementById("d4").innerHTML = tmpStr;
+    tmpStr = tmpStr + "myPlane2 instanceof plane: " + (myPlane2 instanceof plane) +"<br>";
+    document.getElementById("d4").innerHTML = tmpStr;
+    
+	
+    //document.write("<br/>"); 
+    //document.write("myPlane2 type is "+ typeof(myPlane2)+"<br/>");
+    //document.write("myPlane2 instanceof plane: " + (myPlane2 instanceof plane) +"<br/>");
+    
+    //myPlane2.mileage = function(){return (2010-myPlane2.year)*1000;};
+      
+    plane.prototype.mileage = function(){return (2010-this.year)*1000;};
+        
+    tmpStr = "";
+        
+    tmpStr = tmpStr + "myPlane2.mileage()="+myPlane2.mileage()+"<br>";
+    tmpStr = tmpStr + "myPlane.mileage()="+myPlane.mileage()+"<br>"
+    document.getElementById("d5").innerHTML = tmpStr;
+    
+    //document.write("myPlane2.mileage()="+myPlane2.mileage()+"<br/>");
+      
+    //document.write("myPlane.mileage() = "+myPlane.mileage()+"<br/>");
+	    
+    </script>
+
+</body>
+
+
+
+  
+</html>

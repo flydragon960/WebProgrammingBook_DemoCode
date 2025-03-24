@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>nth-child Example</title>
+<style>
+  /* Applying CSS directly in the head for demonstration */
+  p:nth-child(2) {
+    color: blue;
+  }
+</style>
+</head>
+<body>
+<div>
+  <p>This is the first paragraph.</p>
+  <p>This is the second paragraph and should be blue.</p>
+  <p>This is the third paragraph.</p>
+</div>
+
+<!-- Another example where the second p element is not the second child -->
+<div>
+  <h1>Heading Not Affected</h1>
+  <p>This is the first paragraph in the second div.</p>
+  <p>This is the second paragraph in the second div and should also be blue.</p>
+</div>
+</body>
+</html>

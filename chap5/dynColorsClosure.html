@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Colors</title>
+    <script type = "text/javascript"  src = "dynColorsClosure.js" >
+    </script>
+</head>
+<body>
+    <p style = "font-family: Times; font-style: italic; 
+                font-size: 24pt" > 
+      This small page illustrates dynamic setting of the
+      foreground and background colors for a document
+    </p>
+    <form action = "" >
+      <p>
+        <label>
+          Background color: 
+          <input type = "textarea"  name = "background" id = "a1"
+                 onchange = "setColor('background', this.value)" />
+        </label>
+        <br />
+        <label>
+          Foreground color: 
+          <input type = "textarea"  name = "foreground" id = "a2"
+                 onchange = "setColor('foreground', this.value)" />
+        </label>
+        <br />
+      </p>
+         <input type = "button" onclick = "fade('a1')" value ="fade a1"/>
+         <input type = "button" onclick = "fade('a2')" value ="fade a2"/>
+    </form>
+</body>
+</html>

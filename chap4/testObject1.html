@@ -1,0 +1,32 @@
+<!DOCTYPE html >
+<html lang="en">
+  <head> <title> Object test</title>
+      <meta charset="UTF-8">
+  </head>
+<body>
+<script>
+  const myCar = {make: "ford", year: "2000", color: "red"};
+  document.write(('make' in myCar) +"<br/>");
+  document.write("myCar.make= "+ myCar.make+"<br/>");
+  document.write("myCar['year']= "+ myCar["year"]+"<br/>");
+  
+  for(let name in myCar){
+	      document.write(name+": "+myCar[name] + "<br/>");
+  }
+  
+  document.write("delete color ..."+(delete myCar.color)+"<br/>");
+  for(let name in myCar){
+	      document.write(name+": "+myCar[name] + "<br/>");
+  }
+  
+  document.write("myCar instanceof Object: " + (myCar instanceof Object));
+    
+  document.write("myCar instanceof myCar " + (myCar instanceof myCar));
+
+</script>
+</body>
+
+
+
+  
+</html>

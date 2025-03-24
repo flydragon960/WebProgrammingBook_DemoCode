@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en" >
+  <head>
+    <title> DOM Demo.html </title>
+      <meta charset="utf-8">
+  </head>
+  <body>
+		<h1> DOM Traversal Demo </h1>
+		<p>Hello World!</p>
+		<p>The DOM is very useful!</p>
+		<p>This example demonstrates how to traverse <b>DOM</b> elements.</p>
+        <p id="inserthere"> </p>
+
+		<script type="text/javascript">
+		const x=document.getElementsByTagName("p");
+        let str="";
+		for (i=0;i<x.length;i++)
+		  { 
+			 str = str + x[i].innerHTML + "<br>";
+			 
+		  }
+            document.getElementById("inserthere").innerHTML = str;
+</script>
+
+
+  </body>
+</html>

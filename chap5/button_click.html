@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- button_click.hmtl
+     -->
+<html lang = "en">
+  <head>
+    <title> radio_click.html </title>
+    <meta charset = "utf-8">
+  </head>
+  <body>
+    <h1> Demo Button </h1>
+      <p id="myID"></p>
+    <form id = "form1"  action = "server.php" method = "GET">
+      
+         <input type = "button"  id = "myButton"  
+                       value = "click me"   
+                       onclick = "myButtonHandler();">
+        <!--alert('you clicked my button');-->
+      
+    </form>
+      
+      <script>
+      
+        function myButtonHandler(){
+            document.getElementById('myID').innerHTML= 'come on!'; 
+            alert('you clicked my button');
+        }
+        
+           
+      </script>
+  </body>
+</html>

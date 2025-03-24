@@ -1,0 +1,7 @@
+/* decroStyles.css - an external style sheet
+     for use with decoration-Exam-ans.html
+   */
+ h1 {text-align:center}
+ .through {text-decoration: line-through; text-align:right }
+ .over {text-decoration: overline; text-align:left }
+ .under {text-decoration: underline; text-align:justify}
