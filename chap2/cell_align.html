@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- cell_span.html
+     An example to illustrate rowspan and colspan
+     -->
+<html lang = "en">
+  <head> 
+    <title> Alignment in cells </title>
+    <style>
+        table, th, td {
+            border:1px solid black;
+        }
+    </style>
+    <meta charset = "utf-8">
+  </head>
+  <body>
+    <table>
+      <caption> The align and valign attributes </caption>
+      <tr style="text-align:center">
+        <th> </th>
+        <th> Column Label </th>
+        <th> Another One </th>
+        <th> Still Another One </th>
+      </tr>
+      <tr>
+        <th> align </th>
+        <td style="text-align:left"> left  </td>
+        <td style="text-align:center"> Center </td>
+        <td style="text-align:right"> Right </td>
+      </tr>
+      <tr>
+        <th> <br> valign <br><br> </th>
+        <td> Default </td>
+        <td style="vertical-align:top"> Top </td>
+        <td style= "vertical-align:bottom; text-align:right"> Bottom </td>
+      </tr>
+    </table>
+  </body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visibility control</title>
+    <script type="text/javascript" src="showHide-getName.js"></script>
+</head>
+<body>
+    <form action = "">
+      <div id = "saturn"  style = "position: relative; 
+           visibility: hidden;" name = "">
+        <input type = "text" id="placeholder"/>
+      </div>
+  
+      <p>
+        <br />
+        <label>
+           Name <input type = "text"  id="custName"/>
+        </label><br/>   
+       
+        <script type = "text/javascript">
+                <!--
+              //document.write("Hello, fellow Web programmers!");
+               name = document.getElementById("custName").value; 
+ 
+        	document.write("Hello "+name+"<br/>");
+           //--> 
+        </script>     
+        
+        <input type = "submit" id = "submit" onclick = "rememberName()"/>
+        <input type = "reset" id = "reset"/>
+    
+      </p>
+    </form>
+</body>
+</html>

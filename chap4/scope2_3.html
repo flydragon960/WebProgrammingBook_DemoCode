@@ -1,0 +1,27 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- popcorn.html 
+     This describes popcorn sales form page>
+     -->
+<html xmlns = "http://www.w3.org/1999/xhtml">
+  <head> <title> scope test</title> 
+  </head>
+<body>
+<script type="text/javascript">
+  alert("0-"+scope);
+  var scope = "global";
+function checkloc() {
+        alert ("1-" + scope);
+        //var scope = "local";
+        //alert ("2-" + scope);
+}
+checkloc();
+</script>
+</body>
+
+
+
+  
+</html>

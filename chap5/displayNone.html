@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<!-- showHide.html
+      Uses showHide.js
+      Illustrates visibility control of elements
+     -->
+<html lang="en">
+  <head>
+    <title> Visibility control </title>
+    <script type = "text/javascript"  src = "displayNone.js" >
+    </script>
+    <style type="text/css">
+    #nebula1 {display: inline }
+    #nebula2 {display: inline}
+    </style>
+  </head>
+  <body>
+    <form action = "">
+      <div id = "stars">
+        <img id ="nebula1" src = "crab-nebula-552300.jpg" 
+             alt = "(Picture of a nebula)" /> 
+         <img id ="nebula2" src = "03_CatEyeNebula.jpg" 
+             alt = "(Picture of another nebula)" height=307, width=307  />
+      </div>
+      <p> Here is some text.</p>
+      <p>
+        <br />
+        <input type = "button"  value = "Toggle Nebula"
+               onclick = "flipImag()" />
+      </p>
+    </form>
+  </body>
+</html>
+
+

@@ -1,0 +1,44 @@
+    <html lang="en">  
+     <head>  
+       <title>DOM Event Example</title>  
+       <style type="text/css">  
+         #t { border: 1px solid red }  
+         #t1 { background-color: pink; }  
+       </style>  
+       <script type="application/javascript">  
+      
+       // Function to change the content of t2  
+       function modifyText() {  
+         var t2 = document.getElementById("t2");  
+         t2.firstChild.nodeValue = "three";      
+       }  
+       
+       function alert1(){
+        alert("capature - ");
+       }
+       
+       function alert2(){
+        alert("bubble - ");
+       }
+       
+       // Function to add event listener to t  
+       function load() {   
+         var el = document.getElementById("t");   
+         el.addEventListener("click", modifyText, true);         
+         el.addEventListener("click", alert2, false);
+         el.addEventListener("click", alert1, true);
+             
+       }   
+      
+       document.addEventListener("DOMContentLoaded", load, true);  
+       
+      
+       </script>   
+     </head>   
+     <body>   
+     <table id="t">   
+       <tr><td id="t1">one</td></tr>   
+       <tr><td id="t2">two</td></tr>   
+     </table>   
+     </body>   
+     </html>  

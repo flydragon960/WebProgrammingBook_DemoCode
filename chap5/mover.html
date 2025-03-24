@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- mover.html
+     Uses mover.js to move an image within a document
+     -->
+<html lang="en">
+  <head>
+    <title> Moving elements </title>
+    <script type = "text/javascript"  src = "mover.js" >
+    </script>
+    <!-- you can put style here also-->
+    <style type="text/css">
+    #nebula {position: fixed; top: 50px; left: 100px;}
+    </style>
+  </head>
+  <body>
+    <form action = "">
+      <p>
+        <label>
+          x coordinate: 
+          <input type = "text"  id = "leftCoord" size = "3" value="200" />
+        </label>
+        <br />
+        <label>
+          y coordinate: 
+          <input type = "text"  id = "topCoord" size = "3" value = "100" />
+        </label>
+        <br />
+        <input type = "button"  value = "Move it"
+               onclick = 
+                 "moveIt('nebula', 
+                   document.getElementById('topCoord').value, 
+                   document.getElementById('leftCoord').value)" />
+      </p>
+    </form>
+    <div id = "nebula" ><!--/di> style = "position: absolute;
+         top: 100px; left: 10px;"-->
+      <img src = "crab-nebula-552300.jpg"  
+           alt = "(Picture of a nebula)" /> 
+    </div>
+  </body>
+</html>

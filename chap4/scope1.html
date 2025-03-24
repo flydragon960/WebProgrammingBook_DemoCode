@@ -1,0 +1,37 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- popcorn.html 
+     This describes popcorn sales form page>
+     -->
+<html xmlns = "http://www.w3.org/1999/xhtml">
+  <head> <title> scope test</title> 
+  </head>
+<body>
+<script type="text/javascript">
+  var scope = "global scope";
+  function checkscope(){
+    var scope = "local scope";
+    function nested() {
+        scope = "nested scope";
+        alert("1-" + scope); //prints, what?
+    }
+    nested();
+    scope = "local scope";
+    for (var i =0; i < 10; i++){
+        var scope = "nested scope";     
+    }
+    alert("2-" + scope);
+  }
+
+  checkscope();
+  alert("3-"+scope);
+
+</script>
+</body>
+
+
+
+  
+</html>

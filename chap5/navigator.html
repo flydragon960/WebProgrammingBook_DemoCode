@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Navigator Demo</title>
+</head>
+<body>
+  <h1>Navigator Object Demo</h1>
+  <p id="output"></p>
+
+  <script>
+    const output = document.getElementById("output");
+
+    const info = {
+      "App Name": navigator.appName,
+      "App Version": navigator.appVersion,
+      "User Agent": navigator.userAgent,
+      "Platform": navigator.platform,
+      "Language": navigator.language,
+      "Online": navigator.onLine,
+      "Cookies Enabled": navigator.cookieEnabled,
+      "Java Enabled": navigator.javaEnabled(),
+    };
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          info["Latitude"] = position.coords.latitude;
+          info["Longitude"] = position.coords.longitude;
+          displayInfo(info);
+        },
+        error => {
+          info["Geolocation Error"] = error.message;
+          displayInfo(info);
+        }
+      );
+    } else {
+      info["Geolocation"] = "Not supported";
+      displayInfo(info);
+    }
+
+    function displayInfo(obj) {
+      output.textContent = Object.entries(obj)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join("\n");
+      output.innerHTML = output.innerHTML.replace(/\n/g, "<br>");
+    }
+  </script>
+</body>
+</html>

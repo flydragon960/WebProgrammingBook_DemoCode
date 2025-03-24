@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Demo 2.html</title>
+    <script type="text/javascript">
+        function changeLink() {
+            document.getElementById('myAnchor').innerHTML = "W3Schools";
+            document.getElementById('myAnchor').href = "http://www.w3schools.com";
+            document.getElementById('myAnchor').target = "_blank";
+        }
+    </script>
+</head>
+<body>
+    <h1> DOM Traversal Demo  2</h1>
+    <a id="myAnchor" href="http://www.microsoft.com">Microsoft</a>
+    <input type="button" onclick="changeLink()" value="Change link">
+</body>
+</html>
