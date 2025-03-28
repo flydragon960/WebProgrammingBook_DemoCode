@@ -1,0 +1,11 @@
+1:user1:cat:persian:0.5:male:1:0:1:description:John Doe:john.doe@gmail.com 
+2:user2:dog:German Shepherd:5:female:0:1:1:description:John Doe:john.doe@gmail.com 
+3:user2:dog:Poodle:10.5:male:1:1:1:description:John Doe:john.doe@gmail.com username:cat:Birman:2:Male:undefined:on:on::John Doe:john.doe@gmail.com
+username:cat:Birman:2:Male:c_d:on:on::John Doe:john.doe@gmail.com
+username:cat:Birman:2:Male:undefined:undefined:1::John Doe:john.doe@gmail.com
+username:cat:Birman:2:Male:0:0:1:sda:John Doe:john.doe@gmail.com
+username:cat:Birman:2:Male:1:1:1::John Doe:john.doe@gmail.com
+HYY22:cat:Birman:2:Male:1:1:1:dfa:John Doe:john.doe@gmail.com
+HYY100:cat:Birman:2:Male:1:1:1::John Doe:john.doe@gmail.com
+HYY101:cat:Birman:2:Male:1:1:1::John Doe:john.doe@gmail.com
+HYY101:cat:Birman:2:Male:1:1:1::John Doe:john.doe@gmail.com

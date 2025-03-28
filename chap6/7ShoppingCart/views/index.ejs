@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Welcome to the Pet Shop</h1>
+    <h2>Available Pets</h2>
+    <ul>
+        <% items.forEach(function(item) { %>
+            <li>
+                <p><%= item.type %>: $<%= item.price %></p>
+                <form action="/add-to-cart" method="post">
+                    <input type="hidden" name="itemId" value="<%= item.id %>">
+                    <label for="quantity<%= item.id %>">Quantity:</label>
+                    <input type="number" id="quantity<%= item.id %>" name="quantity" value="1" min="1">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/cart">View Cart</a>
+</body>
+</html>
+
