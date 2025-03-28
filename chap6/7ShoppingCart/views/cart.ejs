@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    <% if (cart.length === 0) { %>
+        <p>Your cart is empty.</p>
+    <% } else { %>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+            <% cart.forEach(function(item) { %>
+                <tr>
+                    <td><%= item.type %></td>
+                    <td>$<%= item.price %></td>
+                    <td>
+                        <form action="/update-cart" method="post">
+                            <input type="hidden" name="itemId" value="<%= item.id %>">
+                            <input type="number" name="quantity" value="<%= item.quantity %>" min="1">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td>$<%= (item.price * item.quantity).toFixed(2) %></td>
+                    <td>
+                        <form action="/update-cart" method="post">
+                            <input type="hidden" name="itemId" value="<%= item.id %>">
+                            <input type="hidden" name="quantity" value="0">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    <% } %>
+
+    <div>
+        <a href="/">Continue Shopping</a>
+    </div>
+    <% if (cart.length > 0) { %>
+        <div>
+            <form action="/checkout" method="post">
+                <button type="submit">Checkout</button>
+            </form>
+        </div>
+    <% } %>
+</body>
+</html>
