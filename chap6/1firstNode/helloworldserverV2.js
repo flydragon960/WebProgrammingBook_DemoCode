@@ -1,3 +1,6 @@
+// This is a simple HTTP server that responds with "Hello World" in bold text.
+// it uses arrow functions and template literals for cleaner code.
+
 const http = require('http');
 
 const server = http.createServer((req, res) => {

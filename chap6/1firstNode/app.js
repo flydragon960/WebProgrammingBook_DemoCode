@@ -1,3 +1,6 @@
+// This is a simple Node.js application that creates an HTTP server
+// it shows how to use hostname and port variables
+
 const http = require('http');
 
 const hostname = '127.0.0.1';
