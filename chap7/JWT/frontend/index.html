@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm" >
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <button id="logoutButton" style="display: none;">Logout</button>
+        <h1>Tasks</h1>
+        <button id="getTasksButton">Get Tasks</button>
+        <ul id="tasksList"></ul>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('http://localhost:4000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('token', data.token);
+                alert('Login successful');
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('logoutButton').style.display = 'block';
+            } else {
+                alert('Login failed: ' + data.error);
+            }
+        });
+
+        document.getElementById('logoutButton').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('logoutButton').style.display = 'none';
+            document.getElementById('tasksList').innerHTML = ''; // Clear tasks list on logout
+        });
+
+        document.getElementById('getTasksButton').addEventListener('click', async () => {
+            const token = localStorage.getItem('token');
+
+            const response = await fetch('http://localhost:4000/tasks', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const tasks = await response.json();
+                const tasksList = document.getElementById('tasksList');
+                tasksList.innerHTML = ''; // Clear previous tasks
+                tasks.forEach(task => {
+                    const li = document.createElement('li');
+                    li.textContent = task.task;
+                    tasksList.appendChild(li);
+                });
+            } else {
+                const errorText = await response.text();
+                if (errorText === 'You are not authorized to access this resource') {
+                    alert('You are not authorized to access this resource');
+                } else {
+                    alert('Token is invalid or login first');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

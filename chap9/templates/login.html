@@ -1,0 +1,22 @@
+<!-- templates/login.html -->
+{% extends "base3.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="POST" action="/login">
+    <label>Username:
+        <input type="text" name="username" required autofocus>
+    </label><br><br>
+    <label>Password:
+        <input type="password" name="password" required>
+    </label><br><br>
+    <button type="submit">Log In</button>
+</form>
+{% endblock %}

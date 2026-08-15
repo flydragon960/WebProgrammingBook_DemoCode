@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt A-Cat/Dog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <header class="row">
+        <div class="col-12 bg-primary text-white text-center p-3">
+            <h1>Adopt A-Cat/Dog</h1>
+            <img src="catdog.webp" width="5%" alt="Logo" class="img-fluid">
+        </div>
+    </header>
+
+    <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="browse.html">Browse Available Pets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="find.html">Find a dog/cat</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dog-care.html">Dog Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cat-care.html">Cat Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="giveaway.html">Have a pet to give away</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign in/Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="pt-3 pb-2 mb-3" id="maincontent">
+                <!-- Your content goes here -->
+                <h2>Give away my Cat or Dog</h2>
+                <form id="adoptionForm" action="/give" method="post">
+    <!-- Pet Type -->
+    <div class="form-group">
+        <p>Cat or Dog:</p>
+        <label for="cat">Cat</label>
+        <input type="radio" id="cat" name="cd" value="cat" checked>
+        <label for="cat">dog</label>
+        <input type="radio" id="dog" name="cd" 
+               value="dog">
+    </div>
+
+    <!-- Breed of Dog or Cat -->
+    <div class="form-group">
+        <label for="breed">Breed of dog or cat:</label>
+        <input type="text" class="form-control" id="breed" name="breed" value="Birman">
+    </div>
+
+    <!-- Age of Animal -->
+    <div class="form-group">
+        <label for="age">Age of animal:</label>
+        <input type="text" class="form-control" id="age" name="age" value="2">
+    </div>
+
+    <!-- Gender of Animal -->
+    <div class="form-group">
+        <label for="gender">Animal gender:</label>
+        <select class="form-control" id="gender" name="gender" required>
+            <option value="Male" checked>Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+
+    <!-- Compatibility Checks -->
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dogs" name="c_dog" value="1" checked>
+        <label class="form-check-label" for="dogs">Gets along with other dogs</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="cats" name="c_cat" value="1" checked>
+        <label class="form-check-label" for="cats">Gets along with other cats</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="children" name="c_child" value="1" checked>
+        <label class="form-check-label" for="children">Suitable for a family with small children</label>
+    </div>
+
+    <!-- Comment Area -->
+    <div class="form-group">
+        <label for="comment">Comments about the animal:</label>
+        <textarea class="form-control" id="comment" name="comment" value="some comments" rows="3" value="some comments"></textarea>
+    </div>
+
+    <!-- Owner's Name -->
+    <div class="form-group">
+        <label for="ownerName">Current Owner's Full Name:</label>
+        <input type="text" class="form-control" id="ownerName" name="ownerName" required value="John Doe">
+    </div>
+
+    <!-- Owner's Email -->
+    <div class="form-group">
+        <label for="ownerEmail">Current Owner's Email:</label>
+        <input type="email" class="form-control" id="ownerEmail" name="ownerEmail" required value="john.doe@gmail.com">
+    </div>
+
+    <!-- Submit & Clear Buttons -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary">Clear</button>
+</form>
+
+            </div>
+        </main>
+    </div>
+
+    <footer class="row">
+        <div class="col-12 bg-dark text-white text-center p-3">
+            <p>Adopt A-Cat/Dog © 2024. All Rights Reserved.</p>
+            <a href="privacy.html" class="text-white">Privacy/Disclaimer Statement</a>
+        </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

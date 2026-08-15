@@ -1,0 +1,25 @@
+<!-- templates/base.html -->
+<!-- Base template: all pages extend this to share nav, head, footer -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: #333; }
+        nav { border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

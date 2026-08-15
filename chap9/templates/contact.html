@@ -1,0 +1,25 @@
+<!-- templates/contact.html -->
+{% extends "base2.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<h1>Contact Us</h1>
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="POST" action="/contact">
+    <label>Name:
+        <input type="text" name="name" placeholder="Your name" required>
+    </label><br><br>
+    <label>Email:
+        <input type="email" name="email" placeholder="Your email" required>
+    </label><br><br>
+    <label>Message:
+        <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+    </label><br><br>
+    <button type="submit">Send</button>
+</form>
+{% endblock %}
