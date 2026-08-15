@@ -1,0 +1,10 @@
+<!-- templates/thanks.html -->
+{% extends "base2.html" %}
+
+{% block title %}Thank You{% endblock %}
+
+{% block content %}
+<h1>Thank You!</h1>
+<p>Your message has been received. We will get back to you shortly.</p>
+<a href="{{ url_for('contact') }}">Send another message</a>
+{% endblock %}
