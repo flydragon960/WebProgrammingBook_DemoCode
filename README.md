@@ -18,7 +18,7 @@ It is the official textbook for **SOEN 287 – Web Programming** at Concordia Un
 ### 🛒 Get the book
 Available on **Amazon** — search for the title and author, or use the link below (make sure you get the **Second Edition**):
 
-- **Amazon:** [Web Programming: With Modern Full Stack Technology] (https://www.amazon.ca/Web-Programming-Modern-Stack-Technology/dp/B0HFD6JK5B/ref=sr_1_1?crid=3V82MWPT00AQ9&dib=eyJ2IjoiMSJ9.BK870lBAPXr3bTgSfTgFLZNjt2auXUs0kcSHRrIy1sPGjHj071QN20LucGBJIEps.iqcG29m_-Y4cwY-IgJG6IYl64cDRAu2v4QujYH9rD5I&dib_tag=se&keywords=yuhong+yan&qid=1789478706&sprefix=yuhong%2Caps%2C126&sr=8-1)
+- **Amazon:** [Web Programming: With Modern Full Stack Technology](https://www.amazon.ca/Web-Programming-Modern-Stack-Technology/dp/B0HFD6JK5B/ref=sr_1_1?crid=3V82MWPT00AQ9&dib=eyJ2IjoiMSJ9.BK870lBAPXr3bTgSfTgFLZNjt2auXUs0kcSHRrIy1sPGjHj071QN20LucGBJIEps.iqcG29m_-Y4cwY-IgJG6IYl64cDRAu2v4QujYH9rD5I&dib_tag=se&keywords=yuhong+yan&qid=1789478706&sprefix=yuhong%2Caps%2C126&sr=8-1)
 
 ---
 
