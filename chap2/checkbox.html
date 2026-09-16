@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<!-- checkbox.html
-     An example to illustrate a checkbox
-     -->
-<html lang = "en">
-  <head> 
-    <title> Checkboxes </title>
-    <meta charset = "utf-8" />
+<!-- checkbox.html   Checkboxes -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkboxes</title>
   </head>
   <body>
-    <p>
-      Grocery Checklist
-    </p>
-    <form action = "">
-      <p>
-        <label> <input type = "checkbox"  name = "groceries"    
-                      value = "milk"  checked = "checked" /> 
-                Milk </label>
-        <label> <input type = "checkbox"  name = "groceries"  
-                       value = "bread" /> Bread </label>
-        <label> <input type = "checkbox"  name = "groceries"  
-                       value= "eggs" /> Eggs </label>
-      </p>
+    <h2>Checkboxes</h2>
+    <p>What do you like to buy?</p>
+    <form action="submit.php">
+      <input type="checkbox" id="op1" name="shopping" value="eggs">
+      <label for="op1"> Eggs</label><br>
+      <input type="checkbox" id="op2" name="shopping" value="milk">
+      <label for="op2"> Milk</label><br>
+      <input type="checkbox" id="op3" name="shopping" value="tomatoes">
+      <label for="op3"> Tomatoes</label><br><br>
+      <input type="submit" value="Submit">
     </form>
   </body>
 </html>

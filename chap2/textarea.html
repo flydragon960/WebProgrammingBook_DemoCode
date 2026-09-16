@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<!-- textarea.html
-     An example to illustrate a textarea
-     -->
-<html lang = "en">
-  <head> 
-    <title> Textarea </title>
-    <menu charset = "utf-8" />
+<!-- textarea.html   Textarea -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Textarea</title>
   </head>
   <body>
-    <p>
-      Please provide your employment aspirations
-    </p>
-    <form action = "handler">
-      <p>
-        <label> <textarea name = "aspirations"  rows = "3"  
-                          cols = "40">
-          (Be brief and concise) </textarea>
-        </label>
-      </p>
+    <h2>Your Comment</h2>
+    <form action="submit.php" method="post">
+      <label for="message">Tell us what you think of the course:</label><br>
+      <textarea id="message" name="message" rows="6" cols="40"
+                placeholder="Write your comment here"></textarea>
+      <br><br>
+      <input type="submit" value="Submit">
     </form>
   </body>
 </html>

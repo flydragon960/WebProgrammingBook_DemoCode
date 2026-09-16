@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<!-- audio.html
-     test the audio element
-     -->
-<html lang = "en">
+<!-- audio.html   Audio (record your own welcome.mp3 / welcome.ogg in media/) -->
+<html lang="en">
   <head>
-    <title> test audio element </title>
-    <meta charset = "utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio</title>
   </head>
   <body>
-    This is a test of the audio element
-    <audio controls = "controls" >
-      <source src = "nineoneone.ogg" />
-      <source src = "nineoneone.wav" />
-      <source src = "nineoneone.mp3" />
-      Your browser does not support the audio element
+    <audio controls>
+        <source src="media/welcome.m4a" type="audio/mpeg">
+      <source src="media/welcome.mp3" type="audio/mpeg">
+      <source src="media/welcome.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
     </audio>
   </body>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- select.html   Dropdown list -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dropdown list</title>
+  </head>
+  <body>
+    <h2>Dropdown List</h2>
+    <form action="submit.php">
+      <label for="lang">Choose a programming language:</label>
+      <select id="lang" name="lang">
+        <option value="js">JavaScript</option>
+        <option value="java">Java</option>
+        <option value="python">Python</option>
+        <option value="csharp">C#</option>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+    <h2>size and multiple</h2>
+    <form action="submit.php">
+      <label for="langs">Languages you know:</label>
+      <select id="langs" name="langs" size="3" multiple>
+        <option value="js">JavaScript</option>
+        <option value="java">Java</option>
+        <option value="python" selected>Python</option>
+        <option value="csharp">C#</option>
+      </select>
+    </form>
+  </body>
+</html>

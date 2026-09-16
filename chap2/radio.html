@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<!-- radio.html
-     An example to illustrate radio buttons
-     -->
-<html lang = "en">
-  <head> 
-    <title> Radio </title>
-    <meta charset = "utf-8" />
+<!-- radio.html   Radio buttons -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Radio buttons</title>
   </head>
   <body>
-    <p>
-      Age Category
-    </p>
-    <form action = "">
-      <p>
-        <label> <input type = "radio"  name = "age"  
-                       value = "under20" 
-                        /> 0-19 </label>
-        <label> <input type = "radio"  name = "age"  
-                       value = "20-35" /> 20-35 </label>
-        <label> <input type = "radio"  name = "age"  
-                       value = "36-50" /> 36-50 </label>
-        <label> <input type = "radio"  name = "age"  
-                       value = "over50" /> Over 50 </label>
-      </p>
+    <h2>Radio Buttons</h2>
+    <p>Choose your payment method</p>
+    <form action="submit.php">
+      <input type="radio" id="MC" name="pay_method" value="MC">
+      <label for="MC">Master Card</label><br>
+      <input type="radio" id="VISA" name="pay_method" value="VISA">
+      <label for="VISA">VISA Card</label><br>
+      <input type="radio" id="gift" name="pay_method" value="gift">
+      <label for="gift">A gift card</label><br><br>
+      <input type="submit" value="Submit">
     </form>
   </body>
 </html>

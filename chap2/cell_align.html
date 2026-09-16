@@ -1,39 +1,31 @@
 <!DOCTYPE html>
-<!-- cell_span.html
-     An example to illustrate rowspan and colspan
-     -->
-<html lang = "en">
-  <head> 
-    <title> Alignment in cells </title>
+<!-- cell_align.html   Alignment in cells -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alignment in cells</title>
     <style>
-        table, th, td {
-            border:1px solid black;
-        }
+      table, th, td { border: 1px solid black; }
+      td { width: 120px; }
     </style>
-    <meta charset = "utf-8">
   </head>
   <body>
     <table>
-      <caption> The align and valign attributes </caption>
-      <tr style="text-align:center">
-        <th> </th>
-        <th> Column Label </th>
-        <th> Another One </th>
-        <th> Still Another One </th>
-      </tr>
+      <caption>text-align and vertical-align</caption>
+      <tr> <th></th> <th>Column A</th> <th>Column B</th> <th>Column C</th> </tr>
       <tr>
-        <th> align </th>
-        <td style="text-align:left"> left  </td>
-        <td style="text-align:center"> Center </td>
-        <td style="text-align:right"> Right </td>
+        <th>text-align</th>
+        <td style="text-align: left;">left</td>
+        <td style="text-align: center;">center</td>
+        <td style="text-align: right;">right</td>
       </tr>
-      <tr>
-        <th> <br> valign <br><br> </th>
-        <td> Default </td>
-        <td style="vertical-align:top"> Top </td>
-        <td style= "vertical-align:bottom; text-align:right"> Bottom </td>
+      <tr style="height: 80px;">
+        <th>vertical-align</th>
+        <td style="vertical-align: top;">top</td>
+        <td style="vertical-align: middle;">middle</td>
+        <td style="vertical-align: bottom;">bottom</td>
       </tr>
     </table>
   </body>
 </html>
-

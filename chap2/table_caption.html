@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<!-- cell_span.html   rowspan and colspan (exercise answer) -->
+<!-- table_caption.html   caption and colspan -->
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>rowspan and colspan (exercise answer)</title>
+    <title>caption and colspan</title>
     <style>
       table, th, td { border: 1px solid black; }
     </style>
   </head>
   <body>
     <table>
-      <caption>Build this table</caption>
+      <caption>This is a caption</caption>
       <tr> <th>Header 1</th> <th>Header 2</th> <th>Header 3</th> </tr>
-      <tr> <td rowspan="2">Span 2 rows</td> <td>Data 1</td> <td>Data 2</td> </tr>
-      <tr> <td colspan="2">Span 2 columns</td> </tr>
+      <tr> <td colspan="2">Span 2 columns</td> <td>Data 2</td> </tr>
+      <tr> <td>Data 3</td> <td>Data 4</td> <td>Data 5</td> </tr>
     </table>
   </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<!-- tester.html
-     A trivial document
-     -->
-<html lang = "en">
-  <head> 
-    <title> Tester </title>
-    <meta charset = "utf-8" />
+<!-- tester.html   HTML5 input types -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 input types</title>
   </head>
   <body>
-    <p>
-      <input type = "url"  id = "myUrl"  placeholder = "url" />
-      <input type = "email"  id = "myEmail"  placeholder = "email" />
-      <input type = "range"  min = "1"  max = "5"  id = "myRange" />
-    </p>
+    <form action="submit.php">
+      <p><label for="myUrl">Website:</label> <input type="url" id="myUrl" name="url" placeholder="https://"></p>
+      <p><label for="myEmail">Email:</label> <input type="email" id="myEmail" name="email" required></p>
+      <p><label for="myRange">Rating (1–5):</label> <input type="range" id="myRange" name="rating" min="1" max="5"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
   </body>
 </html>

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<!-- table.html   A simple table -->
+<!-- table_rowspan.html   rowspan -->
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>A simple table</title>
+    <title>rowspan</title>
     <style>
-      table { border: 1px solid; }
-      th, td { border: 1px solid; }
+      table, th, td { border: 1px solid black; }
     </style>
   </head>
   <body>
     <table>
-      <tr> <th>Header 1</th> <th>Header 2</th> </tr>
-      <tr> <td>Data 1</td> <td>Data 2</td> </tr>
+      <tr> <th>Header 1</th> <th>Header 2</th> <th>Header 3</th> </tr>
+      <tr> <td rowspan="2">Span 2 Rows</td> <td>Data 1</td> <td>Data 2</td> </tr>
       <tr> <td>Data 3</td> <td>Data 4</td> </tr>
     </table>
   </body>

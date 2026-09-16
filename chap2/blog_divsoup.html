@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- blog_divsoup.html   div soup -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>div soup</title>
+  </head>
+  <body>
+    <div class="top">
+      <div class="logo">My Blog</div>
+      <div class="menu">
+        <div class="menu-item" onclick="go('/home')">Home</div>
+        <div class="menu-item" onclick="go('/posts')">Posts</div>
+      </div>
+    </div>
+    <div class="title">Welcome</div>
+    <div class="post">
+      <div class="post-title">First Post</div>
+      <div class="post-body">Hello there.</div>
+    </div>
+    <div class="foot">Copyright 2026</div>
+    <script>
+      function go(url) { window.location.href = url; }
+    </script>
+  </body>
+</html>
