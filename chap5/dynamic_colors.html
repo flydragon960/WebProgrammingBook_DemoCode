@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- dynamic_colors.html   Changing colors on events -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Changing colors on events</title>
+    <style>
+      #notice {padding: 16px; border: 1px solid #1f4e79; transition: background-color 0.3s;}
+    </style>
+  </head>
+  <body>
+    <p id="notice" tabindex="0">Point at me, or focus me with the Tab key.</p>
+    <script>
+      const notice = document.getElementById("notice");
+      const on = () => notice.style.backgroundColor = "#fff3b0";
+      const off = () => notice.style.backgroundColor = "";
+      notice.addEventListener("mouseenter", on);
+      notice.addEventListener("mouseleave", off);
+      notice.addEventListener("focus", on);
+      notice.addEventListener("blur", off);
+    </script>
+  </body>
+</html>

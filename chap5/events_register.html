@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- events_register.html   Three ways to register a handler -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Three ways to register a handler</title>
+  </head>
+  <body>
+    <p>Choose your section:</p>
+    <form id="sections">
+      <label><input type="radio" name="section" value="A"> Section A</label>
+      <label><input type="radio" name="section" value="B"> Section B</label>
+      <label><input type="radio" name="section" value="C"> Section C</label>
+    </form>
+    <button onclick="alert('1. HTML attribute (avoid in new code)')">Attribute</button>
+    <button id="prop">Property</button>
+    <p id="out"></p>
+    <script>
+      // 2. event property: only one handler per event
+      document.getElementById("prop").onclick = () => alert("2. onclick property");
+      // 3. addEventListener: any number of handlers, recommended
+      document.getElementById("sections").addEventListener("change", event => {
+        document.getElementById("out").textContent = "You chose section " + event.target.value;
+      });
+    </script>
+  </body>
+</html>

@@ -1,34 +1,23 @@
 <!DOCTYPE html>
-<!-- where.html
-     Uses where.js
-     Illustrates x and y coordinates of the mouse cursor
-     -->
+<!-- where.html   Mouse coordinates -->
 <html lang="en">
   <head>
-    <title> Where is the cursor? </title>
-    <script type = "text/javascript"  src = "where.js" >
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mouse coordinates</title>
+    <style>
+      body {min-height: 90vh;}
+    </style>
   </head>
-  <body onclick = "findIt(event)">
-    <form action = "">
-      <p> 
-        Within the client area: <br />
-        x:
-        <input type = "text"  id = "xcoor1"  size = "4" />
-        y:
-        <input type = "text"  id = "ycoor1"  size = "4" />
-        <br /><br />
-        Relative to the origin of the screen coordinate system:
-        <br />
-        x:
-        <input type = "text"  id = "xcoor2"  size = "4" />
-        y:
-        <input type = "text"  id = "ycoor2"  size = "4" />
-      </p>
-    </form>
-    <p>
-      <img src = "Nebula_RCW49_04_lrg.jpg" width = "500" height="400"
-          alt = "(Picture of a nebula)" />
-    </p>
+  <body>
+    <p>Click anywhere on the page.</p>
+    <p id="out"></p>
+    <script>
+      document.addEventListener("click", event => {
+        document.getElementById("out").textContent =
+          `Page: (${event.pageX}, ${event.pageY})  Viewport: (${event.clientX}, ${event.clientY})`;
+      });
+      document.addEventListener("keydown", event => console.log("Key pressed:", event.key));
+    </script>
   </body>
 </html>

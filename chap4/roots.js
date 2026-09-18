@@ -1,25 +1,17 @@
-// roots.js 
-//   Compute the real roots of a given quadratic
-//   equation. If the roots are imaginary, this script
-//   displays NaN, because that is what results from 
-//   taking the square root of a negative number
-
-// Get the coefficients of the equation from the user
-
-var a = prompt("What is the value of 'a'? \n", "1");
-var b = prompt("What is the value of 'b'? \n", "2");
-var c = prompt("What is the value of 'c'? \n", "1");
-
-// Compute the square root and denominator of the result
-
-var root_part = Math.sqrt(b * b - 4.0 * a * c);
-var denom = 2.0 * a;
-
-// Compute and display the two roots
-
-var root1 = (-b + root_part) / denom;
-var root2 = (-b - root_part) / denom;
-//document.write("The root_part is: ", root_part, "<br />");
-document.write("The first root is: ", root1, "<br />");
-document.write("The second root is: ", root2, "<br />"); 
-
+// roots.js  -  real roots of a x^2 + b x + c = 0
+function log(...parts) {
+  document.getElementById("out").textContent += parts.join(" ") + "\n";
+}
+function roots(a, b, c) {
+  const disc = b * b - 4 * a * c;
+  if (disc < 0) return [];            // no real roots
+  const s = Math.sqrt(disc);
+  return disc === 0 ? [-b / (2 * a)] : [(-b + s) / (2 * a), (-b - s) / (2 * a)];
+}
+document.getElementById("solve").addEventListener("submit", event => {
+  event.preventDefault();
+  const [a, b, c] = ["a", "b", "c"].map(id => Number(document.getElementById(id).value));
+  if (a === 0) { document.getElementById("out").textContent = "a must not be 0."; return; }
+  const r = roots(a, b, c);
+  document.getElementById("out").textContent = r.length ? "Roots: " + r.join(", ") : "No real roots.";
+});

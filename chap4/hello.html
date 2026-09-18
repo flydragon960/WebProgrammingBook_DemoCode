@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<!-- hello.html 
-     A trivial hello world example of XHTML/JavaScript
-     -->
-<html lang = "en">
-  <head> 
-    <title> Hello world with JavaScript </title>
-    <meta charset = "utf-8">
+<!-- hello.html   Hello World with JavaScript -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello World with JavaScript</title>
   </head>
   <body>
-    <h1 id="greeting">Hello World</h1> 
+    <h1 id="greeting">My first page</h1>
+    <pre id="out"></pre>
     <script>
-        document.write("Hello, world!"); 
-        document.getElementById("greeting").innerHTML = "Hello, Universe!"; 
-        
-      </script>
+      document.getElementById("greeting").textContent = "Hello World with JavaScript!";
+      console.log("Open the console (F12) to see this message.");
+    </script>
   </body>
 </html>

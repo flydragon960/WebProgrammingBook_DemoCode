@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- change_style.html   Changing style -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Changing style</title>
+    <style>
+      .highlight {background-color: #fff3b0; font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <p id="message">Change my style.</p>
+    <button id="color">Color</button>
+    <button id="toggle">Toggle class</button>
+    <script>
+      const message = document.getElementById("message");
+      document.getElementById("color").addEventListener("click", () => {
+        message.style.color = "#b00020";                 // one property through style
+      });
+      document.getElementById("toggle").addEventListener("click", () => {
+        message.classList.toggle("highlight");            // preferred: switch a class
+      });
+    </script>
+  </body>
+</html>

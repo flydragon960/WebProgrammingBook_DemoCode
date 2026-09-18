@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- dom_access.html   Accessing elements -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accessing elements</title>
+  </head>
+  <body>
+    <h1 id="title">Course news</h1>
+    <p class="news">Lab 3 is posted.</p>
+    <p class="news">The quiz is on Friday.</p>
+    <form id="signup" name="signup">
+      <input type="text" name="student" value="Mei">
+    </form>
+    <pre id="out"></pre>
+    <script>
+      function log(...parts) {
+        document.getElementById("out").textContent += parts.join(" ") + "\n";
+      }
+      log("By id:", document.getElementById("title").textContent);
+      log("By class:", document.getElementsByClassName("news").length, "paragraphs");
+      log("By tag name:", document.getElementsByTagName("p")[1].textContent);
+      log("With a CSS selector:", document.querySelector("#signup input").value);
+      log("Through the form:", document.forms["signup"].elements["student"].value);
+    </script>
+  </body>
+</html>

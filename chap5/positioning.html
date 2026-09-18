@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- positioning.html   Static, relative and absolute positioning -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Static, relative and absolute positioning</title>
+    <style>
+      .container {position: relative; height: 260px; border: 2px dashed #999;}
+      .box {width: 220px; padding: 10px; margin: 6px; background: #dbe7f3; border: 1px solid #1f4e79;}
+      .relative {position: relative; top: 20px; left: 40px;}
+      .absolute {position: absolute; top: 10px; right: 10px; background: #f9cc9d;}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box static">static</div>
+      <div class="box relative">relative: top 20px, left 40px</div>
+      <div class="box absolute">absolute: top 10px, right 10px</div>
+    </div>
+  </body>
+</html>

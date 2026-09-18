@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- closure_counter.html   Closure counter -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Closure counter</title>
+  </head>
+  <body>
+    <button id="count">Click me</button>
+    <p id="display">0</p>
+    <script>
+      function makeCounter() {
+        let clicks = 0;                 // private: only the inner function can see it
+        return () => ++clicks;
+      }
+      const next = makeCounter();
+      document.getElementById("count").addEventListener("click", () => {
+        document.getElementById("display").textContent = next();
+      });
+    </script>
+  </body>
+</html>

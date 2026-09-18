@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<!-- forms_check.html
-     A document for forms_check.js
-     -->
+<!-- load.html   Page load events -->
 <html lang="en">
   <head>
-    <title> load.html </title>
-    <script type = "text/javascript"  src = "load.js" >
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page load events</title>
   </head>
-  <body id = "mybody" onload = "fade(); ">
-   <h1> The home page of Pete's Pickled Peppers </h1>
-      <p/>
+  <body>
+    <p id="out">Loading...</p>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("out").textContent = "The HTML is parsed (DOMContentLoaded).";
+      });
+      window.addEventListener("load", () => {
+        console.log("Everything, including images, has loaded (load).");
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- capture_bubble.html   Capture and bubbling -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Capture and bubbling</title>
+    <style>
+      #outer, #inner {border: 2px solid #1f4e79; padding: 30px; margin: 10px;}
+      #inner {background: #dbe7f3;}
+    </style>
+  </head>
+  <body>
+    <div id="outer">Outer
+      <div id="inner">Inner (click me)</div>
+    </div>
+    <pre id="out"></pre>
+    <script>
+      function log(...parts) {
+        document.getElementById("out").textContent += parts.join(" ") + "\n";
+      }
+      const outer = document.getElementById("outer");
+      const inner = document.getElementById("inner");
+      outer.addEventListener("click", () => log("outer: capture phase"), true);
+      outer.addEventListener("click", () => log("outer: bubbling phase"));
+      inner.addEventListener("click", () => log("inner: target phase"));
+      // add event.stopPropagation() in the inner handler to stop the bubbling
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- move_element.html   Moving an element -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moving an element</title>
+    <style>
+      #box {position: relative; left: 0; width: 60px; height: 60px; background: #1f4e79;}
+    </style>
+  </head>
+  <body>
+    <p>
+      <button id="step">Move 20px</button>
+      <button id="animate">Glide to 300px</button>
+    </p>
+    <div id="box"></div>
+    <script>
+      const box = document.getElementById("box");
+      let x = 0;
+      document.getElementById("step").addEventListener("click", () => {
+        x += 20;
+        box.style.left = x + "px";
+      });
+      document.getElementById("animate").addEventListener("click", () => {
+        const timer = setInterval(() => {
+          if (x >= 300) { clearInterval(timer); return; }
+          x += 2;
+          box.style.left = x + "px";
+        }, 10);
+      });
+    </script>
+  </body>
+</html>

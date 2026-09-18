@@ -1,10 +1,8 @@
-var http = require('http');
-var dt = require('./myfirstmodule');
+// app_module.js  -  an HTTP server that uses our own module
+const http = require("http");
+const info = require("./courseinfo");
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end('Hello World Node.js!' + dt.myDateTime());
-}).listen(5030);
-
-console.log('This example is different!');
-console.log('The result is displayed in the Command Line Interface');
+http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+  res.end(`<h1>${info.courseName()}</h1><p>Today is ${info.today()}.</p>`);
+}).listen(3000, () => console.log("Open http://localhost:3000"));

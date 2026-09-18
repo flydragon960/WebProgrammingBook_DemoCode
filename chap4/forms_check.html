@@ -1,16 +1,19 @@
-<?xml version = "1.0"  encoding = "utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<!-- forms_check.html
-     A document for forms_check.js
-     -->
-<html xmlns = "http://www.w3.org/1999/xhtml">
-  <head>
-    <title> load.html </title>
-    <script type = "text/javascript"  src = "forms_check.js" >
-    </script>
-  </head>
-  <body>
-  </body>
-</html>
+<!DOCTYPE html>
+<!-- forms_check.html   Phone number check -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phone number check</title>
+    <script src="forms_check.js" defer></script>
+  </head>
+  <body>
+    <h1>Phone number check</h1>
+    <form id="phoneForm">
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" placeholder="514-555-0123">
+      <button>Check</button>
+    </form>
+    <pre id="out"></pre>
+  </body>
+</html>

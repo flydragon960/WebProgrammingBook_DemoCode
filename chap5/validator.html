@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<!-- validator.html
-     A document for validator.js
-     -->
-<html lang = "en">
+<!-- validator.html   Form validation -->
+<html lang="en">
   <head>
-    <title> Illustrate form input validation> </title>
-    <meta charset = "utf-8" />
-    <script type = "text/javascript"  src = "validator.js" >
-    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form validation</title>
   </head>
   <body>
-    <h3> Customer Information </h3>
-    <form action = "">
-      <p>
-        <label>
-          <input type = "text"  id = "custName" />
-          Name (last name, first name, middle initial)
-        </label>
-        <br /><br />
-
-        <label>
-          <input type = "text"  id = "phone" />
-          Phone number (ddd-ddd-dddd)
-        </label>
-        <br /><br />
-        <input type = "reset"  id = "reset" />
-        <input type = "submit"  id = "submit" />
-      </p>
+    <form id="register" novalidate>
+      <p><label for="name">Name (Last, First):</label>
+         <input id="name" name="name" required></p>
+      <p><label for="phone">Phone:</label>
+         <input id="phone" name="phone" placeholder="514-555-0123" required></p>
+      <button>Register</button>
     </form>
-    <script type = "text/javascript"  src = "validatorr.js">
+    <p id="errors" aria-live="polite"></p>
+    <script>
+      const namePattern = /^[A-Za-z' -]+, [A-Za-z' -]+$/;
+      const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+      function check(field, pattern, message) {
+        const ok = pattern.test(field.value.trim());
+        field.setCustomValidity(ok ? "" : message);   // uses the browser's validation UI
+        return ok;
+      }
+      const form = document.getElementById("register");
+      form.name.addEventListener("change", () => check(form.name, namePattern, "Use the form Last, First"));
+      form.phone.addEventListener("change", () => check(form.phone, phonePattern, "Use the form 514-555-0123"));
+      form.addEventListener("submit", event => {
+        const ok = check(form.name, namePattern, "Use the form Last, First") &
+                   check(form.phone, phonePattern, "Use the form 514-555-0123");
+        if (!ok) {
+          event.preventDefault();
+          form.reportValidity();
+        } else {
+          event.preventDefault();  // demo only: no server
+          document.getElementById("errors").textContent = "Thank you, " + form.name.value + ".";
+        }
+      });
     </script>
   </body>
 </html>

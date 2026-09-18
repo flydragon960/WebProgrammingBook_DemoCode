@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- drag.html   Dragging an element -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dragging an element</title>
+    <style>
+      #card {position: absolute; left: 40px; top: 80px; width: 110px; height: 110px;
+        background: #1a7f37; color: white; display: flex; align-items: center; justify-content: center;
+        touch-action: none; cursor: grab; user-select: none;}
+    </style>
+  </head>
+  <body>
+    <p>Drag the square with the mouse, a pen or a finger.</p>
+    <div id="card">Drag me</div>
+    <script>
+      const card = document.getElementById("card");
+      let offsetX = 0, offsetY = 0;
+      card.addEventListener("pointerdown", event => {
+        offsetX = event.clientX - card.offsetLeft;
+        offsetY = event.clientY - card.offsetTop;
+        card.setPointerCapture(event.pointerId);   // keep receiving moves outside the box
+      });
+      card.addEventListener("pointermove", event => {
+        if (!card.hasPointerCapture(event.pointerId)) return;
+        card.style.left = event.clientX - offsetX + "px";
+        card.style.top = event.clientY - offsetY + "px";
+      });
+    </script>
+  </body>
+</html>

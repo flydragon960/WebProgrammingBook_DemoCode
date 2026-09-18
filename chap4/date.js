@@ -1,47 +1,21 @@
-// date.html 
-//   Illustrates the use of the Date object by 
-//   displaying the parts of a current date and
-//   using two Date objects to time a calculation
-    
-// Get the current date
-
-      var today = new Date();
-
-// Fetch the various parts of the date
-
-      var dateString = today.toLocaleString();
-      var day = today.getDay();
-      var month = today.getMonth();
-      var year = today.getFullYear();
-      var timeMilliseconds = today.getTime();
-      var hour = today.getHours();
-      var minute = today.getMinutes();
-      var second = today.getSeconds();
-      var millisecond = today.getMilliseconds();
-
-// Display the parts
-      //var document = new Document;
-      document.write(
-        "Date: " + dateString + "<br />",
-        "Day: " + day + "<br />",
-        "Month: " + month + "<br />",
-        "Year: " + year + "<br />",
-        "Time in milliseconds: " + timeMilliseconds + "<br />",
-        "Hour: " + hour + "<br />",
-        "Minute: " + minute + "<br />",
-        "Second: " + second + "<br />",
-        "Millisecond: " + millisecond + "<br />");
+// date.js  -  parts of the current date, and timing a loop with two Date objects
+function log(...parts) {
+  document.getElementById("out").textContent += parts.join(" ") + "\n";
+}
+const now = new Date();
+log("Full date and time:", now.toLocaleString("en-CA"));
+log("Day of the week (0 = Sunday):", now.getDay());
+log("Month (0 = January):", now.getMonth());
+log("Year:", now.getFullYear());
+log("Hours:", now.getHours(), " Minutes:", now.getMinutes(), " Seconds:", now.getSeconds());
+log("Milliseconds since 1 January 1970:", now.getTime());
 
 // Time a loop
-
-      var dum1 = 1.00149265, product = 1;
-      var start = new Date();
-
-      for (var count = 0; count < 100000; count++)
-        product = product + 1.000002 * dum1 / 1.00001;
-
-      var end = new Date();
-      var diff = end.getTime() - start.getTime();
-      document.write("<br />The loop took " + diff + 
-                     " milliseconds <br />");
-    
+const start = new Date();
+let total = 0;
+for (let i = 1; i <= 1_000_000; i++) {
+  total += Math.sqrt(i);
+}
+const end = new Date();
+log("Sum of square roots:", total.toFixed(2));
+log("The loop took", end - start, "ms");  // subtracting Dates gives milliseconds

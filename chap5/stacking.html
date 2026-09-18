@@ -1,71 +1,24 @@
 <!DOCTYPE html>
-<!-- stacking.html
-
-     Uses stacking.js
-
-     Illustrates dynamic stacking of images
-
-     -->
-
+<!-- stacking.html   z-index -->
 <html lang="en">
-
   <head>
-
-    <title> Dynamic stacking of images </title>
-
-    <script type = "text/javascript"  src = "stacking.js" >
-
-    </script>
-
-    <style type = "text/css">
-
-      .nebula1 {position: absolute; top: 0; left: 0; 
-
-               z-index: 0;}
-
-      .nebula2 {position: absolute; top: 50px; left: 110px; 
-
-               z-index: 0;}
-
-      .nebula3 {position: absolute; top: 100px; left: 220px; 
-
-               z-index: 0;}
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>z-index</title>
+    <style>
+      .card {position: absolute; width: 140px; height: 100px; padding: 8px; border: 1px solid #333; cursor: pointer;}
     </style>
-
   </head>
-
   <body>
-
-    <p>
-
-      <img class = "nebula1"  id = "C172"
-
-           src = "Nebula_RCW49_04_lrg.jpg" width ="400" height ="300" 
-
-           alt = "(Picture of nebula 1)" 
-
-           onclick = "toTop('C172')" />
-
-      <img class = "nebula2"  id = "cix" 
-
-           src = "03_CatEyeNebula.jpg" width ="400" height ="300"
-
-           alt = "(Picture of nebula2)"
-
-           onclick = "toTop('cix')" />
-
-      <img class = "nebula3"  id = "C182"
-
-           src = "anotherNebula.jpg" width ="400" height ="300"
-
-           alt = "(Picture of a C182)"
-
-           onclick = "toTop('C182')" />
-
-    </p>
-
+    <p>Click a card to bring it to the front.</p>
+    <div class="card" style="left: 20px; top: 60px; background: #f9cc9d;">Lab</div>
+    <div class="card" style="left: 80px; top: 100px; background: #c3d08b;">Quiz</div>
+    <div class="card" style="left: 140px; top: 140px; background: #9cc9ff;">Exam</div>
+    <script>
+      let highest = 1;
+      document.querySelectorAll(".card").forEach(card => {
+        card.addEventListener("click", () => card.style.zIndex = ++highest);
+      });
+    </script>
   </body>
-
 </html>
-

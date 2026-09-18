@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- show_hide.html   visibility and display -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>visibility and display</title>
+    <style>
+      .box {display: inline-block; width: 80px; height: 80px; margin: 4px; background: #dbe7f3; text-align: center; line-height: 80px;}
+    </style>
+  </head>
+  <body>
+    <p><button id="vis">Toggle visibility</button> <button id="disp">Toggle display</button></p>
+    <div class="box" id="a">A</div><div class="box" id="b">B</div><div class="box">C</div>
+    <script>
+      document.getElementById("vis").addEventListener("click", () => {
+        const a = document.getElementById("a");
+        a.style.visibility = a.style.visibility === "hidden" ? "visible" : "hidden";  // space is kept
+      });
+      document.getElementById("disp").addEventListener("click", () => {
+        const b = document.getElementById("b");
+        b.style.display = b.style.display === "none" ? "inline-block" : "none";      // space is removed
+      });
+    </script>
+  </body>
+</html>

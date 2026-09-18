@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- propagation.html   Event propagation example from Chapter 5 -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Event propagation</title>
+    <style>
+      body * {margin: 10px; border: 1px solid blue; padding: 10px;}
+    </style>
+  </head>
+  <body>
+    <div onclick="alert('Outer DIV clicked!')">Outer DIV
+      <div onclick="alert('Inner DIV clicked!')">Inner DIV
+        <p onclick="alert('Paragraph clicked!')">Paragraph</p>
+      </div>
+    </div>
+  </body>
+</html>
