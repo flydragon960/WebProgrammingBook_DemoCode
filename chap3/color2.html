@@ -1,26 +1,21 @@
 <!DOCTYPE html>
+<!-- color2.html   Colors in a table -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Font Properties Example</title>
-    <style type = "text/css" >
-        th.red {color: red}
-        th.orange {color: orange}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colors in a table</title>
+    <style>
+      table, th, td {border: 1px solid #999; border-collapse: collapse; padding: 6px 12px;}
+      th.red {color: red;}
+      th.orange {color: orange;}
+      th.green {color: green;}
     </style>
-</head>
-  <table border = "5">
-
-    <tr>
-
-      <th class = "red"> Apple </th>
-
-      <th class = "orange"> Orange </th>
-
-      <th class = "orange"> Screwdriver </th>
-
-    </tr>
-
-  </table>
-
+  </head>
+  <body>
+    <table>
+      <tr><th class="red">Due</th><th class="orange">Due soon</th><th class="green">Done</th></tr>
+      <tr><td>Lab 3</td><td>Quiz 1</td><td>Lab 2</td></tr>
+    </table>
+  </body>
 </html>

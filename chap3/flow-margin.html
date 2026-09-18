@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- flow-margin.html   Vertical margins collapse -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vertical margins collapse</title>
+    <style>
+      p {margin: 0; padding: 8px; background: #dbe7f3;}
+      .a {margin-bottom: 30px;}
+      .b {margin-top: 20px;}
+    </style>
+  </head>
+  <body>
+    <p class="a">margin-bottom: 30px</p>
+    <p class="b">margin-top: 20px</p>
+    <p>The gap between the two boxes above is 30px, not 50px: adjacent vertical margins collapse
+    into the larger one.</p>
+  </body>
+</html>

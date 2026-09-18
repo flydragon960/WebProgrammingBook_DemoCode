@@ -1,12 +1,5 @@
-/* styles.css - an external style sheet
-     for use with fonts2.html
-   */
-  p.big {font-size: 14pt;
-         font-style: italic;
-         font-family: 'Times New Roman';
-        }
-  p.small {font: bold 10pt 'Courier New';} 
-  h2 {font-family: 'Times New Roman'; 
-      font-size: 24pt; font-weight: bold}
-  h3 {font-family: 'Courier New'; 
-      font-size: 18pt}
+/* styles.css - external style sheet for style_first_example.html */
+body {background-color: #f4f4f4;}
+h1   {color: darkblue;}
+p    {color: #333333; margin-left: 20px;}
+h1 em {color: #b00020;}   /* descendant selector: em inside h1 */

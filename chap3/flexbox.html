@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- flexbox.html   Flexbox -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flexbox</title>
+    <style>
+      .menu {display: flex; gap: 16px; justify-content: space-between; background: #dbe7f3; padding: 8px;}
+      .cards {display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px;}
+      .card {flex: 1 1 250px; background: #f4f4f4; border: 1px solid #ddd; padding: 16px;}
+    </style>
+  </head>
+  <body>
+    <nav class="menu">
+      <a href="syllabus.html">Syllabus</a>
+      <a href="labs.html">Labs</a>
+      <a href="grades.html">Grades</a>
+    </nav>
+    <div class="cards">
+      <div class="card">Lecture notes</div>
+      <div class="card">Lab 3</div>
+      <div class="card">Quiz 1</div>
+    </div>
+  </body>
+</html>

@@ -1,35 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-.flex-container {
-  display: flex;
-  background-color: DodgerBlue;
-}
-
-.flex-container > div {
-  background-color: #f1f1f1;
-  margin: 10px;
-  padding: 20px;
-  font-size: 30px;
-}
-</style>
-</head>
-<body>
-
-<h1>Create a Flex Container</h1>
-
-<div class="flex-container">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>  
-</div>
-
-<p>A Flexible Layout must have a parent element with the <em>display</em> property set to <em>flex</em>.</p>
-
-<p>Direct child elements(s) of the flexible container automatically becomes flexible items.</p>
-
-</body>
+<!-- Flex.html   A flex container -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A flex container</title>
+    <style>
+      .row {display: flex; gap: 10px; background-color: #1f4e79; padding: 10px;}
+      .row > div {background-color: #f4f4f4; padding: 20px; font-size: 1.5rem;}
+    </style>
+  </head>
+  <body>
+    <h1>A flex container</h1>
+    <div class="row">
+      <div>HTML</div>
+      <div>CSS</div>
+      <div>JavaScript</div>
+    </div>
+    <p>display: flex on the parent turns its direct children into flex items laid out in a row.</p>
+  </body>
 </html>
-
-

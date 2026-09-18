@@ -1,80 +1,37 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-* {
-  box-sizing: border-box;
-}
-
-.header, .footer {
-  background-color: grey;
-  color: white;
-  padding: 15px;
-}
-
-.column {
-  float: left;
-  padding: 15px;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.menu {
-  width: 25%;
-}
-
-.content {
-  width: 75%;
-}
-
-.menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  padding: 8px;
-  margin-bottom: 8px;
-  background-color: #33b5e5;
-  color: #ffffff;
-}
-
-.menu li:hover {
-  background-color: #0099cc;
-}
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>Chania</h1>
-</div>
-
-<div class="clearfix">
-  <div class="column menu">
-    <ul>
-      <li>The Flight</li>
-      <li>The City</li>
-      <li>The Island</li>
-      <li>The Food</li>
-    </ul>
-  </div>
-
-  <div class="column content">
-    <h1>The City</h1>
-    <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
-    <p>You will learn more about web layout and responsive web pages in a later chapter.</p>
-  </div>
-</div>
-
-<div class="footer">
-  <p>Footer Text</p>
-</div>
-
-</body>
+<!-- GridView.html   Grid example from Chapter 3 (figure 3.111.3) -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A 12-column grid</title>
+    <style>
+      .page {display: grid; gap: 16px;}
+      /* Tablets and desktops: 12 columns */
+      @media (min-width: 600px) {
+        .page {grid-template-columns: repeat(12, 1fr);}
+        .menu    {grid-column: span 3;}
+        .content {grid-column: span 9;}
+      }
+      .menu {background: #f9cc9d;}
+      .content {background: #c3d08b;}
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <nav class="menu">
+        <ul>
+          <li>Syllabus</li>
+          <li>Schedule</li>
+          <li>Labs</li>
+          <li>Grades</li>
+        </ul>
+      </nav>
+      <main class="content">
+        <h1>Week 3: CSS</h1>
+        <p>This week we style the pages we wrote in Chapter 2.</p>
+        <p>Make the browser window narrower to see the menu move above the content.</p>
+      </main>
+    </div>
+  </body>
 </html>

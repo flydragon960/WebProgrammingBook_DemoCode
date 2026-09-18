@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-p.center {
-  text-align: center;
-  color: red;
-}
-</style>
-</head>
-<body>
-
-<h1 class="center">This heading will not be affected</h1>
-<p class="center">This paragraph will be red and center-aligned.</p> 
-
-</body>
+<!-- selector_class.html   Class selector with a tag name -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class selector with a tag name</title>
+    <style>
+      p.note {color: #1f4e79;}
+      p.warning {color: #b00020; font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <p class="note">Bring your laptop to the lab.</p>
+    <p class="warning">Lab 3 is due on Friday.</p>
+    <h3 class="warning">This h3 is not affected: the rule is p.warning.</h3>
+  </body>
 </html>

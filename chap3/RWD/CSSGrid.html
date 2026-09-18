@@ -1,47 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
-.item5 { grid-area: footer; }
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header header header header header header'
-    'menu main main main right right'
-    'menu footer footer footer footer footer';
-  gap: 10px;
-  background-color: #2196F3;
-  padding: 10px;
-}
-
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-}
-</style>
-</head>
-<body>
-
-<h1>Grid Layout</h1>
-
-<p>The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning:</p>
-
-<div class="grid-container">
-  <div class="item1">Header</div>
-  <div class="item2">Menu</div>
-  <div class="item3">Main</div>  
-  <div class="item4">Right</div>
-  <div class="item5">Footer</div>
-</div>
-
-</body>
+<!-- CSSGrid.html   Grid template areas -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grid template areas</title>
+    <style>
+      .page {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+          "header header header"
+          "menu   main   aside"
+          "footer footer footer";
+        gap: 10px;
+      }
+      header {grid-area: header;}
+      nav    {grid-area: menu;}
+      main   {grid-area: main;}
+      aside  {grid-area: aside;}
+      footer {grid-area: footer;}
+      .page > * {background: #dbe7f3; padding: 16px; text-align: center;}
+    </style>
+  </head>
+  <body>
+    <h1>Grid template areas</h1>
+    <div class="page">
+      <header>Header</header>
+      <nav>Menu</nav>
+      <main>Main content</main>
+      <aside>Announcements</aside>
+      <footer>Footer</footer>
+    </div>
+  </body>
 </html>
-
-

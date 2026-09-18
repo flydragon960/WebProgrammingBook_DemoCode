@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {
-  background-color: lightgreen;
-}
-
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-}
-</style>
-</head>
-<body>
-
-<p>Resize the browser window. When the width of this document is 600 pixels or less, the background-color is "lightblue", otherwise it is "lightgreen".</p>
-
-</body>
+<!-- MediaQuery.html   A media query -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A media query</title>
+    <style>
+      body {background-color: #e3f6e3;}
+      @media (max-width: 600px) {
+        body {background-color: #dbe7f3;}
+      }
+    </style>
+  </head>
+  <body>
+    <p>Make the window narrower than 600 pixels: the background changes from light
+    green to light blue.</p>
+  </body>
 </html>

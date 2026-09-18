@@ -1,22 +1,21 @@
-<?xml version = "1.0" encoding = "utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-
-<!-- fonts.html
-     An example to illustrate font properties
-     -->
-<html xmlns = "http://www.w3.org/1999/xhtml">
-<head>
-</head>
-
-<body>
-<div style="display: table; height: 400px; width: 800px; overflow: hidden;">
-  <div style="display: table-cell; vertical-align: middle; text-align: center">
-    <div>
-      everything is vertically centered in modern IE8+ and others.
-      <h1>The vertical-align Property</h1>
-
-      </div></div></div>
-    </body>
+<!DOCTYPE html>
+<!-- text-valign.html   Vertical centering -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vertical centering</title>
+    <style>
+      .stage {
+        display: flex;          /* modern way: flexbox */
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        border: 1px dashed #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage"><p>Centered horizontally and vertically</p></div>
+  </body>
 </html>

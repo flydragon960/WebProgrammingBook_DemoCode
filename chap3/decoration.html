@@ -1,28 +1,21 @@
-<?xml version = "1.0"  encoding = "utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<!-- decoration.html
-     An example that illustrates several of the 
-     possible text decoration values
-     -->
-<html xmlns = "http://www.w3.org/1999/xhtml">
-  <head> <title> Text decoration </title>
-    <style type = "text/css">
-      p.through {text-decoration: line-through}
-      p.over {text-decoration: overline}
-      p.under {text-decoration: underline}
-    </style>
-  </head>
-  <body>
-    <p class = "through">
-      This illustrates line-through
-    </p>
-    <p class= "over">
-      This illustrates overline
-    </p>
-    <p class = "under">
-      This illustrates underline
-    </p>
-  </body>
-</html>
+<!DOCTYPE html>
+<!-- decoration.html   Text decoration -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Text decoration</title>
+    <style>
+      nav a {text-decoration-line: none;}
+      .old-price {text-decoration-line: line-through; text-decoration-color: red;}
+      .misspelled {text-decoration: underline wavy red;}
+      h2 {text-decoration: underline 3px;}
+    </style>
+  </head>
+  <body>
+    <nav><a href="syllabus.html">Syllabus</a> | <a href="labs.html">Labs</a></nav>
+    <p>Textbook: <span class="old-price">$95</span> $60</p>
+    <p>Spelling: <span class="misspelled">recieve</span></p>
+    <h2>A heading with a thick underline</h2>
+  </body>
+</html>

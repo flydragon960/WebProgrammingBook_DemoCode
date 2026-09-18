@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- box_sizing.html   box-sizing -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>box-sizing</title>
+    <style>
+      .card {width: 300px; padding: 20px; border: 5px solid #1f4e79; margin-bottom: 12px;}
+      .content-box {box-sizing: content-box;}
+      .border-box {box-sizing: border-box;}
+    </style>
+  </head>
+  <body>
+    <div class="card content-box">content-box: 300px + 40px padding + 10px border = 350px wide</div>
+    <div class="card border-box">border-box: exactly 300px wide</div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+/* fonts.css - external style sheet for fonts_external.html */
+h2 {font-family: Georgia, "Times New Roman", serif; font-size: 2rem;}
+h3 {font-family: "Courier New", monospace; font-size: 1.4rem;}
+p.lead {font: italic bold 1.2rem Arial, sans-serif;}
+p.small-print {font-size: 0.8rem; font-variant: small-caps;}

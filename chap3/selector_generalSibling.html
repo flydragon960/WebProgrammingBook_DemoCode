@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-div ~ p {
-  background-color: yellow;
-}
-</style>
-</head>
-<body>
-
-<h2>General Sibling Selector</h2>
-
-<p>The general sibling selector (~) selects all elements that are next siblings of a specified element.</p>
-
-<p>Paragraph 1.</p>
-
-<div>
-  <p>Paragraph 2.</p>
-</div>
-
-<section> <p>Paragraph 3.</p> </section>
-<code>Some code.</code>
-<p>Paragraph 4.</p>
-<p>Paragraph 5.</p>
-
-</body>
+<!-- selector_generalSibling.html   General sibling selector (~) -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>General sibling selector (~)</title>
+    <style>
+      article ~ p {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>General sibling selector (~): <code>article ~ p</code></h1>
+    <article>
+      <h2>Week 3: CSS</h2>
+      <p>Read the notes before class.</p>
+      <section>
+        <p>Lab: style your home page.</p>
+      </section>
+      <p>Quiz on Friday.</p>
+    </article>
+    <p>Office hours: Tuesday, 2 pm.</p>
+    <p>Room: EV 3.309.</p>
+  </body>
 </html>
-
-

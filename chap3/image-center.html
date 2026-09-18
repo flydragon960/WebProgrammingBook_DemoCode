@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang = "en">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- image-center.html   Centering an image -->
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <title>Centered Image</title>
-<style>
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-</style>
-</head>
-<body>
-
-<h2>Center an Image</h2>
-<p>To center an image, set left and right margin to auto, and make it into a block element.</p>
-
-<img src="c210new.jpg" alt="plane" style="width:30%;">
-
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centering an image</title>
+    <style>
+      img.centered {
+        display: block;   /* an image is inline by default */
+        margin: 0 auto;   /* equal left and right margins */
+        max-width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>A centered image</h2>
+    <img class="centered" src="images/campus.svg" alt="Drawing of campus buildings">
+  </body>
 </html>
