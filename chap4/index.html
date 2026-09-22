@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chap 4 — Demos</title>
+<style>
+  :root { --navy:#16243b; --gold:#d6a23a; --ink:#1b2430; --muted:#5b6572; --bg:#ffffff; --card:#f5f3ef; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+          color: var(--ink); background: var(--bg); line-height:1.5; }
+  header { background: var(--navy); color:#fff; padding: 28px 24px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header .wrap { padding: 0; }
+  .kicker { color: var(--gold); font-size:.72rem; letter-spacing:.16em; font-weight:700; text-transform:uppercase; margin:0 0 6px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
+  header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
+  main { padding: 26px 0 40px; }
+  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
+  a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
+            border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
+            padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
+  a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
+  a.card.dir { border-left-color: var(--navy); }
+  .name { font-weight:700; font-size:1.02rem; }
+  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
+  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
+  footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
+  footer a { color: var(--navy); }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
+  <h1>Chap 4</h1>
+  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+</div></header>
+<main><div class="wrap">
+<h2>Folders</h2>
+<div class="grid">
+  <a class="card dir" href="ES6/"><span class="name">ES 6</span><div class="file">ES6/</div></a>
+  <a class="card dir" href="distructuring/"><span class="name">Distructuring</span><div class="file">distructuring/</div></a>
+  <a class="card dir" href="ternary/"><span class="name">Ternary</span><div class="file">ternary/</div></a>
+</div>
+<h2>Demos</h2>
+<div class="grid">
+  <a class="card" href="course.html"><span class="name">Course</span><div class="file">course.html</div></a>
+  <a class="card" href="date.html"><span class="name">Date</span><div class="file">date.html</div></a>
+  <a class="card" href="forms_check.html"><span class="name">Forms Check</span><div class="file">forms_check.html</div></a>
+  <a class="card" href="functionReturn.html"><span class="name">FunctionReturn</span><div class="file">functionReturn.html</div></a>
+  <a class="card" href="hello.html"><span class="name">Hello</span><div class="file">hello.html</div></a>
+  <a class="card" href="insert_names.html"><span class="name">Insert Names</span><div class="file">insert_names.html</div></a>
+  <a class="card" href="medians.html"><span class="name">Medians</span><div class="file">medians.html</div></a>
+  <a class="card" href="nested_arrays.html"><span class="name">Nested Arrays</span><div class="file">nested_arrays.html</div></a>
+  <a class="card" href="objectIPrototype.html"><span class="name">ObjectIPrototype</span><div class="file">objectIPrototype.html</div></a>
+  <a class="card" href="objectInheritance.html"><span class="name">ObjectInheritance</span><div class="file">objectInheritance.html</div></a>
+  <a class="card" href="objectInheritance2.html"><span class="name">ObjectInheritance 2</span><div class="file">objectInheritance2.html</div></a>
+  <a class="card" href="objectInheritance3.html"><span class="name">ObjectInheritance 3</span><div class="file">objectInheritance3.html</div></a>
+  <a class="card" href="objectInheritance_Person1.html"><span class="name">ObjectInheritance Person 1</span><div class="file">objectInheritance_Person1.html</div></a>
+  <a class="card" href="objectInheritance_Person2.html"><span class="name">ObjectInheritance Person 2</span><div class="file">objectInheritance_Person2.html</div></a>
+  <a class="card" href="objectInheritance_Person3.html"><span class="name">ObjectInheritance Person 3</span><div class="file">objectInheritance_Person3.html</div></a>
+  <a class="card" href="objectInheritance_midterm V2.html"><span class="name">ObjectInheritance Midterm V 2</span><div class="file">objectInheritance_midterm V2.html</div></a>
+  <a class="card" href="objectInheritance_midterm V3.html"><span class="name">ObjectInheritance Midterm V 3</span><div class="file">objectInheritance_midterm V3.html</div></a>
+  <a class="card" href="objectInheritance_midterm V4.html"><span class="name">ObjectInheritance Midterm V 4</span><div class="file">objectInheritance_midterm V4.html</div></a>
+  <a class="card" href="objectInheritance_midterm.html"><span class="name">ObjectInheritance Midterm</span><div class="file">objectInheritance_midterm.html</div></a>
+  <a class="card" href="params.html"><span class="name">Params</span><div class="file">params.html</div></a>
+  <a class="card" href="roots.html"><span class="name">Roots</span><div class="file">roots.html</div></a>
+  <a class="card" href="scope1.html"><span class="name">Scope 1</span><div class="file">scope1.html</div></a>
+  <a class="card" href="scope2.html"><span class="name">Scope 2</span><div class="file">scope2.html</div></a>
+  <a class="card" href="scope2_2.html"><span class="name">Scope 2 2</span><div class="file">scope2_2.html</div></a>
+  <a class="card" href="scope2_3.html"><span class="name">Scope 2 3</span><div class="file">scope2_3.html</div></a>
+  <a class="card" href="scope2_4.html"><span class="name">Scope 2 4</span><div class="file">scope2_4.html</div></a>
+  <a class="card" href="scope2_5.html"><span class="name">Scope 2 5</span><div class="file">scope2_5.html</div></a>
+  <a class="card" href="scope2_6_Midterm2022winter.html"><span class="name">Scope 2 6 Midterm 2022 Winter</span><div class="file">scope2_6_Midterm2022winter.html</div></a>
+  <a class="card" href="scope2_7.html"><span class="name">Scope 2 7</span><div class="file">scope2_7.html</div></a>
+  <a class="card" href="scope3.html"><span class="name">Scope 3</span><div class="file">scope3.html</div></a>
+  <a class="card" href="scope4.html"><span class="name">Scope 4</span><div class="file">scope4.html</div></a>
+  <a class="card" href="scope5.html"><span class="name">Scope 5</span><div class="file">scope5.html</div></a>
+  <a class="card" href="sort.html"><span class="name">Sort</span><div class="file">sort.html</div></a>
+  <a class="card" href="sortNumber.html"><span class="name">SortNumber</span><div class="file">sortNumber.html</div></a>
+  <a class="card" href="switch_example.html"><span class="name">Switch Example</span><div class="file">switch_example.html</div></a>
+  <a class="card" href="testObject2.html"><span class="name">TestObject 2</span><div class="file">testObject2.html</div></a>
+  <a class="card" href="testPattern.html"><span class="name">TestPattern</span><div class="file">testPattern.html</div></a>
+  <a class="card" href="testjs.html"><span class="name">Testjs</span><div class="file">testjs.html</div></a>
+</div>
+</div></main>
+<footer><div class="wrap">
+  <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
+</div></footer>
+</body>
+</html>

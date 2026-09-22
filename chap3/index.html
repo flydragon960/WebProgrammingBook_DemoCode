@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chap 3 — Demos</title>
+<style>
+  :root { --navy:#16243b; --gold:#d6a23a; --ink:#1b2430; --muted:#5b6572; --bg:#ffffff; --card:#f5f3ef; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+          color: var(--ink); background: var(--bg); line-height:1.5; }
+  header { background: var(--navy); color:#fff; padding: 28px 24px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header .wrap { padding: 0; }
+  .kicker { color: var(--gold); font-size:.72rem; letter-spacing:.16em; font-weight:700; text-transform:uppercase; margin:0 0 6px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
+  header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
+  main { padding: 26px 0 40px; }
+  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
+  a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
+            border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
+            padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
+  a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
+  a.card.dir { border-left-color: var(--navy); }
+  .name { font-weight:700; font-size:1.02rem; }
+  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
+  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
+  footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
+  footer a { color: var(--navy); }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
+  <h1>Chap 3</h1>
+  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+</div></header>
+<main><div class="wrap">
+<h2>Folders</h2>
+<div class="grid">
+  <a class="card dir" href="RWD/"><span class="name">RWD</span><div class="file">RWD/</div></a>
+  <a class="card dir" href="style/"><span class="name">Style</span><div class="file">style/</div></a>
+</div>
+<h2>Demos</h2>
+<div class="grid">
+  <a class="card" href="attribute_input_required.html"><span class="name">Attribute Input Required</span><div class="file">attribute_input_required.html</div></a>
+  <a class="card" href="attribute_selector_value.html"><span class="name">Attribute Selector Value</span><div class="file">attribute_selector_value.html</div></a>
+  <a class="card" href="attribute_value_2.html"><span class="name">Attribute Value 2</span><div class="file">attribute_value_2.html</div></a>
+  <a class="card" href="back_image.html"><span class="name">Back Image</span><div class="file">back_image.html</div></a>
+  <a class="card" href="border-style-color.html"><span class="name">Border Style Color</span><div class="file">border-style-color.html</div></a>
+  <a class="card" href="border-style.html"><span class="name">Border Style</span><div class="file">border-style.html</div></a>
+  <a class="card" href="borders.html"><span class="name">Borders</span><div class="file">borders.html</div></a>
+  <a class="card" href="box_sizing.html"><span class="name">Box Sizing</span><div class="file">box_sizing.html</div></a>
+  <a class="card" href="bullet.html"><span class="name">Bullet</span><div class="file">bullet.html</div></a>
+  <a class="card" href="color.html"><span class="name">Color</span><div class="file">color.html</div></a>
+  <a class="card" href="color2.html"><span class="name">Color 2</span><div class="file">color2.html</div></a>
+  <a class="card" href="decoration.html"><span class="name">Decoration</span><div class="file">decoration.html</div></a>
+  <a class="card" href="flexbox.html"><span class="name">Flexbox</span><div class="file">flexbox.html</div></a>
+  <a class="card" href="float-clear.html"><span class="name">Float Clear</span><div class="file">float-clear.html</div></a>
+  <a class="card" href="float.html"><span class="name">Float</span><div class="file">float.html</div></a>
+  <a class="card" href="float2.html"><span class="name">Float 2</span><div class="file">float2.html</div></a>
+  <a class="card" href="flow-margin.html"><span class="name">Flow Margin</span><div class="file">flow-margin.html</div></a>
+  <a class="card" href="font-size1.html"><span class="name">Font Size 1</span><div class="file">font-size1.html</div></a>
+  <a class="card" href="font-size2.html"><span class="name">Font Size 2</span><div class="file">font-size2.html</div></a>
+  <a class="card" href="fonts.html"><span class="name">Fonts</span><div class="file">fonts.html</div></a>
+  <a class="card" href="fonts_external.html"><span class="name">Fonts External</span><div class="file">fonts_external.html</div></a>
+  <a class="card" href="idvsname.html"><span class="name">Idvsname</span><div class="file">idvsname.html</div></a>
+  <a class="card" href="image-center.html"><span class="name">Image Center</span><div class="file">image-center.html</div></a>
+  <a class="card" href="img_bullets.html"><span class="name">Img Bullets</span><div class="file">img_bullets.html</div></a>
+  <a class="card" href="marpad.html"><span class="name">Marpad</span><div class="file">marpad.html</div></a>
+  <a class="card" href="pseudo-p-nth.html"><span class="name">Pseudo P Nth</span><div class="file">pseudo-p-nth.html</div></a>
+  <a class="card" href="pseudo.html"><span class="name">Pseudo</span><div class="file">pseudo.html</div></a>
+  <a class="card" href="pseudo_element_before_after.html"><span class="name">Pseudo Element Before After</span><div class="file">pseudo_element_before_after.html</div></a>
+  <a class="card" href="pseudo_element_firstletter.html"><span class="name">Pseudo Element Firstletter</span><div class="file">pseudo_element_firstletter.html</div></a>
+  <a class="card" href="pseudo_element_selection.html"><span class="name">Pseudo Element Selection</span><div class="file">pseudo_element_selection.html</div></a>
+  <a class="card" href="pseudo_link.html"><span class="name">Pseudo Link</span><div class="file">pseudo_link.html</div></a>
+  <a class="card" href="selector_adjacent.html"><span class="name">Selector Adjacent</span><div class="file">selector_adjacent.html</div></a>
+  <a class="card" href="selector_child.html"><span class="name">Selector Child</span><div class="file">selector_child.html</div></a>
+  <a class="card" href="selector_class.html"><span class="name">Selector Class</span><div class="file">selector_class.html</div></a>
+  <a class="card" href="selector_descendant.html"><span class="name">Selector Descendant</span><div class="file">selector_descendant.html</div></a>
+  <a class="card" href="selector_generalSibling.html"><span class="name">Selector GeneralSibling</span><div class="file">selector_generalSibling.html</div></a>
+  <a class="card" href="selector_generic.html"><span class="name">Selector Generic</span><div class="file">selector_generic.html</div></a>
+  <a class="card" href="selector_id.html"><span class="name">Selector Id</span><div class="file">selector_id.html</div></a>
+  <a class="card" href="selector_universal.html"><span class="name">Selector Universal</span><div class="file">selector_universal.html</div></a>
+  <a class="card" href="sequence_types.html"><span class="name">Sequence Types</span><div class="file">sequence_types.html</div></a>
+  <a class="card" href="span_div.html"><span class="name">Span Div</span><div class="file">span_div.html</div></a>
+  <a class="card" href="style_alternate.html"><span class="name">Style Alternate</span><div class="file">style_alternate.html</div></a>
+  <a class="card" href="style_first_example.html"><span class="name">Style First Example</span><div class="file">style_first_example.html</div></a>
+  <a class="card" href="text-align.html"><span class="name">Text Align</span><div class="file">text-align.html</div></a>
+  <a class="card" href="text-center.html"><span class="name">Text Center</span><div class="file">text-center.html</div></a>
+  <a class="card" href="text-indent.html"><span class="name">Text Indent</span><div class="file">text-indent.html</div></a>
+  <a class="card" href="text-valign.html"><span class="name">Text Valign</span><div class="file">text-valign.html</div></a>
+  <a class="card" href="textshadow.html"><span class="name">Textshadow</span><div class="file">textshadow.html</div></a>
+</div>
+</div></main>
+<footer><div class="wrap">
+  <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
+</div></footer>
+</body>
+</html>

@@ -1,88 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontend — Demos</title>
+<style>
+  :root { --navy:#16243b; --gold:#d6a23a; --ink:#1b2430; --muted:#5b6572; --bg:#ffffff; --card:#f5f3ef; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+          color: var(--ink); background: var(--bg); line-height:1.5; }
+  header { background: var(--navy); color:#fff; padding: 28px 24px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header .wrap { padding: 0; }
+  .kicker { color: var(--gold); font-size:.72rem; letter-spacing:.16em; font-weight:700; text-transform:uppercase; margin:0 0 6px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
+  header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
+  main { padding: 26px 0 40px; }
+  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
+  a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
+            border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
+            padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
+  a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
+  a.card.dir { border-left-color: var(--navy); }
+  .name { font-weight:700; font-size:1.02rem; }
+  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
+  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
+  footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
+  footer a { color: var(--navy); }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <form id="loginForm" >
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <button id="logoutButton" style="display: none;">Logout</button>
-        <h1>Tasks</h1>
-        <button id="getTasksButton">Get Tasks</button>
-        <ul id="tasksList"></ul>
-    </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            const response = await fetch('http://localhost:4000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                localStorage.setItem('token', data.token);
-                alert('Login successful');
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('logoutButton').style.display = 'block';
-            } else {
-                alert('Login failed: ' + data.error);
-            }
-        });
-
-        document.getElementById('logoutButton').addEventListener('click', () => {
-            localStorage.removeItem('token');
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('logoutButton').style.display = 'none';
-            document.getElementById('tasksList').innerHTML = ''; // Clear tasks list on logout
-        });
-
-        document.getElementById('getTasksButton').addEventListener('click', async () => {
-            const token = localStorage.getItem('token');
-
-            const response = await fetch('http://localhost:4000/tasks', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (response.ok) {
-                const tasks = await response.json();
-                const tasksList = document.getElementById('tasksList');
-                tasksList.innerHTML = ''; // Clear previous tasks
-                tasks.forEach(task => {
-                    const li = document.createElement('li');
-                    li.textContent = task.task;
-                    tasksList.appendChild(li);
-                });
-            } else {
-                const errorText = await response.text();
-                if (errorText === 'You are not authorized to access this resource') {
-                    alert('You are not authorized to access this resource');
-                } else {
-                    alert('Token is invalid or login first');
-                }
-            }
-        });
-    </script>
+<header><div class="wrap">
+  <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
+  <h1>Frontend</h1>
+  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+</div></header>
+<main><div class="wrap">
+<div class="note">No demos in this folder yet.</div>
+</div></main>
+<footer><div class="wrap">
+  <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
+</div></footer>
 </body>
 </html>

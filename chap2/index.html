@@ -1,25 +1,99 @@
 <!DOCTYPE html>
-<!-- index.html   SOEN 287 Chapter 2 examples -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SOEN 287 Chapter 2 examples</title>
-  </head>
-  <body>
-    <h1>Chapter 2: HTML examples</h1>
-    <ul>
-      <li><a href="greet.html">Hello World</a></li>
-      <li><a href="p1.html">Paragraphs</a> · <a href="br.html">Line breaks</a> · <a href="pre.html">Preformatted text</a></li>
-      <li><a href="headings.html">Headings</a> · <a href="font_my.html">Formatting elements</a> · <a href="font_my_style.html">style attribute</a> · <a href="my_style.html">More styles</a></li>
-      <li><a href="blockquote.html">Blockquote</a></li>
-      <li><a href="image.html">Image</a> · <a href="image_inline.html">Inline image</a></li>
-      <li><a href="link.html">Links</a> · <a href="linkOnImage.html">Image as a link</a> · <a href="link_bookmark.html">Bookmarks</a> · <a href="link_colors.html">Link colors</a></li>
-      <li><a href="ordered.html">Ordered list</a> · <a href="ordered_attributes.html">type, start, reversed</a> · <a href="unordered.html">Unordered list</a> · <a href="nested_lists.html">Nested lists</a> · <a href="definition.html">Description list</a></li>
-      <li><a href="table.html">Table</a> · <a href="table_rowspan.html">rowspan</a> · <a href="table_caption.html">caption and colspan</a> · <a href="cell_span.html">Exercise answer</a> · <a href="cell_align.html">Cell alignment</a> · <a href="space_pad.html">Spacing and padding</a> · <a href="table-twocolumn.html">Layout table (old practice)</a></li>
-      <li><a href="form.html">Basic form</a> · <a href="radio.html">Radio buttons</a> · <a href="checkbox.html">Checkboxes</a> · <a href="select.html">Dropdown list</a> · <a href="textarea.html">Textarea</a> · <a href="buttons.html">Buttons</a> · <a href="tester.html">HTML5 input types</a></li>
-      <li><a href="audio.html">Audio</a> · <a href="video.html">Video</a> · <a href="time.html">time</a></li>
-      <li><a href="blog_divsoup.html">div soup</a> · <a href="blog_semantic.html">Semantic HTML5</a> · <a href="meta.html">meta tags</a></li>
-    </ul>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chap 2 — Demos</title>
+<style>
+  :root { --navy:#16243b; --gold:#d6a23a; --ink:#1b2430; --muted:#5b6572; --bg:#ffffff; --card:#f5f3ef; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+          color: var(--ink); background: var(--bg); line-height:1.5; }
+  header { background: var(--navy); color:#fff; padding: 28px 24px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header .wrap { padding: 0; }
+  .kicker { color: var(--gold); font-size:.72rem; letter-spacing:.16em; font-weight:700; text-transform:uppercase; margin:0 0 6px; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
+  header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
+  main { padding: 26px 0 40px; }
+  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
+  a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
+            border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
+            padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
+  a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
+  a.card.dir { border-left-color: var(--navy); }
+  .name { font-weight:700; font-size:1.02rem; }
+  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
+  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
+  footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
+  footer a { color: var(--navy); }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
+  <h1>Chap 2</h1>
+  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+</div></header>
+<main><div class="wrap">
+<h2>Folders</h2>
+<div class="grid">
+  <a class="card dir" href="media/"><span class="name">Media</span><div class="file">media/</div></a>
+</div>
+<h2>Demos</h2>
+<div class="grid">
+  <a class="card" href="audio.html"><span class="name">Audio</span><div class="file">audio.html</div></a>
+  <a class="card" href="blockquote.html"><span class="name">Blockquote</span><div class="file">blockquote.html</div></a>
+  <a class="card" href="blog_divsoup.html"><span class="name">Blog Divsoup</span><div class="file">blog_divsoup.html</div></a>
+  <a class="card" href="blog_semantic.html"><span class="name">Blog Semantic</span><div class="file">blog_semantic.html</div></a>
+  <a class="card" href="br.html"><span class="name">Br</span><div class="file">br.html</div></a>
+  <a class="card" href="buttons.html"><span class="name">Buttons</span><div class="file">buttons.html</div></a>
+  <a class="card" href="cell_align.html"><span class="name">Cell Align</span><div class="file">cell_align.html</div></a>
+  <a class="card" href="cell_span.html"><span class="name">Cell Span</span><div class="file">cell_span.html</div></a>
+  <a class="card" href="checkbox.html"><span class="name">Checkbox</span><div class="file">checkbox.html</div></a>
+  <a class="card" href="definition.html"><span class="name">Definition</span><div class="file">definition.html</div></a>
+  <a class="card" href="font_my.html"><span class="name">Font My</span><div class="file">font_my.html</div></a>
+  <a class="card" href="font_my_style.html"><span class="name">Font My Style</span><div class="file">font_my_style.html</div></a>
+  <a class="card" href="form.html"><span class="name">Form</span><div class="file">form.html</div></a>
+  <a class="card" href="form_validation_Step1.html"><span class="name">Form Validation Step 1</span><div class="file">form_validation_Step1.html</div></a>
+  <a class="card" href="greet.html"><span class="name">Greet</span><div class="file">greet.html</div></a>
+  <a class="card" href="headings.html"><span class="name">Headings</span><div class="file">headings.html</div></a>
+  <a class="card" href="image.html"><span class="name">Image</span><div class="file">image.html</div></a>
+  <a class="card" href="image_inline.html"><span class="name">Image Inline</span><div class="file">image_inline.html</div></a>
+  <a class="card" href="link.html"><span class="name">Link</span><div class="file">link.html</div></a>
+  <a class="card" href="linkOnImage.html"><span class="name">LinkOnImage</span><div class="file">linkOnImage.html</div></a>
+  <a class="card" href="link_bookmark.html"><span class="name">Link Bookmark</span><div class="file">link_bookmark.html</div></a>
+  <a class="card" href="link_colors.html"><span class="name">Link Colors</span><div class="file">link_colors.html</div></a>
+  <a class="card" href="meta.html"><span class="name">Meta</span><div class="file">meta.html</div></a>
+  <a class="card" href="my_style.html"><span class="name">My Style</span><div class="file">my_style.html</div></a>
+  <a class="card" href="nested_lists.html"><span class="name">Nested Lists</span><div class="file">nested_lists.html</div></a>
+  <a class="card" href="old_port.html"><span class="name">Old Port</span><div class="file">old_port.html</div></a>
+  <a class="card" href="ordered.html"><span class="name">Ordered</span><div class="file">ordered.html</div></a>
+  <a class="card" href="ordered_attributes.html"><span class="name">Ordered Attributes</span><div class="file">ordered_attributes.html</div></a>
+  <a class="card" href="ordered_style.html"><span class="name">Ordered Style</span><div class="file">ordered_style.html</div></a>
+  <a class="card" href="organized.html"><span class="name">Organized</span><div class="file">organized.html</div></a>
+  <a class="card" href="p1.html"><span class="name">P 1</span><div class="file">p1.html</div></a>
+  <a class="card" href="pre.html"><span class="name">Pre</span><div class="file">pre.html</div></a>
+  <a class="card" href="radio.html"><span class="name">Radio</span><div class="file">radio.html</div></a>
+  <a class="card" href="select.html"><span class="name">Select</span><div class="file">select.html</div></a>
+  <a class="card" href="space_pad.html"><span class="name">Space Pad</span><div class="file">space_pad.html</div></a>
+  <a class="card" href="table-twocolumn.html"><span class="name">Table Twocolumn</span><div class="file">table-twocolumn.html</div></a>
+  <a class="card" href="table.html"><span class="name">Table</span><div class="file">table.html</div></a>
+  <a class="card" href="table_caption.html"><span class="name">Table Caption</span><div class="file">table_caption.html</div></a>
+  <a class="card" href="table_rowspan.html"><span class="name">Table Rowspan</span><div class="file">table_rowspan.html</div></a>
+  <a class="card" href="table_sections.html"><span class="name">Table Sections</span><div class="file">table_sections.html</div></a>
+  <a class="card" href="test.html"><span class="name">Test</span><div class="file">test.html</div></a>
+  <a class="card" href="tester.html"><span class="name">Tester</span><div class="file">tester.html</div></a>
+  <a class="card" href="testvideo.html"><span class="name">Testvideo</span><div class="file">testvideo.html</div></a>
+  <a class="card" href="textarea.html"><span class="name">Textarea</span><div class="file">textarea.html</div></a>
+  <a class="card" href="time.html"><span class="name">Time</span><div class="file">time.html</div></a>
+  <a class="card" href="unordered.html"><span class="name">Unordered</span><div class="file">unordered.html</div></a>
+  <a class="card" href="video.html"><span class="name">Video</span><div class="file">video.html</div></a>
+</div>
+</div></main>
+<footer><div class="wrap">
+  <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
+</div></footer>
+</body>
 </html>
