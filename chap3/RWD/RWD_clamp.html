@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- RWD-clamp.html   Same behaviour as RWD.html, but with NO media queries -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Responsive course page (intrinsic)</title>
+    <style>
+      * {box-sizing: border-box;}
+      body {margin: 0; font-family: Arial, Helvetica, sans-serif; color: #222;}
+
+      /* clamp(): fluid sizes instead of fixed ones (no breakpoints) */
+      header {background:#1f4e79; color:#fff; font-weight:bold;
+              padding: clamp(10px, 3vw, 16px) 20px;
+              font-size: clamp(1.1rem, 3vw, 1.4rem);}
+      h1 {font-size: clamp(1.4rem, 4vw, 2rem);}
+
+      /* nav + main: side by side when there's room, stacked when not.
+         flex-wrap replaces the 600px media query. */
+      .page {display: flex; flex-wrap: wrap; gap: 16px; padding: 16px;}
+      nav  {flex: 1 1 180px;}   /* ~1 share, min 180px  -> the sidebar */
+      main {flex: 3 1 420px;}   /* ~3 shares, min 420px -> the content */
+
+      nav {background:#dbe7f3; padding:10px;}
+      nav ul {list-style:none; margin:0; padding:0;}
+      nav li {padding:6px 0;}
+      main {border:1px solid #ccc; padding:12px;}
+
+      /* cards: as many ~200px columns as fit, then wrap.
+         auto-fit replaces BOTH the 2-column and 3-column media queries. */
+      .cards {display: grid; gap: 12px;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));}
+      .card {background:#f4f4f4; border:1px solid #ddd; padding:10px; min-height:70px;}
+
+      footer {background:#eee; padding:10px 20px;}
+    </style>
+  </head>
+  <body>
+    <header>SOEN 287 Web Programming</header>
+    <div class="page">
+      <nav><ul><li>Syllabus</li><li>Schedule</li><li>Labs</li><li>Grades</li></ul></nav>
+      <main>
+        <h1>Week 3: CSS</h1>
+        <p>This week we style the pages we wrote in Chapter 2.</p>
+        <div class="cards">
+          <div class="card">Lecture notes</div>
+          <div class="card">Lab 3</div>
+          <div class="card">Quiz 1</div>
+        </div>
+      </main>
+    </div>
+    <footer>Concordia University</footer>
+  </body>
+</html>

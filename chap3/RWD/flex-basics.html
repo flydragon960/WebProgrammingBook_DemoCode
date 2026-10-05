@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- flex-basics.html   Flexbox basics: items in a row -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flexbox basics</title>
+    <style>
+      .container {
+        display: flex;                  /* items line up in a row   */
+        justify-content:space-between; /*  spread along the row     */
+        align-items: center;            /* align across the row     */
+        gap: 10px;                      /* space between items      */
+        background: #1f4e79; padding: 10px;
+      }
+      .container > div {
+        flex: 1;                        /* each item grows to share space */
+        background: #f4f4f4; padding: 20px; text-align: center; font-size: 1.3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Flexbox: a row of items</h1>
+    <div class="container">
+      <div>HTML</div>
+      <div>CSS</div>
+      <div>JavaScript</div>
+    </div>
+    <p>display: flex on the parent puts its children in a row. Change it to
+       flex-direction: column to stack them.</p>
+  </body>
+</html>
