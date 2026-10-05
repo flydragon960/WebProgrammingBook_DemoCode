@@ -16,16 +16,15 @@
   h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
   header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
   main { padding: 26px 0 40px; }
-  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
-  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
+  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:26px 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap:14px; }
   a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
             border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
             padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
   a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
-  a.card.dir { border-left-color: var(--navy); }
   .name { font-weight:700; font-size:1.02rem; }
-  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
-  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
+  .desc { color:var(--ink); font-size:.9rem; margin:4px 0 0; }
+  .file { color:var(--muted); font-size:.8rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:6px; }
   footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
   footer a { color: var(--navy); }
 </style>
@@ -33,23 +32,37 @@
 <body>
 <header><div class="wrap">
   <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
-  <h1>RWD</h1>
-  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+  <h1>Chapter 3 — Responsive Web Design</h1>
+  <p>Open any demo in a browser (or via GitHub Pages). Most respond to the window size — try resizing.</p>
 </div></header>
 <main><div class="wrap">
-<h2>Demos</h2>
-<div class="grid">
-  <a class="card" href="BS5_Grid.html"><span class="name">BS 5 Grid</span><div class="file">BS5_Grid.html</div></a>
-  <a class="card" href="BS5_Modal.html"><span class="name">BS 5 Modal</span><div class="file">BS5_Modal.html</div></a>
-  <a class="card" href="BS5_Template.html"><span class="name">BS 5 Template</span><div class="file">BS5_Template.html</div></a>
-  <a class="card" href="CSSGrid.html"><span class="name">CSSGrid</span><div class="file">CSSGrid.html</div></a>
-  <a class="card" href="Flex.html"><span class="name">Flex</span><div class="file">Flex.html</div></a>
-  <a class="card" href="GridView.html"><span class="name">GridView</span><div class="file">GridView.html</div></a>
-  <a class="card" href="MediaQuery.html"><span class="name">MediaQuery</span><div class="file">MediaQuery.html</div></a>
-  <a class="card" href="RWD.html"><span class="name">RWD</span><div class="file">RWD.html</div></a>
-  <a class="card" href="WithViewport.html"><span class="name">WithViewport</span><div class="file">WithViewport.html</div></a>
-  <a class="card" href="WithoutViewport.html"><span class="name">WithoutViewport</span><div class="file">WithoutViewport.html</div></a>
-</div>
+  <h2>Viewport</h2>
+  <div class="grid">
+    <a class="card" href="WithoutViewport.html"><span class="name">Without the viewport tag</span><div class="desc">A page with no viewport meta tag — see how a phone shrinks the whole layout.</div><div class="file">WithoutViewport.html</div></a>
+    <a class="card" href="WithViewport.html"><span class="name">With the viewport tag</span><div class="desc">The same page with the viewport tag — laid out at the device&#x27;s real width.</div><div class="file">WithViewport.html</div></a>
+  </div>
+  <h2>Layout — Flexbox &amp; Grid</h2>
+  <div class="grid">
+    <a class="card" href="flex-basics.html"><span class="name">Flexbox basics</span><div class="desc">Three items in a row with display: flex, gap and flex: 1.</div><div class="file">flex-basics.html</div></a>
+    <a class="card" href="Flex-menu.html"><span class="name">Flexbox menu</span><div class="desc">A horizontal navigation menu built from a ul/li/a with Flexbox.</div><div class="file">Flex-menu.html</div></a>
+    <a class="card" href="grid-basics.html"><span class="name">Grid basics</span><div class="desc">Three equal columns with grid-template-columns: repeat(3, 1fr).</div><div class="file">grid-basics.html</div></a>
+    <a class="card" href="GridView.html"><span class="name">12-column grid</span><div class="desc">A 12-column grid — the menu spans 3, the content spans 9.</div><div class="file">GridView.html</div></a>
+    <a class="card" href="CSSGrid.html"><span class="name">Grid template areas</span><div class="desc">A page layout &#x27;drawn&#x27; with grid-template-areas.</div><div class="file">CSSGrid.html</div></a>
+  </div>
+  <h2>Responsive — media queries to modern</h2>
+  <div class="grid">
+    <a class="card" href="MediaQuery.html"><span class="name">A media query</span><div class="desc">One media query that restyles the page past a breakpoint.</div><div class="file">MediaQuery.html</div></a>
+    <a class="card" href="RWD.html"><span class="name">Responsive page (media queries)</span><div class="desc">Full course page: stacks on phones, sidebar + cards on wider screens.</div><div class="file">RWD.html</div></a>
+    <a class="card" href="clamp-simple.html"><span class="name">clamp() demo</span><div class="desc">Resize to watch the font hit its MIN / fluid / MAX zones (colour-coded).</div><div class="file">clamp-simple.html</div></a>
+    <a class="card" href="RWD_clamp.html"><span class="name">Responsive page (no media queries)</span><div class="desc">The same page with clamp() + auto-fit + flex-wrap — zero media queries.</div><div class="file">RWD_clamp.html</div></a>
+  </div>
+  <h2>Bootstrap 5</h2>
+  <div class="grid">
+    <a class="card" href="Flex-menu-bootstrap.html"><span class="name">Menu with Bootstrap</span><div class="desc">The same horizontal menu, built with Bootstrap 5 classes.</div><div class="file">Flex-menu-bootstrap.html</div></a>
+    <a class="card" href="BS5_Grid.html"><span class="name">Bootstrap grid &amp; utilities</span><div class="desc">Bootstrap 5&#x27;s 12-column grid and utility classes.</div><div class="file">BS5_Grid.html</div></a>
+    <a class="card" href="BS5_Template.html"><span class="name">Course page with Bootstrap</span><div class="desc">A full course page assembled from Bootstrap 5 components.</div><div class="file">BS5_Template.html</div></a>
+    <a class="card" href="BS5_Modal.html"><span class="name">Bootstrap modal</span><div class="desc">A Bootstrap 5 modal dialog (needs Bootstrap&#x27;s JavaScript bundle).</div><div class="file">BS5_Modal.html</div></a>
+  </div>
 </div></main>
 <footer><div class="wrap">
   <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
