@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<!-- roots.html   Quadratic roots -->
+<!-- roots.html
+     A document for roots.js — output goes into page elements (getElementById),
+     input still comes from prompt() windows.
+     -->
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quadratic roots</title>
-    <script src="roots.js" defer></script>
+    <title>Quadratic Roots</title>
   </head>
   <body>
-    <h1>Roots of a x² + b x + c</h1>
-    <form id="solve">
-      <label>a <input id="a" type="number" step="any" value="1" required></label>
-      <label>b <input id="b" type="number" step="any" value="-3" required></label>
-      <label>c <input id="c" type="number" step="any" value="2" required></label>
-      <button>Solve</button>
-    </form>
-    <pre id="out"></pre>
+    <h3>Real roots of a quadratic equation</h3>
+
+    <!-- the two roots will be written into these elements by roots.js -->
+    <p id="root1"></p>
+    <p id="root2"></p>
+
+    <!-- the script runs AFTER the elements above exist, so getElementById can find them -->
+    <script src="roots.js"></script>
   </body>
 </html>
