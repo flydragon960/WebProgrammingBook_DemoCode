@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HTML5 form validation</title>
+  <style>
+    input:invalid { border: 2px solid #c00000; }
+    input:valid   { border: 2px solid #4c7a36; }
+    p { margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <h1>HTML5 form validation</h1>
+  <p>No JavaScript on this page: the browser does all the checking.</p>
+
+  <form>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>More attributes</h2>
+  <form>
+    <p><label>Username (5 to 12 characters):
+      <input name="user" required minlength="5" maxlength="12"></label></p>
+    <p><label>Age (18 to 99):
+      <input type="number" name="age" min="18" max="99" required></label></p>
+    <p><label>Web site:
+      <input type="url" name="site" placeholder="https://..."></label></p>
+    <p><label>Start date:
+      <input type="date" name="start" required></label></p>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>The same form with novalidate</h2>
+  <form novalidate>
+    <label>Email: <input type="email" name="email" required></label>
+    <button type="submit">Submit (nothing is checked)</button>
+  </form>
+</body>
+</html>

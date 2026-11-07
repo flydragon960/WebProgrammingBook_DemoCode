@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Worked example: changing style on click</title>
+  <style>
+    .myClass { color: blue; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Worked example: changing style on click</h1>
+  <p id="myPara" class="myClass">This is a paragraph.</p>
+  <button id="myButton">Change Style</button>
+
+  <label><input type="radio" name="color" value="blue"> Blue</label>
+  <label><input type="radio" name="color" value="red"> Red</label>
+  <label><input type="radio" name="color" value="green"> Green</label>
+
+  <script>
+    window.addEventListener("load", function () {
+      const para = document.getElementById("myPara");
+
+      document.getElementById("myButton")
+        .addEventListener("click", function () {
+          para.style.color = "red";
+          para.style.fontSize = "24px";
+        });
+
+      document.querySelectorAll('input[name="color"]')
+        .forEach(function (radio) {
+          radio.addEventListener("change", function () {
+            para.style.color = this.value;
+          });
+        });
+    });
+  </script>
+</body>
+</html>

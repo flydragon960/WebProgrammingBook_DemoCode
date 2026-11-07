@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Capture, target, bubbling</title>
+  <style>
+    #outer, #inner, #btn { margin: 10px; padding: 10px; border: 1px solid blue; }
+    #log { font: 14px monospace; background: #f4f4f4; padding: 8px; min-height: 120px; }
+  </style>
+</head>
+<body>
+  <h1>Choosing the phase, and stopping it</h1>
+  <div id="outer">Outer DIV
+    <div id="inner">Inner DIV
+      <button id="btn">Button</button>
+    </div>
+  </div>
+  <p>
+    <label><input type="checkbox" id="stop"> call event.stopPropagation() in the button handler</label>
+  </p>
+  <button id="clear">Clear log</button>
+  <ol id="log"></ol>
+
+  <script>
+    const log = document.getElementById("log");
+    function write(text) {
+      const li = document.createElement("li");
+      li.textContent = text;
+      log.append(li);
+    }
+
+    ["outer", "inner"].forEach(function (id) {
+      const el = document.getElementById(id);
+      el.addEventListener("click", function () { write(id + ": capture"); }, true);
+      el.addEventListener("click", function () { write(id + ": bubbling"); }, false);
+    });
+
+    // The SAME handler registered twice, once per phase (the last iClicker):
+    // the phase is part of what identifies a listener, so it runs twice.
+    const btn = document.getElementById("btn");
+    function handler(event) {
+      write("button: handler (phase " + event.eventPhase + ")");
+    }
+    btn.addEventListener("click", handler, true);
+    btn.addEventListener("click", handler, false);
+
+    btn.addEventListener("click", function (event) {
+      if (document.getElementById("stop").checked) {
+        write("button: stopPropagation()");
+        event.stopPropagation();   // stop here
+      }
+    });
+
+    document.getElementById("clear").addEventListener("click", function (event) {
+      event.stopPropagation();
+      log.textContent = "";
+    });
+  </script>
+</body>
+</html>

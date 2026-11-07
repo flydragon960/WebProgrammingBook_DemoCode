@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Change style and content</title></head>
+<body>
+  <h1 class="title">Hello, World!</h1>
+  <p id="myPara" class="myClass">This is a paragraph.</p>
+  <div id="container"></div>
+  <button onclick="changeStyle()">Change Style</button>
+  <button onclick="addContent()">Add Content</button>
+  <script>
+    function changeStyle() {
+      const para = document.getElementById("myPara");
+      para.style.color = "red";
+      para.style.fontSize = "24px";
+    }
+    function addContent() {
+      const newPara = document.createElement("p");                 // createElement makes a node
+      newPara.textContent = "A new paragraph added at " + new Date().toLocaleTimeString();
+      document.getElementById("container").appendChild(newPara);   // appendChild puts it in the tree
+    }
+  </script>
+</body>
+</html>

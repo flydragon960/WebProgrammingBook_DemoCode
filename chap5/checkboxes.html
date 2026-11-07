@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Groups of checkboxes</title></head>
+<body>
+  <h1>Which toppings are checked?</h1>
+  <form id="topGroup">
+    <label><input type="checkbox" name="toppings" value="olives"> Olives</label>
+    <label><input type="checkbox" name="toppings" value="tomatoes"> Tomatoes</label>
+    <label><input type="checkbox" name="toppings" value="cheese"> Cheese</label>
+  </form>
+  <button onclick="show()">Show checked</button>
+  <p id="out"></p>
+  <script>
+    function show() {
+      // Checkboxes of one group share a name; a CSS selector reads the checked ones directly.
+      const checked = document.querySelectorAll('input[name="toppings"]:checked');
+      const values = Array.from(checked).map(c => c.value);
+      document.getElementById("out").textContent =
+        checked.length + " checked: " + values.join(", ");
+    }
+  </script>
+</body>
+</html>

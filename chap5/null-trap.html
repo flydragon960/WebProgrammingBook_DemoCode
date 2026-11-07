@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Judgment 1: the null trap</title>
+  <script>
+    // AI version: assumes the element exists and the DOM is ready.
+    // This runs in <head>, before <div id="box"> exists.
+    try {
+      document.getElementById("box").style.color = "red";
+    } catch (e) {
+      // Without try/catch this error only appears in the console
+      window.headError = e.message;
+    }
+  </script>
+</head>
+<body>
+  <h1>Judgment 1: the null trap</h1>
+  <div id="box">This text should turn red.</div>
+  <p id="report"></p>
+
+  <script>
+    document.getElementById("report").textContent =
+      "Script in <head> failed with: TypeError: " + window.headError;
+
+    // safer: check before using
+    const box = document.getElementById("box");
+    if (box) box.style.color = "red";
+
+    // A typo in the id returns null too; the check keeps the page working
+    const missing = document.getElementById("bx");
+    if (missing) missing.style.color = "blue";
+  </script>
+</body>
+</html>

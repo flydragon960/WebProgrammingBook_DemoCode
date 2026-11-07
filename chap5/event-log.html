@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Frequently used events</title>
+  <style>
+    body { display: flex; gap: 30px; font-family: sans-serif; }
+    #log { width: 340px; height: 420px; overflow: auto; background: #f4f4f4;
+           font: 14px monospace; padding: 8px; }
+    #pad { width: 200px; height: 80px; background: #ddebf2; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Try the events</h1>
+    <form id="f">
+      <p><input id="txt" placeholder="type here"></p>
+      <p>
+        <select id="sel">
+          <option>One</option><option>Two</option><option>Three</option>
+        </select>
+      </p>
+      <p>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </p>
+    </form>
+    <button id="btn">Click or double-click</button>
+    <div id="pad">Mouse pad</div>
+  </div>
+  <div>
+    <h2>Event log</h2>
+    <div id="log"></div>
+  </div>
+
+  <script>
+    const log = document.getElementById("log");
+    function write(text) {
+      const line = document.createElement("div");
+      line.textContent = text;
+      log.prepend(line);            // newest on top
+    }
+    function watch(el, name, types) {
+      types.forEach(function (type) {
+        el.addEventListener(type, function (event) {
+          if (type === "submit") event.preventDefault();
+          const extra = event.key ? " key=" + event.key : "";
+          write(name + ": " + type + extra);
+        });
+      });
+    }
+
+    watch(document.getElementById("btn"), "button", ["click", "dblclick"]);
+    watch(document.getElementById("txt"), "input",
+          ["focus", "blur", "input", "change", "keydown", "keyup"]);
+    watch(document.getElementById("sel"), "select", ["change"]);
+    watch(document.getElementById("f"), "form", ["submit", "reset"]);
+    watch(document.getElementById("pad"), "div",
+          ["mouseover", "mouseout", "mousedown", "mouseup"]);
+
+    document.addEventListener("DOMContentLoaded", function () {
+      write("document: DOMContentLoaded");
+    });
+    window.addEventListener("load", function () {
+      write("window: load");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The mouseover and focus events</title>
+  <style>
+    #myImage { width: 160px; height: 100px; background: #e5f0dd;
+               display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <h1>The 'mouseover' and 'focus' events</h1>
+  <div id="myImage">Move the mouse here</div>
+  <p>
+    <label for="username">Username:</label>
+    <input type="text" id="username">
+    (click it, or reach it with Tab)
+  </p>
+  <ul id="log"></ul>
+
+  <script>
+    // The page shows what console.log prints, so the class can see it.
+    function show(text) {
+      console.log(text);
+      const li = document.createElement("li");
+      li.textContent = text;
+      document.getElementById("log").append(li);
+    }
+
+    document.getElementById("myImage")
+      .addEventListener("mouseover", function (event) {
+        show("Over: " + event.target.tagName);
+      });
+    document.getElementById("myImage")
+      .addEventListener("mouseout", function () {
+        show("Out");
+      });
+
+    document.getElementById("username")
+      .addEventListener("focus", function () {
+        show("Input field focused!");
+      });
+    document.getElementById("username")
+      .addEventListener("blur", function () {
+        show("Input field lost the focus (blur)");
+      });
+  </script>
+</body>
+</html>

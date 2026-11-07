@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang = "en" >
-  <head>
-    <title> DOM Demo.html </title>
-      <meta charset="utf-8">
-  </head>
-  <body>
-		<h1> DOM Traversal Demo </h1>
-		<p>Hello World!</p>
-		<p>The DOM is very useful!</p>
-		<p>This example demonstrates how to traverse <b>DOM</b> elements.</p>
-        <p id="inserthere"> </p>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Traversing the DOM tree</title>
+  <style>
+    #out { font: 15px monospace; background: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Traversing the DOM tree</h1>
+  <p>Hello World!</p>
+  <p>The DOM is very useful!</p>
+  <p>Lab <b>3</b> is posted.</p>
 
-		<script type="text/javascript">
-		const x=document.getElementsByTagName("p");
-        let str="";
-		for (i=0;i<x.length;i++)
-		  { 
-			 str = str + x[i].innerHTML + "<br>";
-			 
-		  }
-            document.getElementById("inserthere").innerHTML = str;
-</script>
+  <h2>What the script read</h2>
+  <pre id="out"></pre>
 
+  <script>
+    const paragraphs = document.querySelectorAll("p");
+    paragraphs.forEach(function (p) {
+      console.log(p.textContent);
+    });
 
-  </body>
+    // The same loop, shown on the page, with textContent and innerHTML side by side
+    const out = document.getElementById("out");
+    paragraphs.forEach(function (p, i) {
+      out.textContent += "p[" + i + "].textContent = " + JSON.stringify(p.textContent) + "\n";
+      out.textContent += "p[" + i + "].innerHTML   = " + JSON.stringify(p.innerHTML) + "\n\n";
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The event object and event.target</title>
+</head>
+<body>
+  <h1>event.target</h1>
+  <button id="myButton">Click Me!</button>
+
+  <h2>One handler for several buttons</h2>
+  <div id="group">
+    <button>Red</button>
+    <button>Green</button>
+    <button>Blue</button>
+  </div>
+  <p id="out"></p>
+
+  <script>
+    document.getElementById("myButton")
+      .addEventListener("click", function (event) {
+        event.target.textContent = "Button was clicked!";
+      });
+
+    // event.target tells the shared handler which button was clicked.
+    document.querySelectorAll("#group button").forEach(function (b) {
+      b.addEventListener("click", function (event) {
+        const colour = event.target.textContent.toLowerCase();
+        const out = document.getElementById("out");
+        out.textContent = "You clicked " + event.target.textContent;
+        out.style.color = colour;
+      });
+    });
+  </script>
+</body>
+</html>

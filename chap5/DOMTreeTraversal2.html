@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Modifying elements and attributes</title>
+</head>
+<body>
+  <h1>Modifying elements and attributes</h1>
+  <p><a id="myAnchor" href="#">Old link</a></p>
+
+  <h2>News</h2>
+  <ul id="news">
+    <li>Lab 3 is posted.</li>
+  </ul>
+
+  <button id="modify">Modify the link</button>
+  <button id="add">Add a news item</button>
+
+  <script>
+    document.getElementById("modify").addEventListener("click", function () {
+      const link = document.getElementById("myAnchor");
+      link.textContent = "Course page";
+      link.href = "https://www.concordia.ca";
+      link.target = "_blank";                  // opens a new tab
+      link.setAttribute("rel", "noopener");
+    });
+
+    let lab = 4;
+    document.getElementById("add").addEventListener("click", function () {
+      const item = document.createElement("li");
+      item.textContent = "Lab " + lab + " is posted.";
+      lab += 1;
+      document.getElementById("news").append(item);
+    });
+  </script>
+</body>
+</html>

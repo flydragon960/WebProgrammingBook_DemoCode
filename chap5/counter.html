@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>A counter with a closure</title>
+  <style>
+    .display { font: bold 36px monospace; margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>A counter with a closure</h1>
+
+  <button id="counterButton">Count</button>
+  <p id="counterDisplay" class="display">0</p>
+
+  <h2>A second, independent counter</h2>
+  <button id="counterButton2">Count</button>
+  <p id="counterDisplay2" class="display">0</p>
+
+  <script>
+    function createCounter() {
+      let count = 0;          // enclosed in createCounter
+      return function () {
+        count += 1;
+        return count;
+      };
+    }
+
+    const counter = createCounter();
+    document.getElementById("counterButton")
+      .addEventListener("click", function () {
+        document.getElementById("counterDisplay")
+          .textContent = counter();
+      });
+
+    // Each call to createCounter() makes a new count variable
+    const counter2 = createCounter();
+    document.getElementById("counterButton2")
+      .addEventListener("click", function () {
+        document.getElementById("counterDisplay2")
+          .textContent = counter2();
+      });
+  </script>
+</body>
+</html>

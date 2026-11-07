@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>getElementsByTagName</title></head>
+<body>
+  <h1>getElementsByTagName</h1>
+  <p id="myPara">Hello, World!</p>
+  <p>Hello, World!</p>
+  <p>Hello, World!</p>
+  <button onclick="run()">Colour every &lt;p&gt; red</button>
+  <script>
+    function run() {
+      const paragraphs = document.getElementsByTagName("p");   // a LIVE HTMLCollection
+      for (let i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>

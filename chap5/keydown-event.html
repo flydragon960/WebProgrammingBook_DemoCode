@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The keydown event</title>
+  <style>
+    #key { font: bold 48px monospace; }
+  </style>
+</head>
+<body>
+  <h1>The 'keydown' event</h1>
+  <p>Press any key (click on the page first so it has the focus).</p>
+  <p id="key">—</p>
+
+  <script>
+    document.addEventListener("keydown", function (event) {
+      console.log("Key pressed:", event.key);
+      document.getElementById("key").textContent = event.key;
+    });
+  </script>
+</body>
+</html>

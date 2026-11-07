@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The submit event</title>
+</head>
+<body>
+  <h1>The 'submit' event</h1>
+  <form id="myForm" action="https://example.com/register">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // The listener is on the FORM, not on the button.
+    document.getElementById("myForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();   // stop the submission
+        alert("Form was submitted!");
+      });
+    // Comment out preventDefault() and the browser leaves this page.
+  </script>
+</body>
+</html>

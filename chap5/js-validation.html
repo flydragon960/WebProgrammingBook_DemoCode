@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript validation</title>
+</head>
+<body>
+  <h1>JavaScript validation</h1>
+  <form id="myForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    document.getElementById("myForm")
+      .addEventListener("submit", function (event) {
+        const username = document.getElementById("username").value;
+        if (username.length < 5) {
+          alert("Username must be at least 5 characters long.");
+          event.preventDefault();   // do not send the form
+        } else {
+          // Only for the demo: stop the page from reloading so we see the result
+          event.preventDefault();
+          document.getElementById("result").textContent =
+            "Valid: the form would now be sent.";
+        }
+      });
+  </script>
+</body>
+</html>

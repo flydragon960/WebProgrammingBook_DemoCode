@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>SOEN 287</title></head>
+<body>
+  <h1>Course news</h1>
+  <p>Lab 3 is posted.</p>
+  <a href="syllabus.html">Syllabus</a>
+
+  <hr>
+  <h2>The DOM tree the browser built for this page</h2>
+  <pre id="tree"></pre>
+  <script>
+    // Walk the DOM and print its structure, to show the tree the browser keeps in memory
+    function printTree(node, depth) {
+      let out = "";
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        out += "  ".repeat(depth) + "<" + node.tagName.toLowerCase() + ">\n";
+      } else if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        out += "  ".repeat(depth) + '"' + node.textContent.trim() + '"\n';
+      }
+      for (const child of node.childNodes) out += printTree(child, depth + 1);
+      return out;
+    }
+    document.getElementById("tree").textContent = printTree(document.documentElement, 0);
+  </script>
+</body>
+</html>

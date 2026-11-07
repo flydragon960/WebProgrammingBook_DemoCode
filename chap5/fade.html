@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>A closure that animates</title>
+  <style>
+    .box { display: inline-block; width: 160px; height: 100px; margin: 10px;
+           border: 1px solid #999; text-align: center; line-height: 100px; }
+  </style>
+</head>
+<body>
+  <h1>A closure that animates</h1>
+  <button id="one">fade("boxA")</button>
+  <button id="both">fade("boxA") and fade("boxB") together</button>
+  <div>
+    <div class="box" id="boxA">boxA</div>
+    <div class="box" id="boxB">boxB</div>
+  </div>
+
+  <script>
+    function fade(id) {
+      const dom = document.getElementById(id);
+      let level = 1;
+
+      function step() {
+        const h = level.toString(16);
+        dom.style.backgroundColor = "#FFFF" + h + h;
+        if (level < 15) {
+          level += 1;
+          setTimeout(step, 200);
+        }
+      }
+      setTimeout(step, 100);
+    }
+
+    document.getElementById("one").addEventListener("click", function () {
+      fade("boxA");
+    });
+
+    // Each call has its own level and dom: the two fades do not disturb each other
+    document.getElementById("both").addEventListener("click", function () {
+      fade("boxA");
+      setTimeout(function () { fade("boxB"); }, 1000);   // B starts 1 s later
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>classList</title>
+  <style> .highlight { color: red; font-size: 24px; } </style>
+</head>
+<body>
+  <h1>classList — switch classes instead of many style lines</h1>
+  <p id="myPara" class="highlight">Keep the look in the style sheet; switch classes from JavaScript.</p>
+  <button onclick="run()">Toggle .highlight</button>
+  <script>
+    function run() {
+      const para = document.getElementById("myPara");
+      para.classList.toggle("highlight");   // on / off in one call
+      // also available: classList.add(...), classList.remove(...), classList.contains(...)
+    }
+  </script>
+</body>
+</html>

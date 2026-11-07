@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Judgment 3: accessibility</title>
+  <style>
+    .fake { display: inline-block; padding: 6px 12px; background: #ddebf2;
+            border: 1px solid #3b6b7a; cursor: pointer; }
+    .details { margin: 6px 0 16px; padding: 8px; background: #fffde7; }
+    .hidden { display: none; }
+    :focus { outline: 3px solid orange; }
+  </style>
+</head>
+<body>
+  <h1>Judgment 3: accessibility</h1>
+  <p>Put the mouse away and use only Tab and Enter (or Space).</p>
+
+  <h2>No: a div with onclick</h2>
+  <div class="fake" onclick="toggle('d1')">Show details</div>
+  <div id="d1" class="details hidden">Details 1. The keyboard cannot reach the trigger.</div>
+
+  <h2>Yes: a real button</h2>
+  <button type="button" onclick="toggle('d2')">Show details</button>
+  <div id="d2" class="details hidden">Details 2. Tab reaches it; Enter and Space work.</div>
+
+  <h2>If it must be a div: role, tabindex and a key handler</h2>
+  <div class="fake" id="d3trigger" role="button" tabindex="0">Show details</div>
+  <div id="d3" class="details hidden">Details 3. Works, but a button gave this for free.</div>
+
+  <script>
+    function toggle(id) {
+      document.getElementById(id).classList.toggle("hidden");
+    }
+
+    const trigger = document.getElementById("d3trigger");
+    trigger.addEventListener("click", function () { toggle("d3"); });
+    trigger.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggle("d3");
+      }
+    });
+  </script>
+</body>
+</html>

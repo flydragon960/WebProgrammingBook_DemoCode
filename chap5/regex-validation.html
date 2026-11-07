@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The same check in JavaScript</title>
+</head>
+<body>
+  <h1>The same check in JavaScript</h1>
+  <!-- novalidate turns off the browser check, so only our script runs -->
+  <form id="contact" novalidate>
+    <p><label for="name">Name:</label>
+       <input type="text" id="name" name="name"></p>
+    <p><label for="phone">Phone:</label>
+       <input type="text" id="phone" name="phone" value="5148482424"></p>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+    const nameRegex  = /^[A-Za-z\-' ]{2,40}$/;
+    const form = document.getElementById("contact");
+
+    form.addEventListener("submit", function (event) {
+      const name = document.getElementById("name");
+      if (!nameRegex.test(name.value)) {
+        alert("Name: 2 to 40 letters, spaces, hyphens or apostrophes.");
+        name.focus();
+        name.select();
+        event.preventDefault();
+        return;
+      }
+
+      const phone = document.getElementById("phone");
+      if (!phoneRegex.test(phone.value)) {
+        alert("Phone must look like 514-848-2424.");
+        phone.focus();
+        phone.select();
+        event.preventDefault();
+        return;
+      }
+
+      event.preventDefault();   // demo only
+      document.getElementById("result").textContent = "Both fields are valid.";
+    });
+  </script>
+</body>
+</html>

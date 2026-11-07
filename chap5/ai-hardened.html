@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Worked example: AI version vs. hardened</title>
+  <style>
+    section { display: inline-block; vertical-align: top; width: 45%;
+              padding: 10px; margin: 6px; border: 1px solid #999; }
+    .out { min-height: 30px; margin-top: 8px; padding: 6px; background: #f4f4f4; }
+  </style>
+  <script>
+    // ----- AI version -----
+    // Problem 1 (timing): this runs in <head>, so getElementById("go") is null
+    // and assigning .onclick throws. Wrapped in try/catch only so the page keeps
+    // running; delete the try/catch to see the TypeError in the console.
+    try {
+      document.getElementById("go").onclick = function () {
+        const name = document.getElementById("name").value;
+        document.getElementById("out").innerHTML =
+          "Hello " + name;
+      };
+    } catch (e) {
+      console.error("AI version failed:", e.message);
+    }
+  </script>
+</head>
+<body>
+  <h1>Worked example</h1>
+  <p>Try the name <code>&lt;img src=x onerror=alert('XSS')&gt;</code> in both.</p>
+
+  <section>
+    <h2>AI version, moved to the end of the page</h2>
+    <p>Fixes the timing only; still uses innerHTML.</p>
+    <input id="aiName" value="<img src=x onerror=alert('XSS')>">
+    <button id="aiGo">Say hello</button>
+    <div id="aiOut" class="out"></div>
+  </section>
+
+  <section>
+    <h2>Hardened version</h2>
+    <p>Waits for the DOM, checks for null, uses textContent.</p>
+    <input id="name" value="<img src=x onerror=alert('XSS')>">
+    <button id="go">Say hello</button>
+    <div id="out" class="out"></div>
+  </section>
+
+  <script>
+    // The AI code again, now that the elements exist: problem 3 (XSS) remains
+    document.getElementById("aiGo").onclick = function () {
+      const name = document.getElementById("aiName").value;
+      document.getElementById("aiOut").innerHTML =
+        "Hello " + name;
+    };
+
+    // ----- Hardened version (the slide code) -----
+    window.addEventListener("DOMContentLoaded", function () {   // 1
+      const go = document.getElementById("go");
+      const nameEl = document.getElementById("name");
+      const out = document.getElementById("out");
+      if (!go || !nameEl || !out) return;                      // 1
+
+      go.addEventListener("click", function () {
+        out.textContent = "Hello " + nameEl.value.trim();      // 2
+      });
+    });
+  </script>
+</body>
+</html>

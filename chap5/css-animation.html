@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Moving with CSS only</title>
+  <style>
+    #box {
+      width: 100px; height: 100px;
+      background-color: red;
+      position: relative;
+      animation: moveBox 2s linear infinite;
+    }
+
+    @keyframes moveBox {
+        0% { left: 0; }
+       50% { left: 200px; }
+      100% { left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Moving with CSS only</h1>
+  <p>No JavaScript on this page.</p>
+  <div id="box"></div>
+</body>
+</html>

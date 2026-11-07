@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Helping the user fix the error</title>
+  <style>
+    .error { color: #c00000; margin-left: 8px; }
+    input.bad { border: 2px solid #c00000; }
+  </style>
+</head>
+<body>
+  <h1>Helping the user fix the error</h1>
+  <form id="contact" novalidate>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" aria-describedby="phoneError">
+    <span id="phoneError" class="error" aria-live="polite"></span>
+    <p><button type="submit">Submit</button></p>
+  </form>
+  <p id="result"></p>
+
+  <script>
+    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+    const phone = document.getElementById("phone");
+    const msg = document.getElementById("phoneError");
+
+    document.getElementById("contact").addEventListener("submit", function (event) {
+      event.preventDefault();             // demo only: never leave the page
+      if (!phoneRegex.test(phone.value)) {
+        msg.textContent = "Format: 514-848-2424";
+        phone.classList.add("bad");
+        phone.focus();                    // cursor goes to the field
+        phone.select();                   // typing replaces the old value
+      } else {
+        msg.textContent = "";
+        phone.classList.remove("bad");
+        document.getElementById("result").textContent = "Valid phone number.";
+      }
+    });
+
+    // Clear the message as soon as the value becomes valid
+    phone.addEventListener("input", function () {
+      if (phoneRegex.test(phone.value)) {
+        msg.textContent = "";
+        phone.classList.remove("bad");
+      }
+    });
+  </script>
+</body>
+</html>

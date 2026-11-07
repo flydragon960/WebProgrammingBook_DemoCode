@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Judgment 2: DOM-based XSS</title>
+  <style>
+    .comment { min-height: 30px; padding: 8px; margin: 6px 0;
+               border: 1px solid #999; background: #f4f4f4; }
+  </style>
+</head>
+<body>
+  <h1>Judgment 2: DOM-based XSS</h1>
+  <p>Paste this as a comment: <code>&lt;img src=x onerror=alert(1)&gt;</code></p>
+  <input id="userText" size="50" value="<img src=x onerror=alert(1)>">
+  <p>
+    <button id="unsafe">Post with innerHTML (unsafe)</button>
+    <button id="safe">Post with textContent (safe)</button>
+  </p>
+  <div id="comment" class="comment"></div>
+
+  <script>
+    const comment = document.getElementById("comment");
+
+    document.getElementById("unsafe").addEventListener("click", function () {
+      const userText = document.getElementById("userText").value;
+      comment.innerHTML = userText;
+      // <img src=x onerror=alert(1)> executes
+    });
+
+    document.getElementById("safe").addEventListener("click", function () {
+      const userText = document.getElementById("userText").value;
+      comment.textContent = userText;
+      // shown as text: safe
+    });
+  </script>
+</body>
+</html>

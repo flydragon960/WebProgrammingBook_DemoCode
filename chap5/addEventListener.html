@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>addEventListener</title>
+</head>
+<body>
+  <h1>3. addEventListener</h1>
+  <button id="myButton">Click me</button>
+  <button id="removeButton">Remove the second handler</button>
+  <ul id="log"></ul>
+
+  <script>
+    const btn = document.getElementById("myButton");
+    const log = document.getElementById("log");
+
+    function write(text) {
+      const li = document.createElement("li");
+      li.textContent = text;
+      log.append(li);
+    }
+
+    // Several handlers can listen to the same event; both run, in order.
+    btn.addEventListener("click", function () {
+      write("Handler 1: Button clicked!");
+    });
+
+    function secondHandler() {
+      write("Handler 2: Button clicked!");
+    }
+    btn.addEventListener("click", secondHandler);
+
+    // removeEventListener needs the same function, so it must have a name.
+    document.getElementById("removeButton")
+      .addEventListener("click", function () {
+        btn.removeEventListener("click", secondHandler);
+        write("Handler 2 removed.");
+      });
+  </script>
+</body>
+</html>

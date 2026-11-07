@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>getElementById</title></head>
+<body>
+  <h1>getElementById</h1>
+  <form id="myForm">
+    <input type="text" name="myInput" value="Hello, World!">
+  </form>
+  <p id="box">A box</p>
+  <button onclick="run()">Run</button>
+  <script>
+    function run() {
+      // Reliable: an id is unique in the page.
+      document.getElementById("myForm").elements["myInput"].value = "New content";
+      const box = document.getElementById("box");
+      if (box) box.style.color = "red";   // getElementById returns null if not found - check first
+    }
+  </script>
+</body>
+</html>

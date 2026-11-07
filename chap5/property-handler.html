@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Property-based event handlers</title>
+</head>
+<body>
+  <h1>2. Property-based event handlers</h1>
+  <button id="myButton">Click me</button>
+  <p id="out"></p>
+
+  <script>
+    const btn = document.getElementById("myButton");
+    const out = document.getElementById("out");
+
+    btn.onclick = function () {
+      out.textContent = "First handler ran.";
+    };
+
+    // Assigning a second handler REPLACES the first one:
+    btn.onclick = function () {
+      out.textContent = "Second handler ran. The first one is gone.";
+    };
+  </script>
+</body>
+</html>

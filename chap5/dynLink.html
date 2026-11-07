@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Changing colours and fonts</title>
+  <style>
+    #dynLink { color: black; font-size: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Changing colours and fonts</h1>
+  <p><a id="dynLink" href="#">Move the mouse over this link</a></p>
+
+  <p id="fontDemo">This paragraph changes its whole font.</p>
+  <button id="fontButton">style.font = "italic 16pt Times"</button>
+
+  <script>
+    const link = document.getElementById("dynLink");
+
+    link.addEventListener("mouseover", function () {
+      link.style.color = "blue";
+      link.style.fontStyle = "italic";
+    });
+    link.addEventListener("mouseout", function () {
+      link.style.color = "black";
+      link.style.fontStyle = "normal";
+    });
+
+    document.getElementById("fontButton").addEventListener("click", function () {
+      const p = document.getElementById("fontDemo");
+      p.style.font = "italic 16pt Times";
+      p.style.backgroundColor = "lightyellow";
+    });
+  </script>
+</body>
+</html>

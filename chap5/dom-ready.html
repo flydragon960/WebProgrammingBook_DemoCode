@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>load and DOMContentLoaded</title>
+  <script>
+    // This script is in <head>: the button does not exist yet.
+    console.log("In <head>, getElementById returns:",
+                document.getElementById("myButton"));      // null
+
+    function start() {
+      document.getElementById("out").textContent = "Started!";
+    }
+
+    // Wait until the DOM is ready, then register the handler.
+    window.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("myButton")
+        .addEventListener("click", start);
+      note("DOMContentLoaded at " + performance.now().toFixed(0) + " ms");
+    });
+
+    // load waits for images and style sheets as well.
+    window.addEventListener("load", function () {
+      note("load at " + performance.now().toFixed(0) + " ms (after the image)");
+    });
+
+    function note(text) {
+      const li = document.createElement("li");
+      li.textContent = text;
+      document.getElementById("timeline").append(li);
+    }
+  </script>
+</head>
+<body>
+  <h1>load and DOMContentLoaded</h1>
+  <button id="myButton">Start</button>
+  <p id="out"></p>
+  <ul id="timeline"></ul>
+  <p>Open the console: the &lt;head&gt; script printed <code>null</code>.</p>
+
+  <!-- A large image makes the difference between the two events visible -->
+  <img src="https://picsum.photos/1600/900" alt="A large photo" width="400">
+</body>
+</html>

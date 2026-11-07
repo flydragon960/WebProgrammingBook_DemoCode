@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Moving one pixel at a time</title>
+  <style>
+    #moveMe { position: relative; width: 50px; height: 50px; background: green; }
+  </style>
+</head>
+<body>
+  <h1>Moving one pixel at a time</h1>
+  <p>
+    <label>step (px): <input type="number" id="step" value="1" min="1"></label>
+    <label>delay (ms): <input type="number" id="delay" value="10" min="1"></label>
+    <button id="go">Start again</button>
+  </p>
+  <div id="moveMe"></div>
+
+  <script>
+    const element = document.getElementById("moveMe");
+    let position = 0;
+
+    function moveRight() {
+      const step = Number(document.getElementById("step").value);
+      const delay = Number(document.getElementById("delay").value);
+      position += step;
+      element.style.left = position + "px";
+      if (position < 200) {
+        setTimeout(moveRight, delay);   // every 10 ms by default
+      }
+    }
+
+    moveRight();
+
+    document.getElementById("go").addEventListener("click", function () {
+      position = 0;
+      moveRight();
+    });
+  </script>
+</body>
+</html>

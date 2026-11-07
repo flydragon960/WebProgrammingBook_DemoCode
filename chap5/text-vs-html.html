@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>textContent vs. innerHTML</title>
+  <style>
+    .box { width: 360px; min-height: 40px; padding: 8px; margin: 6px 0;
+           border: 1px solid #999; background: #fffde7; }
+  </style>
+</head>
+<body>
+  <h1>textContent vs. innerHTML</h1>
+  <button id="useText">Use textContent</button>
+  <button id="useHtml">Use innerHTML</button>
+  <div id="helpBox" class="box"></div>
+
+  <script>
+    const help = "first name <br> last name";
+
+    document.getElementById("useText").addEventListener("click", function () {
+      document.getElementById("helpBox").textContent = help;   // tag shown as text
+    });
+    document.getElementById("useHtml").addEventListener("click", function () {
+      document.getElementById("helpBox").innerHTML = help;     // tag breaks the line
+    });
+  </script>
+</body>
+</html>

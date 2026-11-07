@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>The window object</title></head>
+<body>
+  <h1>The window object</h1>
+  <p id="out">Original content</p>
+  <p>Clock (setInterval): <span id="clock"></span></p>
+  <button onclick="window.alert('Hello, World!')">Show an alert</button>
+  <script>
+    // window is the global object; window.document is the same as document
+    window.document.getElementById("out").textContent = "New content (set via window.document)";
+    // run a function ONCE after a delay
+    window.setTimeout(function () { console.log("5 seconds later"); }, 5000);
+    // run a function AGAIN AND AGAIN
+    function tick() { document.getElementById("clock").textContent = new Date().toLocaleTimeString(); }
+    window.setInterval(tick, 1000);   // every second
+    tick();
+  </script>
+</body>
+</html>

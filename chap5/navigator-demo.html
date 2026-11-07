@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>The navigator object</title></head>
+<body>
+  <h1>navigator — about the browser and platform</h1>
+  <ul id="info"></ul>
+  <script>
+    const info = document.getElementById("info");
+    for (const key of ["userAgent", "platform", "language", "cookieEnabled"]) {
+      const li = document.createElement("li");
+      li.textContent = key + " : " + navigator[key];
+      info.appendChild(li);
+    }
+    // Feature detection is better than browser detection:
+    console.log("geolocation supported?", "geolocation" in navigator);
+  </script>
+</body>
+</html>

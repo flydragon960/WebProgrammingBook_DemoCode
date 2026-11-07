@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Validation with the pattern attribute</title>
+  <style>
+    input:invalid { border: 2px solid #c00000; }
+    input:valid   { border: 2px solid #4c7a36; }
+  </style>
+</head>
+<body>
+  <h1>Validation with regular expressions: pattern</h1>
+  <form>
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone"
+           pattern="\d{3}-\d{3}-\d{4}"
+           title="Format: 514-848-2424" required>
+    <button type="submit">Submit</button>
+  </form>
+  <p>Try <code>514-848-2424</code>, <code>5148482424</code> and <code>514-848-24245</code>.
+     The whole value must match, so the last one fails too.</p>
+</body>
+</html>

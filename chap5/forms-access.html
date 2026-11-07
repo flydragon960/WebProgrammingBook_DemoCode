@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>document.forms</title></head>
+<body>
+  <h1>Access through document.forms</h1>
+  <form id="myForm" name="myForm">
+    <input type="text" name="myInput" value="Hello, World!">
+    <input type="submit" value="Submit">
+  </form>
+  <button onclick="setByIndex()">Set value by index</button>
+  <script>
+    function setByIndex() {
+      // Works, but depends on the ORDER of the elements - fragile.
+      // If the page changes, this silently uses the wrong element.
+      document.forms[0].elements[0].value = "New content";
+    }
+  </script>
+</body>
+</html>

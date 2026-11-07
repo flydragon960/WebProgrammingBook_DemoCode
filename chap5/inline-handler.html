@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Inline event handlers</title>
+</head>
+<body>
+  <h1>1. Inline event handlers</h1>
+  <p>The handler is written in an <code>onclick</code> attribute in the HTML.</p>
+
+  <button onclick="alert('Button clicked!')">Click me</button>
+
+  <!-- or call a function -->
+  <button onclick="myButtonHandler()">Click me</button>
+
+  <p id="out"></p>
+
+  <script>
+    function myButtonHandler() {
+      document.getElementById("out").textContent =
+        "myButtonHandler() ran at " + new Date().toLocaleTimeString();
+    }
+  </script>
+</body>
+</html>

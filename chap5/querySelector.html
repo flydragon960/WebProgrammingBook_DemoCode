@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>querySelector / querySelectorAll</title></head>
+<body>
+  <h1>querySelector &amp; querySelectorAll</h1>
+  <p id="myPara" class="myClass">first paragraph (#myPara, .myClass)</p>
+  <p class="myClass">second paragraph (.myClass)</p>
+  <p>third paragraph</p>
+  <button onclick="run()">Run</button>
+  <script>
+    function run() {
+      document.querySelector("#myPara").style.fontWeight = "bold";  // like getElementById
+      document.querySelector(".myClass").style.color = "green";     // the FIRST match
+      document.querySelectorAll("p")[1].style.color = "blue";       // the second <p>
+      // querySelectorAll returns a static NodeList, which supports forEach:
+      document.querySelectorAll(".myClass").forEach(el => { el.style.fontSize = "20px"; });
+    }
+  </script>
+</body>
+</html>

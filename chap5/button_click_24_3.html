@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<!-- button_click.hmtl
-     -->
-<html lang = "en">
-  <head>
-    <title> radio_click.html </title>
-    <meta charset = "utf-8">
-  </head>
-  <body>
-    <h1> Demo Button </h1>
-      <p id="myID"></p>
-      <button style="margin: 10px;">Change Color</button>      
-    
-      <script>
-    
-        
-        const btn = document.querySelector("button");
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Using the event object</title>
+  <style>
+    button { font-size: 18px; padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h1>Using the event object</h1>
+  <button id="btn">Change my colour</button>
+  <p id="info"></p>
 
-        function random(number) {
-          return Math.floor(Math.random() * (number + 1));
-        }
+  <script>
+    function bgChange(event) {
+      const rnd = n => Math.floor(Math.random() * n);
+      const colour = `rgb(${rnd(255)} ${rnd(255)} ${rnd(255)})`;
+      event.target.style.backgroundColor = colour;
 
-        function bgChange(e) {
-          const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-          e.target.style.backgroundColor = rndCol;
-          console.log(e);
-        }
+      document.getElementById("info").textContent =
+        `event.type = ${event.type}, event.clientX = ${event.clientX}, ` +
+        `colour = ${colour}`;
+    }
 
-          btn.addEventListener("click", bgChange);
-      </script>
-  </body>
+    const btn = document.getElementById("btn");
+    btn.addEventListener("click", bgChange);
+  </script>
+</body>
 </html>

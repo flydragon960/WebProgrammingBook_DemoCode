@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Moving with JavaScript</title>
+  <style>
+    #stage { position: relative; height: 320px; border: 1px dashed #999; }
+    #movee {
+      position: absolute; top: 20px; left: 20px;
+      width: 120px; padding: 10px;
+      background: #ddebf2; border: 2px solid #3b6b7a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Moving with JavaScript</h1>
+  <p>
+    <label>x: <input type="number" id="x" value="200"></label>
+    <label>y: <input type="number" id="y" value="100"></label>
+    <button id="move">Move it</button>
+  </p>
+  <p>
+    position:
+    <select id="pos">
+      <option>absolute</option>
+      <option>relative</option>
+      <option>fixed</option>
+      <option>static</option>
+    </select>
+    (try static: no error, but the element no longer moves)
+  </p>
+  <div id="stage">
+    <div id="movee">Move me</div>
+  </div>
+
+  <script>
+    document.getElementById("move").addEventListener("click", function () {
+      const newTop = Number(document.getElementById("y").value);
+      const newLeft = Number(document.getElementById("x").value);
+
+      const sty = document.getElementById("movee").style;
+      sty.top  = newTop + "px";       // a string with its unit
+      sty.left = newLeft + "px";
+    });
+
+    // A script can change position too (the second iClicker question)
+    document.getElementById("pos").addEventListener("change", function () {
+      document.getElementById("movee").style.position = this.value;
+    });
+  </script>
+</body>
+</html>

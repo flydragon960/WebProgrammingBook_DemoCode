@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>visibility vs. display</title>
+  <style>
+    .box { width: 220px; padding: 12px; margin: 6px 0; border: 2px solid #3b6b7a;
+           background: #ddebf2; }
+    #hiddenElement { visibility: hidden; }
+    #noneElement   { display: none; }
+    .column { display: inline-block; vertical-align: top; margin-right: 40px; }
+  </style>
+</head>
+<body>
+  <h1>visibility: hidden vs. display: none</h1>
+
+  <div class="column">
+    <h2>visibility: hidden</h2>
+    <div class="box">Box 1</div>
+    <div class="box" id="hiddenElement">Box 2 (hidden)</div>
+    <div class="box">Box 3: the gap above stays</div>
+  </div>
+
+  <div class="column">
+    <h2>display: none</h2>
+    <div class="box">Box 1</div>
+    <div class="box" id="noneElement">Box 2 (none)</div>
+    <div class="box">Box 3: moved up, no gap</div>
+  </div>
+
+  <p>Open the developer tools: both hidden boxes are still in the page.</p>
+</body>
+</html>

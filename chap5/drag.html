@@ -1,32 +1,60 @@
 <!DOCTYPE html>
-<!-- drag.html   Dragging an element -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dragging an element</title>
-    <style>
-      #card {position: absolute; left: 40px; top: 80px; width: 110px; height: 110px;
-        background: #1a7f37; color: white; display: flex; align-items: center; justify-content: center;
-        touch-action: none; cursor: grab; user-select: none;}
-    </style>
-  </head>
-  <body>
-    <p>Drag the square with the mouse, a pen or a finger.</p>
-    <div id="card">Drag me</div>
-    <script>
-      const card = document.getElementById("card");
-      let offsetX = 0, offsetY = 0;
-      card.addEventListener("pointerdown", event => {
-        offsetX = event.clientX - card.offsetLeft;
-        offsetY = event.clientY - card.offsetTop;
-        card.setPointerCapture(event.pointerId);   // keep receiving moves outside the box
-      });
-      card.addEventListener("pointermove", event => {
-        if (!card.hasPointerCapture(event.pointerId)) return;
-        card.style.left = event.clientX - offsetX + "px";
-        card.style.top = event.clientY - offsetY + "px";
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Dragging an element</title>
+  <style>
+    #dragMe {
+      width: 100px; height: 100px;
+      background-color: blue;
+      position: absolute;
+      cursor: grab;
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dragging an element</h1>
+  <p id="pos">offset: 0, 0</p>
+
+  <div id="dragMe">Drag me!</div>
+
+  <script>
+    const dragItem = document.getElementById("dragMe");
+    let active = false;
+    let currentX, currentY, initialX, initialY;
+    let xOffset = 0, yOffset = 0;
+
+    dragItem.addEventListener("mousedown", dragStart);
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", dragEnd);
+
+    function dragStart(e) {
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+      active = true;
+      dragItem.style.cursor = "grabbing";
+    }
+
+    function drag(e) {
+      if (!active) return;
+      e.preventDefault();
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
+      xOffset = currentX;
+      yOffset = currentY;
+      dragItem.style.transform =
+        `translate3d(${currentX}px, ${currentY}px, 0)`;
+      document.getElementById("pos").textContent =
+        `offset: ${currentX}, ${currentY}`;
+    }
+
+    function dragEnd() {
+      active = false;
+      dragItem.style.cursor = "grab";
+    }
+  </script>
+</body>
 </html>

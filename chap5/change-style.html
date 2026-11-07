@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Changing style</title></head>
+<body>
+  <p id="p2">Hello World!</p>
+  <button onclick="run()">Change style</button>
+  <script>
+    function run() {
+      const p = document.getElementById("p2");
+      p.style.color = "blue";
+      p.style.fontSize = "24px";   // CSS font-size -> fontSize; the value is a STRING with its unit
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stacking elements: z-index</title>
+  <style>
+    .card {
+      position: absolute;            /* z-index only applies to positioned elements */
+      width: 180px; height: 120px;
+      color: white; font: bold 22px sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    #imgA { left: 40px;  top: 120px; background: #3b6b7a; }
+    #imgB { left: 120px; top: 170px; background: #c00000; }
+  </style>
+</head>
+<body>
+  <h1>Stacking elements: z-index</h1>
+  <p>Click a card to bring it to the front.</p>
+  <p id="info"></p>
+
+  <div class="card" id="imgA">Image A</div>
+  <div class="card" id="imgB">Image B</div>
+
+  <script>
+    const a = document.getElementById("imgA");
+    const b = document.getElementById("imgB");
+    a.style.zIndex = 10;
+    b.style.zIndex = 20;   // image B is in front
+
+    function show() {
+      document.getElementById("info").textContent =
+        "A: zIndex " + a.style.zIndex + ", B: zIndex " + b.style.zIndex;
+    }
+    show();
+
+    a.addEventListener("click", function () { a.style.zIndex = 30; b.style.zIndex = 20; show(); });
+    b.addEventListener("click", function () { b.style.zIndex = 30; a.style.zIndex = 20; show(); });
+  </script>
+</body>
+</html>

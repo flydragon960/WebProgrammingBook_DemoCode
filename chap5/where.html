@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<!-- where.html   Mouse coordinates -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mouse coordinates</title>
-    <style>
-      body {min-height: 90vh;}
-    </style>
-  </head>
-  <body>
-    <p>Click anywhere on the page.</p>
-    <p id="out"></p>
-    <script>
-      document.addEventListener("click", event => {
-        document.getElementById("out").textContent =
-          `Page: (${event.pageX}, ${event.pageY})  Viewport: (${event.clientX}, ${event.clientY})`;
-      });
-      document.addEventListener("keydown", event => console.log("Key pressed:", event.key));
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Locating the mouse cursor</title>
+  <style>
+    body { height: 2000px; }               /* tall, so the page can scroll */
+    #panel { position: fixed; top: 10px; right: 10px; background: #fff;
+             border: 1px solid #999; padding: 10px; font: 15px monospace; }
+  </style>
+</head>
+<body>
+  <h1>Locating the mouse cursor</h1>
+  <p>Click anywhere. Then scroll down and click again:
+     clientY stays small, pageY grows.</p>
+
+  <div id="panel">
+    client: <span id="client">-</span><br>
+    page:   <span id="page">-</span><br>
+    screen: <span id="screen">-</span>
+  </div>
+
+  <script>
+    document.addEventListener("click", function (event) {
+      console.log(event.clientX, event.clientY);
+      document.getElementById("client").textContent = event.clientX + ", " + event.clientY;
+      document.getElementById("page").textContent   = event.pageX + ", " + event.pageY;
+      document.getElementById("screen").textContent = event.screenX + ", " + event.screenY;
+    });
+  </script>
+</body>
 </html>
