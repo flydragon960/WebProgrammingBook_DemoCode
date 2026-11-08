@@ -29,8 +29,11 @@ def add(a, b):
     """
     return a + b
 
-# Access the docstring directly (press q to exit if help() opens a pager)
+# Access the docstring directly
 print(add.__doc__)
+
+# Or show it formatted; this opens a pager -- press q to return
+# help(add)
 
 # ------------------------------------------------------------------
 # Input and Output

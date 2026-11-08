@@ -8,8 +8,13 @@
 #   export JWT_SECRET="$(python -c 'import secrets; print(secrets.token_hex(32))')"
 #   python flask_12_production_config.py
 #
+# Windows (PowerShell):
+#   $env:SECRET_KEY = python -c "import secrets; print(secrets.token_hex(32))"
+#   $env:JWT_SECRET = python -c "import secrets; print(secrets.token_hex(32))"
+#
 # Production server (after setting env vars):
-#   gunicorn --workers 4 --bind 127.0.0.1:8000 flask_12_production_config:app
+#   macOS/Linux:  gunicorn --workers 4 --bind 127.0.0.1:8000 flask_12_production_config:app
+#   Windows:      waitress-serve --port=8000 flask_12_production_config:app
 
 import os
 from flask import Flask, jsonify

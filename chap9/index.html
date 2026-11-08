@@ -1,69 +1,1226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chap 9 — Demos</title>
+<title>Chapter 9: Server-Side Web Programming with Python — Demo Code</title>
 <style>
-  :root { --navy:#16243b; --gold:#d6a23a; --ink:#1b2430; --muted:#5b6572; --bg:#ffffff; --card:#f5f3ef; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-          color: var(--ink); background: var(--bg); line-height:1.5; }
-  header { background: var(--navy); color:#fff; padding: 28px 24px; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-  header .wrap { padding: 0; }
-  .kicker { color: var(--gold); font-size:.72rem; letter-spacing:.16em; font-weight:700; text-transform:uppercase; margin:0 0 6px; }
-  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
-  header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
-  main { padding: 26px 0 40px; }
-  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
-  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
-  a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
-            border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
-            padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
-  a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
-  a.card.dir { border-left-color: var(--navy); }
-  .name { font-weight:700; font-size:1.02rem; }
-  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
-  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
-  footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
-  footer a { color: var(--navy); }
+:root { --navy:#1E2761; --gold:#B08D2A; --lgold:#D9C07A; --text:#222431; --muted:#5B6070;
+        --bg:#FFFFFF; --card:#F2F3F7; --border:#D3D7E6; --code:#F5F6FA; --comment:#2E7D32; color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root { --navy:#C9D1F5; --gold:#D9C07A; --text:#E6E8F0; --muted:#A3A9BD; --bg:#14172B;
+          --card:#1E2240; --border:#33395E; --code:#191C34; --comment:#7BC88A; color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 Calibri, "Segoe UI", system-ui, sans-serif; }
+header { background:#1E2761; color:#fff; padding:2.2rem 1.25rem 1.8rem; }
+header .wrap, main { max-width:62rem; margin:0 auto; }
+.kicker { color:#D9C07A; font-weight:700; letter-spacing:.18em; font-size:.8rem; text-transform:uppercase; margin:0 0 .4rem; }
+h1 { font-family:Georgia, "Times New Roman", serif; font-size:2rem; margin:0 0 .6rem; line-height:1.2; }
+header p { margin:.2rem 0; color:#C9CCE0; }
+header a { color:#D9C07A; }
+main { padding:1.25rem; }
+h2 { font-family:Georgia, "Times New Roman", serif; color:var(--navy); font-size:1.4rem; margin:2rem 0 .8rem;
+     padding-bottom:.3rem; border-bottom:2px solid var(--gold); }
+h3 { margin:0 0 .3rem; font-size:1.05rem; color:var(--navy); }
+.note { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.9rem 1.1rem; }
+.demo { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; margin:0 0 1rem; }
+.demo > p { margin:.2rem 0 .6rem; }
+.label { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:.6rem 0 .2rem; }
+pre { background:var(--code); border:1px solid var(--border); border-radius:8px; padding:.7rem .9rem; overflow-x:auto;
+      margin:.2rem 0 .6rem; font:13.5px/1.45 Consolas, "Courier New", monospace; }
+code { font-family:Consolas, "Courier New", monospace; font-size:.92em; }
+pre code { font-size:inherit; }
+.c { color:var(--comment); }
+ul.try { margin:.2rem 0 .6rem; padding-left:1.2rem; }
+ul.try li { margin:.15rem 0; overflow-wrap:anywhere; }
+details { margin:.4rem 0; }
+summary { cursor:pointer; font-weight:600; padding:.25rem 0; }
+summary .file { font-family:Consolas, "Courier New", monospace; }
+summary .raw { font-weight:400; font-size:.85rem; margin-left:.8rem; color:var(--gold); }
+nav.toc ol { columns:2; column-gap:2rem; padding-left:1.3rem; }
+nav.toc a { color:var(--navy); }
+footer { max-width:62rem; margin:2rem auto; padding:0 1.25rem 2rem; color:var(--muted); font-size:.85rem; }
+@media (max-width:640px) { nav.toc ol { columns:1; } h1 { font-size:1.6rem; } }
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
-  <h1>Chap 9</h1>
-  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+  <h1>Chapter 9: Server-Side Web Programming with Python</h1>
+  <p>Flask (and one FastAPI example). These are server programs: GitHub Pages can show their code but cannot run them. Run them on your own computer and open the address the program prints.</p>
+  <p><a href="../index.html">All chapters</a> · <a href="https://github.com/flydragon960/WebProgrammingBook_DemoCode/tree/main/chap9">View this folder on GitHub</a></p>
 </div></header>
-<main><div class="wrap">
-<h2>Folders</h2>
-<div class="grid">
-  <a class="card dir" href="templates/"><span class="name">Templates</span><div class="file">templates/</div></a>
-</div>
-<div class="note"><strong>Server-side demo.</strong> These files run on a server (e.g. <code>node server.js</code> or <code>flask run</code>), not in the browser — see the README, and run them locally.</div>
-<h2>Source files</h2>
-<div class="grid">
-  <a class="card" href="api.py"><span class="name">api.py</span></a>
-  <a class="card" href="app.py"><span class="name">app.py</span></a>
-  <a class="card" href="auth.py"><span class="name">auth.py</span></a>
-  <a class="card" href="flask_01_hello.py"><span class="name">flask_01_hello.py</span></a>
-  <a class="card" href="flask_02_routes.py"><span class="name">flask_02_routes.py</span></a>
-  <a class="card" href="flask_03_requests_responses.py"><span class="name">flask_03_requests_responses.py</span></a>
-  <a class="card" href="flask_04_templates.py"><span class="name">flask_04_templates.py</span></a>
-  <a class="card" href="flask_05_forms.py"><span class="name">flask_05_forms.py</span></a>
-  <a class="card" href="flask_06_cookies.py"><span class="name">flask_06_cookies.py</span></a>
-  <a class="card" href="flask_07_sessions.py"><span class="name">flask_07_sessions.py</span></a>
-  <a class="card" href="flask_08a_jwt_helpers.py"><span class="name">flask_08a_jwt_helpers.py</span></a>
-  <a class="card" href="flask_08b_jwt_api.py"><span class="name">flask_08b_jwt_api.py</span></a>
-  <a class="card" href="flask_09_password_hashing.py"><span class="name">flask_09_password_hashing.py</span></a>
-  <a class="card" href="flask_10_error_handling.py"><span class="name">flask_10_error_handling.py</span></a>
-  <a class="card" href="flask_11_blueprints_app.py"><span class="name">flask_11_blueprints_app.py</span></a>
-  <a class="card" href="flask_12_production_config.py"><span class="name">flask_12_production_config.py</span></a>
-</div>
-</div></main>
-<footer><div class="wrap">
-  <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
-</div></footer>
+<main>
+<nav class="toc"><h2>Sections</h2><ol><li><a href="#s0">How a Python Web Application Runs (WSGI)</a></li><li><a href="#s1">Setting Up a Flask Project</a></li><li><a href="#s2">Routes and URL Building</a></li><li><a href="#s3">HTTP Requests and Responses</a></li><li><a href="#s4">Templates</a></li><li><a href="#s5">Form Handling</a></li><li><a href="#s6">Cookies</a></li><li><a href="#s7">Sessions</a></li><li><a href="#s8">JSON Web Tokens (JWT)</a></li><li><a href="#s9">Password Hashing</a></li><li><a href="#s10">Error Handling</a></li><li><a href="#s11">Blueprints: Organising a Larger Application</a></li><li><a href="#s12">Configuration for Production</a></li><li><a href="#s13">A Second Framework: FastAPI</a></li><li><a href="#s14">Flask Code in the AI Era</a></li></ol></nav>
+<h2>Set up once</h2><div class="note"><pre class="run"><code>cd chap9
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt</code></pre><p>Then run one demo at a time and stop it with <kbd>Ctrl</kbd>+<kbd>C</kbd>. Demos that use templates live in their own folder: <code>cd</code> into it first.</p></div>
+<h2 id="s0">How a Python Web Application Runs (WSGI)</h2>
+<article class="demo" id="flask_00_wsgi.py">
+  <h3><code>flask_00_wsgi.py</code></h3>
+  <p>A complete web application as one WSGI function, served by the standard library. No install needed.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_00_wsgi.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:8000/?name=Ada</code></li></ul>
+  <details><summary><span class="file">flask_00_wsgi.py</span><a class="raw" href="flask_00_wsgi.py">open file</a></summary><pre><code><span class="c"># flask_00_wsgi.py</span>
+<span class="c"># Section: How a Python Web Application Runs (WSGI)</span>
+<span class="c"># Demonstrates: the WSGI callable interface -- environ, start_response,</span>
+<span class="c">#               a body made of bytes -- with no framework at all</span>
+<span class="c">#</span>
+<span class="c"># Run (no install needed; uses the standard library&#x27;s reference server):</span>
+<span class="c">#     python flask_00_wsgi.py</span>
+<span class="c">#     then visit http://127.0.0.1:8000/?name=Ada</span>
+<span class="c">#</span>
+<span class="c"># Or run it under a production WSGI server:</span>
+<span class="c">#     macOS/Linux:  pip install gunicorn</span>
+<span class="c">#                   gunicorn flask_00_wsgi:application</span>
+<span class="c">#     Windows:      pip install waitress</span>
+<span class="c">#                   waitress-serve --port=8000 flask_00_wsgi:application</span>
+
+from urllib.parse import parse_qs
+from html import escape
+
+
+def application(environ, start_response):
+    &quot;&quot;&quot;A complete web application: one function, called once per request.&quot;&quot;&quot;
+    method = environ[&quot;REQUEST_METHOD&quot;]            <span class="c"># &quot;GET&quot;, &quot;POST&quot;, ...</span>
+    path   = environ[&quot;PATH_INFO&quot;]                 <span class="c"># &quot;/&quot;, &quot;/about&quot;, ...</span>
+    query  = parse_qs(environ.get(&quot;QUERY_STRING&quot;, &quot;&quot;))
+    name   = query.get(&quot;name&quot;, [&quot;World&quot;])[0]
+
+    body = f&quot;&lt;h1&gt;Hello, {escape(name)}!&lt;/h1&gt;&lt;p&gt;{method} {escape(path)}&lt;/p&gt;&quot;
+    start_response(&quot;200 OK&quot;, [(&quot;Content-Type&quot;, &quot;text/html; charset=utf-8&quot;)])
+    return [body.encode(&quot;utf-8&quot;)]                 <span class="c"># the body must be bytes</span>
+
+
+if __name__ == &quot;__main__&quot;:
+    from wsgiref.simple_server import make_server
+    with make_server(&quot;127.0.0.1&quot;, 8000, application) as server:
+        print(&quot;Serving on http://127.0.0.1:8000  (Ctrl+C to stop)&quot;)
+        server.serve_forever()</code></pre></details>
+</article>
+<h2 id="s1">Setting Up a Flask Project</h2>
+<article class="demo" id="flask_01_hello.py">
+  <h3><code>flask_01_hello.py</code></h3>
+  <p>The minimal Flask application.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_01_hello.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/</code></li></ul>
+  <details><summary><span class="file">flask_01_hello.py</span><a class="raw" href="flask_01_hello.py">open file</a></summary><pre><code><span class="c"># flask_01_hello.py</span>
+<span class="c"># Section: Setting Up a Flask Project</span>
+<span class="c"># Demonstrates: minimal Flask app, @app.route, app.run</span>
+<span class="c"># Run: python flask_01_hello.py</span>
+<span class="c"># Visit: http://127.0.0.1:5000</span>
+
+from flask import Flask
+
+app = Flask(__name__)    <span class="c"># create the Flask application object</span>
+
+@app.route(&quot;/&quot;)          <span class="c"># register the URL route &quot;/&quot;</span>
+def index():
+    return &quot;Hello, World!&quot;   <span class="c"># return the HTTP response body</span>
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)      <span class="c"># start the development server</span></code></pre></details>
+</article>
+<h2 id="s2">Routes and URL Building</h2>
+<article class="demo" id="flask_02_routes.py">
+  <h3><code>flask_02_routes.py</code></h3>
+  <p>Static routes, dynamic segments, the <code>int</code> converter, <code>url_for()</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_02_routes.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/user/alice</code></li><li><code>http://127.0.0.1:5000/post/42</code></li><li><code>http://127.0.0.1:5000/post/abc  (404)</code></li></ul>
+  <details><summary><span class="file">flask_02_routes.py</span><a class="raw" href="flask_02_routes.py">open file</a></summary><pre><code><span class="c"># flask_02_routes.py</span>
+<span class="c"># Section: Routes and URL Building</span>
+<span class="c"># Demonstrates: static routes, dynamic URL segments, type converters, url_for()</span>
+<span class="c"># Run: python flask_02_routes.py</span>
+
+from flask import Flask, url_for
+
+app = Flask(__name__)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Static routes</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/&quot;)
+def index():
+    return &quot;Home page&quot;
+
+@app.route(&quot;/about&quot;)
+def about():
+    return &quot;About page&quot;
+
+@app.route(&quot;/contact&quot;)
+def contact():
+    return &quot;Contact page&quot;
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Dynamic routes with URL parameters</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/user/&lt;username&gt;&quot;)          <span class="c"># string segment (default)</span>
+def user_profile(username):
+    return f&quot;Profile page for: {username}&quot;
+
+@app.route(&quot;/post/&lt;int:post_id&gt;&quot;)       <span class="c"># int converter</span>
+def show_post(post_id):
+    return f&quot;Post number: {post_id}&quot;    <span class="c"># post_id is already an int</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># url_for() demo (run outside request context using test_request_context)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+with app.test_request_context():
+    print(url_for(&quot;user_profile&quot;, username=&quot;alice&quot;))   <span class="c"># /user/alice</span>
+    print(url_for(&quot;user_profile&quot;, username=&quot;bob&quot;))     <span class="c"># /user/bob</span>
+    print(url_for(&quot;show_post&quot;, post_id=42))            <span class="c"># /post/42</span>
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+</article>
+<h2 id="s3">HTTP Requests and Responses</h2>
+<article class="demo" id="flask_03_requests_responses.py">
+  <h3><code>flask_03_requests_responses.py</code></h3>
+  <p>The <code>request</code> object, query strings, status codes and headers, <code>jsonify</code>, GET and POST on one route.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_03_requests_responses.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/search?q=python&amp;page=2</code></li><li><code>http://127.0.0.1:5000/api/users</code></li><li><code>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#x27;{&quot;name&quot;: &quot;cherry&quot;}&#x27; http://127.0.0.1:5000/api/items</code></li></ul>
+  <details><summary><span class="file">flask_03_requests_responses.py</span><a class="raw" href="flask_03_requests_responses.py">open file</a></summary><pre><code><span class="c"># flask_03_requests_responses.py</span>
+<span class="c"># Section: HTTP Requests and Responses</span>
+<span class="c"># Demonstrates: request object, query strings, response types,</span>
+<span class="c">#               jsonify, GET/POST handling</span>
+<span class="c"># Run: python flask_03_requests_responses.py</span>
+
+from flask import Flask, request, jsonify, make_response
+
+app = Flask(__name__)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Request object: method, user_agent, remote_addr, args</span>
+<span class="c"># Visit: http://127.0.0.1:5000/info</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/info&quot;)
+def info():
+    method = request.method          <span class="c"># &quot;GET&quot;, &quot;POST&quot;, etc.</span>
+    ua     = request.user_agent      <span class="c"># browser / client info</span>
+    ip     = request.remote_addr     <span class="c"># client IP address</span>
+    args   = request.args            <span class="c"># query string parameters (dict)</span>
+    return f&quot;Method: {method}, IP: {ip}, UA: {ua}&quot;
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Query string parameters</span>
+<span class="c"># Visit: http://127.0.0.1:5000/search?q=python&amp;page=2</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/search&quot;)
+def search():
+    query = request.args.get(&quot;q&quot;, &quot;&quot;)        <span class="c"># default &quot;&quot; if not present</span>
+    page  = request.args.get(&quot;page&quot;, 1, type=int)
+    return f&quot;Searching for &#x27;{query}&#x27;, page {page}&quot;
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Returning different response types</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/ok&quot;)
+def ok():
+    return &quot;Success&quot;, 200                    <span class="c"># body + status code</span>
+
+@app.route(&quot;/not-found&quot;)
+def not_found_demo():
+    return &quot;Page not found&quot;, 404
+
+@app.route(&quot;/custom-header&quot;)
+def custom_header():
+    resp = make_response(&quot;Custom response&quot;)
+    resp.headers[&quot;X-Custom&quot;] = &quot;MyValue&quot;     <span class="c"># add a custom header</span>
+    return resp
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># JSON responses</span>
+<span class="c"># Visit: http://127.0.0.1:5000/api/user</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/api/user&quot;)
+def api_user():
+    user = {&quot;id&quot;: 1, &quot;name&quot;: &quot;Alice&quot;, &quot;email&quot;: &quot;alice@example.com&quot;}
+    return jsonify(user)            <span class="c"># HTTP 200 + JSON body</span>
+
+@app.route(&quot;/api/users&quot;)
+def api_users():
+    users = [
+        {&quot;id&quot;: 1, &quot;name&quot;: &quot;Alice&quot;},
+        {&quot;id&quot;: 2, &quot;name&quot;: &quot;Bob&quot;},
+    ]
+    return jsonify(users), 200
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Handling GET and POST on the same route</span>
+<span class="c"># GET:  http://127.0.0.1:5000/api/items</span>
+<span class="c"># POST: curl -X POST http://127.0.0.1:5000/api/items \</span>
+<span class="c">#            -H &quot;Content-Type: application/json&quot; \</span>
+<span class="c">#            -d &#x27;{&quot;name&quot;: &quot;cherry&quot;}&#x27;</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/api/items&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def items():
+    if request.method == &quot;GET&quot;:
+        return jsonify({&quot;items&quot;: [&quot;apple&quot;, &quot;banana&quot;]})
+
+    if request.method == &quot;POST&quot;:
+        data = request.get_json(silent=True) or {}   <span class="c"># {} if body is not JSON</span>
+        name = data.get(&quot;name&quot;, &quot;&quot;).strip()
+        if not name:
+            return jsonify({&quot;error&quot;: &quot;Field &#x27;name&#x27; is required&quot;}), 400
+        return jsonify({&quot;created&quot;: name}), 201
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+</article>
+<h2 id="s4">Templates</h2>
+<article class="demo" id="flask_04_templates">
+  <h3><code>flask_04_templates/</code></h3>
+  <p>Jinja2: <code>render_template</code>, <code>{% if %}</code> and <code>{% for %}</code>, template inheritance, a static stylesheet.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>cd flask_04_templates
+python flask_04_templates.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/</code></li><li><code>http://127.0.0.1:5000/users</code></li></ul>
+  <details><summary><span class="file">flask_04_templates/flask_04_templates.py</span><a class="raw" href="flask_04_templates/flask_04_templates.py">open file</a></summary><pre><code><span class="c"># flask_04_templates.py</span>
+<span class="c"># Section: Templates</span>
+<span class="c"># Demonstrates: render_template, passing variables, Jinja2 control structures</span>
+<span class="c"># Requires: templates/base.html, templates/index.html, templates/users.html</span>
+<span class="c">#           templates/about.html</span>
+<span class="c"># Run: cd flask_04_templates &amp;&amp; python flask_04_templates.py</span>
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route(&quot;/&quot;)
+def index():
+    return render_template(&quot;index.html&quot;, title=&quot;Home&quot;, name=&quot;Alice&quot;)
+
+@app.route(&quot;/about&quot;)
+def about():
+    return render_template(&quot;about.html&quot;, title=&quot;About&quot;)
+
+@app.route(&quot;/users&quot;)
+def users():
+    user_list = [&quot;alice&quot;, &quot;bob&quot;, &quot;charlie&quot;]
+    return render_template(&quot;users.html&quot;, users=user_list)
+
+@app.route(&quot;/user/&lt;username&gt;&quot;)
+def user_profile(username):
+    return f&quot;Profile: {username}&quot;
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+<details><summary><span class="file">flask_04_templates/static/style.css</span><a class="raw" href="flask_04_templates/static/style.css">open file</a></summary><pre><code>/* static/style.css */
+body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+nav a { margin-right: 1rem; }</code></pre></details>
+<details><summary><span class="file">flask_04_templates/templates/about.html</span><a class="raw" href="flask_04_templates/templates/about.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/about.html --&gt;</span>
+{% extends &quot;base.html&quot; %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    &lt;h1&gt;About&lt;/h1&gt;
+    &lt;p&gt;A small Flask site that demonstrates Jinja2 templates.&lt;/p&gt;
+{% endblock %}</code></pre></details>
+<details><summary><span class="file">flask_04_templates/templates/base.html</span><a class="raw" href="flask_04_templates/templates/base.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/base.html : the layout every page extends --&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;{% block title %}My Site{% endblock %}&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for(&#x27;static&#x27;, filename=&#x27;style.css&#x27;) }}&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;index&#x27;) }}&quot;&gt;Home&lt;/a&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;about&#x27;) }}&quot;&gt;About&lt;/a&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;users&#x27;) }}&quot;&gt;Users&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;main&gt;
+        {% block content %}{% endblock %}
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+<details><summary><span class="file">flask_04_templates/templates/index.html</span><a class="raw" href="flask_04_templates/templates/index.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/index.html --&gt;</span>
+{% extends &quot;base.html&quot; %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    &lt;h1&gt;Welcome, {{ name }}!&lt;/h1&gt;
+    &lt;p&gt;This is the home page.&lt;/p&gt;
+{% endblock %}</code></pre></details>
+<details><summary><span class="file">flask_04_templates/templates/users.html</span><a class="raw" href="flask_04_templates/templates/users.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/users.html : a stand-alone page (no inheritance yet) --&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Users&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+    {% if users %}
+        &lt;ul&gt;
+        {% for user in users %}
+            &lt;li&gt;&lt;a href=&quot;{{ url_for(&#x27;user_profile&#x27;, username=user) }}&quot;&gt;
+                {{ user }}
+            &lt;/a&gt;&lt;/li&gt;
+        {% endfor %}
+        &lt;/ul&gt;
+    {% else %}
+        &lt;p&gt;No users found.&lt;/p&gt;
+    {% endif %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+</article>
+<h2 id="s5">Form Handling</h2>
+<article class="demo" id="flask_05_forms">
+  <h3><code>flask_05_forms/</code></h3>
+  <p>A contact form with server-side validation and Post/Redirect/Get; file uploads with <code>secure_filename</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>cd flask_05_forms
+python flask_05_forms.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/contact</code></li><li><code>http://127.0.0.1:5000/upload</code></li></ul>
+  <details><summary><span class="file">flask_05_forms/flask_05_forms.py</span><a class="raw" href="flask_05_forms/flask_05_forms.py">open file</a></summary><pre><code><span class="c"># flask_05_forms.py</span>
+<span class="c"># Section: Form Handling</span>
+<span class="c"># Demonstrates: request.form, server-side validation, PRG pattern, file uploads</span>
+<span class="c"># Requires: templates/contact.html, templates/thanks.html</span>
+<span class="c"># Run: cd flask_05_forms &amp;&amp; python flask_05_forms.py</span>
+
+import os
+from flask import Flask, request, render_template, redirect, url_for
+from werkzeug.utils import secure_filename
+
+app = Flask(__name__)
+app.config[&quot;UPLOAD_FOLDER&quot;] = &quot;uploads&quot;
+app.config[&quot;MAX_CONTENT_LENGTH&quot;] = 2 * 1024 * 1024   <span class="c"># 2 MB limit</span>
+
+ALLOWED_EXTENSIONS = {&quot;png&quot;, &quot;jpg&quot;, &quot;jpeg&quot;, &quot;gif&quot;, &quot;pdf&quot;}
+
+<span class="c"># Create uploads folder if it doesn&#x27;t exist</span>
+os.makedirs(app.config[&quot;UPLOAD_FOLDER&quot;], exist_ok=True)
+
+def allowed_file(filename):
+    return &quot;.&quot; in filename and \
+           filename.rsplit(&quot;.&quot;, 1)[1].lower() in ALLOWED_EXTENSIONS
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Contact form: GET renders the form, POST processes it (PRG pattern)</span>
+<span class="c"># Visit: http://127.0.0.1:5000/contact</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/contact&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def contact():
+    if request.method == &quot;POST&quot;:
+        name    = request.form.get(&quot;name&quot;, &quot;&quot;).strip()
+        email   = request.form.get(&quot;email&quot;, &quot;&quot;).strip()
+        message = request.form.get(&quot;message&quot;, &quot;&quot;).strip()
+
+        <span class="c"># Basic server-side validation</span>
+        if not name or not email or not message:
+            error = &quot;All fields are required.&quot;
+            return render_template(&quot;contact.html&quot;, error=error)
+
+        <span class="c"># Process the data (e.g., save to database or send email)</span>
+        print(f&quot;Message from {name} &lt;{email}&gt;: {message}&quot;)
+
+        <span class="c"># Redirect after successful POST (PRG pattern)</span>
+        return redirect(url_for(&quot;contact_thanks&quot;))
+
+    return render_template(&quot;contact.html&quot;)
+
+@app.route(&quot;/contact/thanks&quot;)
+def contact_thanks():
+    return render_template(&quot;thanks.html&quot;)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># File upload: accepts images and PDFs up to 2 MB</span>
+<span class="c"># Visit: http://127.0.0.1:5000/upload</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/upload&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def upload():
+    if request.method == &quot;POST&quot;:
+        file = request.files.get(&quot;file&quot;)
+        if not file or file.filename == &quot;&quot;:
+            return &quot;No file selected.&quot;, 400
+        if not allowed_file(file.filename):
+            return &quot;File type not allowed.&quot;, 400
+
+        filename = secure_filename(file.filename)   <span class="c"># sanitise the name</span>
+        file.save(os.path.join(app.config[&quot;UPLOAD_FOLDER&quot;], filename))
+        return f&quot;File &#x27;{filename}&#x27; uploaded successfully.&quot;
+
+    return &#x27;&#x27;&#x27;
+        &lt;form method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;
+            &lt;input type=&quot;file&quot; name=&quot;file&quot;&gt;
+            &lt;button type=&quot;submit&quot;&gt;Upload&lt;/button&gt;
+        &lt;/form&gt;
+    &#x27;&#x27;&#x27;
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+<details><summary><span class="file">flask_05_forms/templates/base.html</span><a class="raw" href="flask_05_forms/templates/base.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/base.html (forms demo) --&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;{% block title %}Forms Demo{% endblock %}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;contact&#x27;) }}&quot;&gt;Contact&lt;/a&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;upload&#x27;) }}&quot;&gt;Upload&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;main&gt;
+        {% block content %}{% endblock %}
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+<details><summary><span class="file">flask_05_forms/templates/contact.html</span><a class="raw" href="flask_05_forms/templates/contact.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/contact.html (with error display) --&gt;</span>
+{% extends &quot;base.html&quot; %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+&lt;h1&gt;Contact Us&lt;/h1&gt;
+{% if error %}
+    &lt;p style=&quot;color:red;&quot;&gt;{{ error }}&lt;/p&gt;
+{% endif %}
+&lt;form method=&quot;POST&quot; action=&quot;{{ url_for(&#x27;contact&#x27;) }}&quot;&gt;
+    &lt;label&gt;Name:
+        &lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;
+    &lt;/label&gt;&lt;br&gt;
+    &lt;label&gt;Email:
+        &lt;input type=&quot;email&quot; name=&quot;email&quot; required&gt;
+    &lt;/label&gt;&lt;br&gt;
+    &lt;label&gt;Message:
+        &lt;textarea name=&quot;message&quot; rows=&quot;5&quot; required&gt;&lt;/textarea&gt;
+    &lt;/label&gt;&lt;br&gt;
+    &lt;button type=&quot;submit&quot;&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+{% endblock %}</code></pre></details>
+<details><summary><span class="file">flask_05_forms/templates/thanks.html</span><a class="raw" href="flask_05_forms/templates/thanks.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/thanks.html : the GET page after a successful POST (PRG) --&gt;</span>
+{% extends &quot;base.html&quot; %}
+{% block title %}Thank You{% endblock %}
+{% block content %}
+&lt;h1&gt;Thank you!&lt;/h1&gt;
+&lt;p&gt;Your message was sent. Refreshing this page will not send it again.&lt;/p&gt;
+{% endblock %}</code></pre></details>
+</article>
+<h2 id="s6">Cookies</h2>
+<article class="demo" id="flask_06_cookies.py">
+  <h3><code>flask_06_cookies.py</code></h3>
+  <p>Setting, reading and deleting a cookie, with <code>httponly</code> and <code>samesite</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_06_cookies.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/set-theme</code></li><li><code>http://127.0.0.1:5000/get-theme</code></li><li><code>http://127.0.0.1:5000/clear-theme</code></li></ul>
+  <details><summary><span class="file">flask_06_cookies.py</span><a class="raw" href="flask_06_cookies.py">open file</a></summary><pre><code><span class="c"># flask_06_cookies.py</span>
+<span class="c"># Section: Cookies</span>
+<span class="c"># Demonstrates: set_cookie, request.cookies, delete_cookie, security attributes</span>
+<span class="c"># Run: python flask_06_cookies.py</span>
+
+from flask import Flask, request, make_response
+
+app = Flask(__name__)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Set a cookie</span>
+<span class="c"># Visit: http://127.0.0.1:5000/set-theme</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/set-theme&quot;)
+def set_theme():
+    resp = make_response(&quot;Theme set to dark.&quot;)
+    resp.set_cookie(
+        &quot;theme&quot;,               <span class="c"># cookie name</span>
+        &quot;dark&quot;,                <span class="c"># cookie value</span>
+        max_age=60*60*24*30,   <span class="c"># expires in 30 days (seconds)</span>
+        httponly=True,         <span class="c"># not accessible via JavaScript (XSS protection)</span>
+        samesite=&quot;Lax&quot;         <span class="c"># restrict cross-site sending (CSRF protection)</span>
+        <span class="c"># secure=True          # uncomment in production (HTTPS only)</span>
+    )
+    return resp
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Read a cookie</span>
+<span class="c"># Visit: http://127.0.0.1:5000/get-theme</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/get-theme&quot;)
+def get_theme():
+    theme = request.cookies.get(&quot;theme&quot;, &quot;light&quot;)   <span class="c"># default &quot;light&quot;</span>
+    return f&quot;Current theme: {theme}&quot;
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Delete a cookie</span>
+<span class="c"># Visit: http://127.0.0.1:5000/clear-theme</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/clear-theme&quot;)
+def clear_theme():
+    resp = make_response(&quot;Theme cleared.&quot;)
+    resp.delete_cookie(&quot;theme&quot;)
+    return resp
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+</article>
+<h2 id="s7">Sessions</h2>
+<article class="demo" id="flask_07_sessions">
+  <h3><code>flask_07_sessions/</code></h3>
+  <p>A visit counter, then login and logout with the <code>session</code> object (a signed cookie).</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>cd flask_07_sessions
+python flask_07_sessions.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/counter</code></li><li><code>http://127.0.0.1:5000/login  (alice / password123)</code></li></ul>
+  <details><summary><span class="file">flask_07_sessions/flask_07_sessions.py</span><a class="raw" href="flask_07_sessions/flask_07_sessions.py">open file</a></summary><pre><code><span class="c"># flask_07_sessions.py</span>
+<span class="c"># Section: Sessions</span>
+<span class="c"># Demonstrates: session dict, secret_key, visit counter, login/logout flow</span>
+<span class="c"># Requires: templates/login.html</span>
+<span class="c"># Run: cd flask_07_sessions &amp;&amp; python flask_07_sessions.py</span>
+
+import secrets
+from flask import Flask, session, request, redirect, url_for, render_template
+
+app = Flask(__name__)
+app.secret_key = &quot;replace-with-a-secure-random-key&quot;
+
+<span class="c"># Generate a safe secret key (run once and store in environment variable):</span>
+<span class="c"># import secrets; print(secrets.token_hex(32))</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Basic session usage: visit counter</span>
+<span class="c"># Visit: http://127.0.0.1:5000/counter</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/counter&quot;)
+def counter():
+    visits = session.get(&quot;visits&quot;, 0)
+    session[&quot;visits&quot;] = visits + 1
+    return f&quot;You have visited this page {session[&#x27;visits&#x27;]} time(s).&quot;
+
+@app.route(&quot;/counter/clear&quot;)
+def counter_clear():
+    session.clear()    <span class="c"># remove all session data</span>
+    return &quot;Session cleared.&quot;
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Simulated user database (use a real database in production)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+USERS = {
+    &quot;alice&quot;: &quot;password123&quot;,
+    &quot;bob&quot;:   &quot;secret456&quot;,
+}
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Login: GET renders form, POST authenticates and redirects</span>
+<span class="c"># Visit: http://127.0.0.1:5000/login</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/login&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def login():
+    error = None
+    if request.method == &quot;POST&quot;:
+        username = request.form.get(&quot;username&quot;, &quot;&quot;).strip()
+        password = request.form.get(&quot;password&quot;, &quot;&quot;)
+
+        if USERS.get(username) == password:
+            session[&quot;username&quot;] = username   <span class="c"># store in session</span>
+            session.permanent = True         <span class="c"># persist beyond browser close</span>
+            return redirect(url_for(&quot;dashboard&quot;))
+        else:
+            error = &quot;Invalid username or password.&quot;
+
+    return render_template(&quot;login.html&quot;, error=error)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Protected page: only accessible when logged in</span>
+<span class="c"># Visit: http://127.0.0.1:5000/dashboard</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/dashboard&quot;)
+def dashboard():
+    if &quot;username&quot; not in session:
+        return redirect(url_for(&quot;login&quot;))    <span class="c"># not logged in -&gt; redirect</span>
+    return f&quot;Welcome, {session[&#x27;username&#x27;]}! &lt;a href=&#x27;/logout&#x27;&gt;Log out&lt;/a&gt;&quot;
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Logout: remove session data and redirect to login</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/logout&quot;)
+def logout():
+    session.pop(&quot;username&quot;, None)   <span class="c"># remove only the username key</span>
+    return redirect(url_for(&quot;login&quot;))
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+<details><summary><span class="file">flask_07_sessions/templates/base.html</span><a class="raw" href="flask_07_sessions/templates/base.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/base.html (sessions demo) --&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;{% block title %}Sessions Demo{% endblock %}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;counter&#x27;) }}&quot;&gt;Counter&lt;/a&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;dashboard&#x27;) }}&quot;&gt;Dashboard&lt;/a&gt;
+        &lt;a href=&quot;{{ url_for(&#x27;logout&#x27;) }}&quot;&gt;Log out&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;main&gt;
+        {% block content %}{% endblock %}
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></details>
+<details><summary><span class="file">flask_07_sessions/templates/login.html</span><a class="raw" href="flask_07_sessions/templates/login.html">open file</a></summary><pre><code><span class="c">&lt;!-- templates/login.html --&gt;</span>
+{% extends &quot;base.html&quot; %}
+{% block title %}Login{% endblock %}
+{% block content %}
+&lt;h1&gt;Login&lt;/h1&gt;
+{% if error %}
+    &lt;p style=&quot;color:red;&quot;&gt;{{ error }}&lt;/p&gt;
+{% endif %}
+&lt;form method=&quot;POST&quot; action=&quot;{{ url_for(&#x27;login&#x27;) }}&quot;&gt;
+    &lt;label&gt;Username:
+        &lt;input type=&quot;text&quot; name=&quot;username&quot; required autofocus&gt;
+    &lt;/label&gt;&lt;br&gt;
+    &lt;label&gt;Password:
+        &lt;input type=&quot;password&quot; name=&quot;password&quot; required&gt;
+    &lt;/label&gt;&lt;br&gt;
+    &lt;button type=&quot;submit&quot;&gt;Log In&lt;/button&gt;
+&lt;/form&gt;
+{% endblock %}</code></pre></details>
+</article>
+<h2 id="s8">JSON Web Tokens (JWT)</h2>
+<article class="demo" id="flask_08a_jwt_helpers.py">
+  <h3><code>flask_08a_jwt_helpers.py</code></h3>
+  <p><code>create_token</code> and <code>verify_token</code>. Imported by 08b, 09 and the FastAPI example.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_08a_jwt_helpers.py</code></pre>
+  
+  <details><summary><span class="file">flask_08a_jwt_helpers.py</span><a class="raw" href="flask_08a_jwt_helpers.py">open file</a></summary><pre><code><span class="c"># flask_08a_jwt_helpers.py</span>
+<span class="c"># Section: JSON Web Tokens - token creation and verification</span>
+<span class="c"># Demonstrates: jwt.encode, jwt.decode, expiry, error handling</span>
+<span class="c"># Install: pip install PyJWT</span>
+<span class="c"># Run: python flask_08a_jwt_helpers.py  (standalone demo)</span>
+
+import jwt
+import datetime
+
+SECRET_KEY = &quot;replace-with-a-long-random-secret&quot;
+
+
+def create_token(user_id: int, username: str) -&gt; str:
+    &quot;&quot;&quot;Create a signed JWT that expires in 1 hour.&quot;&quot;&quot;
+    payload = {
+        &quot;sub&quot;:      str(user_id),  <span class="c"># subject: must be a string (PyJWT &gt;= 2.10)</span>
+        &quot;username&quot;: username,
+        &quot;exp&quot;:      datetime.datetime.now(datetime.timezone.utc)
+                    + datetime.timedelta(hours=1),
+        &quot;iat&quot;:      datetime.datetime.now(datetime.timezone.utc),
+                                <span class="c"># issued at (standard JWT claim)</span>
+    }
+    return jwt.encode(payload, SECRET_KEY, algorithm=&quot;HS256&quot;)
+
+
+def verify_token(token: str) -&gt; dict | None:
+    &quot;&quot;&quot;Decode and verify a JWT. Returns the payload dict or None.&quot;&quot;&quot;
+    try:
+        return jwt.decode(token, SECRET_KEY, algorithms=[&quot;HS256&quot;])
+    except jwt.ExpiredSignatureError:
+        return None    <span class="c"># token has expired</span>
+    except jwt.InvalidTokenError:
+        return None    <span class="c"># token is malformed or signature is invalid</span>
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Standalone demo</span>
+<span class="c"># ------------------------------------------------------------------</span>
+if __name__ == &quot;__main__&quot;:
+    token = create_token(1, &quot;alice&quot;)
+    print(&quot;Token:&quot;, token)
+
+    payload = verify_token(token)
+    print(&quot;Decoded:&quot;, payload)
+
+    print(&quot;Invalid token:&quot;, verify_token(&quot;this.is.not.valid&quot;))</code></pre></details>
+</article>
+<article class="demo" id="flask_08b_jwt_api.py">
+  <h3><code>flask_08b_jwt_api.py</code></h3>
+  <p>A login API that returns a token, and routes protected by <code>@token_required</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_08b_jwt_api.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#x27;{&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;password123&quot;}&#x27; http://127.0.0.1:5000/api/login</code></li><li><code>curl -H &quot;Authorization: Bearer &lt;token&gt;&quot; http://127.0.0.1:5000/api/profile</code></li></ul>
+  <details><summary><span class="file">flask_08b_jwt_api.py</span><a class="raw" href="flask_08b_jwt_api.py">open file</a></summary><pre><code><span class="c"># flask_08b_jwt_api.py</span>
+<span class="c"># Section: JSON Web Tokens - login API and protected routes</span>
+<span class="c"># Demonstrates: token-based login, @token_required decorator, Bearer header</span>
+<span class="c"># Install: pip install flask PyJWT</span>
+<span class="c"># Requires: flask_08a_jwt_helpers.py (in the same folder)</span>
+<span class="c"># Run: python flask_08b_jwt_api.py</span>
+<span class="c">#</span>
+<span class="c"># Test with curl:</span>
+<span class="c">#   Login:</span>
+<span class="c">#     curl -X POST http://127.0.0.1:5000/api/login \</span>
+<span class="c">#          -H &quot;Content-Type: application/json&quot; \</span>
+<span class="c">#          -d &#x27;{&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;password123&quot;}&#x27;</span>
+<span class="c">#</span>
+<span class="c">#   Access protected route (replace &lt;token&gt; with value from login):</span>
+<span class="c">#     curl http://127.0.0.1:5000/api/profile \</span>
+<span class="c">#          -H &quot;Authorization: Bearer &lt;token&gt;&quot;</span>
+
+from functools import wraps
+from flask import Flask, request, jsonify
+from flask_08a_jwt_helpers import create_token, verify_token   <span class="c"># reuse 8a</span>
+
+app = Flask(__name__)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Simulated user store (use a real database with hashed passwords)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+USERS = {
+    1: {&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;password123&quot;},
+    2: {&quot;username&quot;: &quot;bob&quot;,   &quot;password&quot;: &quot;secret456&quot;},
+}
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># @token_required decorator: protects any route with JWT auth</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def token_required(f):
+    &quot;&quot;&quot;Decorator: protect a route with JWT authentication.&quot;&quot;&quot;
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth_header = request.headers.get(&quot;Authorization&quot;, &quot;&quot;)
+        if not auth_header.startswith(&quot;Bearer &quot;):
+            return jsonify({&quot;error&quot;: &quot;Missing token&quot;}), 401
+
+        token = auth_header.split(&quot; &quot;, 1)[1]
+        payload = verify_token(token)
+        if payload is None:
+            return jsonify({&quot;error&quot;: &quot;Invalid or expired token&quot;}), 401
+
+        return f(payload, *args, **kwargs)   <span class="c"># pass payload to view</span>
+    return decorated
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Login endpoint: returns a JWT on valid credentials</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/api/login&quot;, methods=[&quot;POST&quot;])
+def api_login():
+    data     = request.get_json(silent=True) or {}
+    username = data.get(&quot;username&quot;, &quot;&quot;)
+    password = data.get(&quot;password&quot;, &quot;&quot;)
+
+    <span class="c"># Find the user by username</span>
+    user = next((u for u in USERS.values()
+                 if u[&quot;username&quot;] == username), None)
+
+    if not user or user[&quot;password&quot;] != password:
+        return jsonify({&quot;error&quot;: &quot;Invalid credentials&quot;}), 401
+
+    user_id = next(k for k, v in USERS.items()
+                   if v[&quot;username&quot;] == username)
+    token = create_token(user_id, username)
+    return jsonify({&quot;token&quot;: token}), 200
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Protected routes: require valid Bearer token</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/api/profile&quot;, methods=[&quot;GET&quot;])
+@token_required
+def api_profile(payload):
+    return jsonify({
+        &quot;user_id&quot;:  int(payload[&quot;sub&quot;]),   <span class="c"># &quot;sub&quot; is stored as a string</span>
+        &quot;username&quot;: payload[&quot;username&quot;],
+    })
+
+
+@app.route(&quot;/api/secret&quot;, methods=[&quot;GET&quot;])
+@token_required
+def api_secret(payload):
+    return jsonify({
+        &quot;message&quot;: f&quot;Hello {payload[&#x27;username&#x27;]}, here is your secret data.&quot;
+    })
+
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+</article>
+<h2 id="s9">Password Hashing</h2>
+<article class="demo" id="flask_09_password_hashing.py">
+  <h3><code>flask_09_password_hashing.py</code></h3>
+  <p>bcrypt hashing; register and log in with hashed passwords.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_09_password_hashing.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#x27;{&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;mypassword&quot;}&#x27; http://127.0.0.1:5000/api/register</code></li></ul>
+  <details><summary><span class="file">flask_09_password_hashing.py</span><a class="raw" href="flask_09_password_hashing.py">open file</a></summary><pre><code><span class="c"># flask_09_password_hashing.py</span>
+<span class="c"># Section: Password Hashing</span>
+<span class="c"># Demonstrates: bcrypt hash_password, check_password, register/login API</span>
+<span class="c"># Install: pip install flask bcrypt PyJWT</span>
+<span class="c"># Requires: flask_08a_jwt_helpers.py (in the same folder)</span>
+<span class="c"># Run: python flask_09_password_hashing.py</span>
+<span class="c">#</span>
+<span class="c"># Test with curl:</span>
+<span class="c">#   Register:</span>
+<span class="c">#     curl -X POST http://127.0.0.1:5000/api/register \</span>
+<span class="c">#          -H &quot;Content-Type: application/json&quot; \</span>
+<span class="c">#          -d &#x27;{&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;mypassword&quot;}&#x27;</span>
+<span class="c">#</span>
+<span class="c">#   Login:</span>
+<span class="c">#     curl -X POST http://127.0.0.1:5000/api/login \</span>
+<span class="c">#          -H &quot;Content-Type: application/json&quot; \</span>
+<span class="c">#          -d &#x27;{&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;mypassword&quot;}&#x27;</span>
+
+import bcrypt
+from flask import Flask, request, jsonify
+from flask_08a_jwt_helpers import create_token   <span class="c"># JWT helper from 8a</span>
+
+app = Flask(__name__)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Password helpers</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def hash_password(plaintext: str) -&gt; str:
+    &quot;&quot;&quot;Hash a plaintext password. Returns a string safe for database storage.&quot;&quot;&quot;
+    salt   = bcrypt.gensalt(rounds=12)           <span class="c"># 2^12 hashing iterations</span>
+    hashed = bcrypt.hashpw(plaintext.encode(), salt)
+    return hashed.decode(&quot;utf-8&quot;)
+
+
+def check_password(plaintext: str, hashed: str) -&gt; bool:
+    &quot;&quot;&quot;Return True if plaintext matches the stored hash.&quot;&quot;&quot;
+    return bcrypt.checkpw(plaintext.encode(), hashed.encode(&quot;utf-8&quot;))
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Standalone hash demo (runs only when executed directly)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def _demo_hashing():
+    stored = hash_password(&quot;mypassword&quot;)
+    print(&quot;Hash:&quot;, stored)                              <span class="c"># $2b$12$...</span>
+    print(&quot;Correct:&quot;, check_password(&quot;mypassword&quot;,   stored))   <span class="c"># True</span>
+    print(&quot;Wrong:  &quot;, check_password(&quot;wrongpassword&quot;, stored))  <span class="c"># False</span>
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Simulated database (replace with a real database in production)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+user_db = {}   <span class="c"># {&quot;alice&quot;: {&quot;id&quot;: 1, &quot;password_hash&quot;: &quot;...&quot;}}</span>
+next_id  = 1
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Registration endpoint</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/api/register&quot;, methods=[&quot;POST&quot;])
+def register():
+    global next_id
+    data     = request.get_json(silent=True) or {}
+    username = data.get(&quot;username&quot;, &quot;&quot;).strip()
+    password = data.get(&quot;password&quot;, &quot;&quot;)
+
+    if not username or not password:
+        return jsonify({&quot;error&quot;: &quot;Username and password required&quot;}), 400
+    if username in user_db:
+        return jsonify({&quot;error&quot;: &quot;Username already taken&quot;}), 409
+
+    user_db[username] = {
+        &quot;id&quot;:            next_id,
+        &quot;password_hash&quot;: hash_password(password),   <span class="c"># never store plaintext</span>
+    }
+    next_id += 1
+    return jsonify({&quot;message&quot;: &quot;Registered successfully&quot;}), 201
+
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Login endpoint</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/api/login&quot;, methods=[&quot;POST&quot;])
+def login():
+    data     = request.get_json(silent=True) or {}
+    username = data.get(&quot;username&quot;, &quot;&quot;)
+    password = data.get(&quot;password&quot;, &quot;&quot;)
+
+    user = user_db.get(username)
+    if not user or not check_password(password, user[&quot;password_hash&quot;]):
+        return jsonify({&quot;error&quot;: &quot;Invalid credentials&quot;}), 401
+
+    token = create_token(user[&quot;id&quot;], username)
+    return jsonify({&quot;token&quot;: token}), 200
+
+
+if __name__ == &quot;__main__&quot;:
+    _demo_hashing()       <span class="c"># show bcrypt output in terminal</span>
+    app.run(debug=True)</code></pre></details>
+</article>
+<h2 id="s10">Error Handling</h2>
+<article class="demo" id="flask_10_error_handling.py">
+  <h3><code>flask_10_error_handling.py</code></h3>
+  <p>JSON error handlers for 404, 401 and 500; <code>abort()</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_10_error_handling.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/nonexistent</code></li><li><code>http://127.0.0.1:5000/protected</code></li><li><code>http://127.0.0.1:5000/crash</code></li></ul>
+  <details><summary><span class="file">flask_10_error_handling.py</span><a class="raw" href="flask_10_error_handling.py">open file</a></summary><pre><code><span class="c"># flask_10_error_handling.py</span>
+<span class="c"># Section: Error Handling</span>
+<span class="c"># Demonstrates: @app.errorhandler for 404, 401, 500 with JSON responses</span>
+<span class="c"># Run: python flask_10_error_handling.py</span>
+<span class="c">#</span>
+<span class="c"># Test:</span>
+<span class="c">#   404: curl http://127.0.0.1:5000/nonexistent</span>
+<span class="c">#   401: curl http://127.0.0.1:5000/protected</span>
+<span class="c">#   500: curl http://127.0.0.1:5000/crash</span>
+
+from flask import Flask, jsonify, abort
+
+app = Flask(__name__)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Custom error handlers</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.errorhandler(404)
+def not_found(e):
+    return jsonify({&quot;error&quot;: &quot;Resource not found&quot;}), 404
+
+@app.errorhandler(401)
+def unauthorized(e):
+    return jsonify({&quot;error&quot;: &quot;Authentication required&quot;}), 401
+
+@app.errorhandler(500)
+def server_error(e):
+    return jsonify({&quot;error&quot;: &quot;Internal server error&quot;}), 500
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Demo routes that trigger each error</span>
+<span class="c"># ------------------------------------------------------------------</span>
+@app.route(&quot;/&quot;)
+def index():
+    return jsonify({&quot;message&quot;: &quot;OK&quot;})
+
+@app.route(&quot;/protected&quot;)
+def protected():
+    abort(401)   <span class="c"># triggers the 401 handler</span>
+
+@app.route(&quot;/crash&quot;)
+def crash():
+    raise RuntimeError(&quot;Simulated server crash&quot;)   <span class="c"># triggers 500 handler</span>
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=False)   <span class="c"># debug=False so 500 handler fires instead of debugger</span></code></pre></details>
+</article>
+<h2 id="s11">Blueprints: Organising a Larger Application</h2>
+<article class="demo" id="flask_11_blueprints">
+  <h3><code>flask_11_blueprints/</code></h3>
+  <p>Routes split into <code>auth.py</code> and <code>api.py</code>, registered with URL prefixes.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>cd flask_11_blueprints
+python flask_11_blueprints_app.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/api/items</code></li><li><code>http://127.0.0.1:5000/api/status</code></li></ul>
+  <details><summary><span class="file">flask_11_blueprints/api.py</span><a class="raw" href="flask_11_blueprints/api.py">open file</a></summary><pre><code><span class="c"># api.py  --  application API blueprint</span>
+<span class="c"># Section: Blueprints</span>
+<span class="c"># Demonstrates: Blueprint definition, url_prefix</span>
+<span class="c"># Used by: flask_11_blueprints_app.py</span>
+
+from flask import Blueprint, jsonify
+
+api_bp = Blueprint(&quot;api&quot;, __name__, url_prefix=&quot;/api&quot;)
+
+@api_bp.route(&quot;/items&quot;)
+def items():
+    return jsonify({&quot;items&quot;: [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]})
+
+@api_bp.route(&quot;/status&quot;)
+def status():
+    return jsonify({&quot;status&quot;: &quot;ok&quot;, &quot;version&quot;: &quot;1.0&quot;})</code></pre></details>
+<details><summary><span class="file">flask_11_blueprints/auth.py</span><a class="raw" href="flask_11_blueprints/auth.py">open file</a></summary><pre><code><span class="c"># auth.py  --  authentication blueprint</span>
+<span class="c"># Section: Blueprints</span>
+<span class="c"># Demonstrates: Blueprint definition, url_prefix, route registration</span>
+<span class="c"># Used by: flask_11_blueprints_app.py</span>
+
+from flask import Blueprint, request, jsonify
+
+auth_bp = Blueprint(&quot;auth&quot;, __name__, url_prefix=&quot;/auth&quot;)
+
+@auth_bp.route(&quot;/login&quot;, methods=[&quot;POST&quot;])
+def login():
+    data     = request.get_json() or {}
+    username = data.get(&quot;username&quot;, &quot;&quot;)
+    password = data.get(&quot;password&quot;, &quot;&quot;)
+
+    <span class="c"># Simplified check (use hashed passwords and a real database)</span>
+    if username == &quot;alice&quot; and password == &quot;password123&quot;:
+        return jsonify({&quot;token&quot;: &quot;demo-token-for-alice&quot;})
+    return jsonify({&quot;error&quot;: &quot;Invalid credentials&quot;}), 401
+
+@auth_bp.route(&quot;/register&quot;, methods=[&quot;POST&quot;])
+def register():
+    data     = request.get_json() or {}
+    username = data.get(&quot;username&quot;, &quot;&quot;)
+    if not username:
+        return jsonify({&quot;error&quot;: &quot;Username required&quot;}), 400
+    return jsonify({&quot;message&quot;: f&quot;User &#x27;{username}&#x27; registered&quot;}), 201</code></pre></details>
+<details><summary><span class="file">flask_11_blueprints/flask_11_blueprints_app.py</span><a class="raw" href="flask_11_blueprints/flask_11_blueprints_app.py">open file</a></summary><pre><code><span class="c"># flask_11_blueprints_app.py</span>
+<span class="c"># Section: Blueprints - Organising a Larger Application</span>
+<span class="c"># Demonstrates: register_blueprint, url_prefix, modular route organisation</span>
+<span class="c"># Requires: auth.py, api.py (in the same directory)</span>
+<span class="c"># Run: cd flask_11_blueprints &amp;&amp; python flask_11_blueprints_app.py</span>
+<span class="c">#</span>
+<span class="c"># Routes registered:</span>
+<span class="c">#   POST /auth/login</span>
+<span class="c">#   POST /auth/register</span>
+<span class="c">#   GET  /api/items</span>
+<span class="c">#   GET  /api/status</span>
+<span class="c">#</span>
+<span class="c"># Test:</span>
+<span class="c">#   curl -X POST http://127.0.0.1:5000/auth/login \</span>
+<span class="c">#        -H &quot;Content-Type: application/json&quot; \</span>
+<span class="c">#        -d &#x27;{&quot;username&quot;: &quot;alice&quot;, &quot;password&quot;: &quot;password123&quot;}&#x27;</span>
+<span class="c">#</span>
+<span class="c">#   curl http://127.0.0.1:5000/api/items</span>
+
+import os
+from flask import Flask
+from auth import auth_bp
+from api  import api_bp
+
+app = Flask(__name__)
+app.secret_key = os.environ.get(&quot;SECRET_KEY&quot;, &quot;dev-secret-key&quot;)
+
+app.register_blueprint(auth_bp)   <span class="c"># mounts at /auth</span>
+app.register_blueprint(api_bp)    <span class="c"># mounts at /api</span>
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)</code></pre></details>
+</article>
+<h2 id="s12">Configuration for Production</h2>
+<article class="demo" id="flask_12_production_config.py">
+  <h3><code>flask_12_production_config.py</code></h3>
+  <p>Secrets read from environment variables; reports whether a real key was set.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python flask_12_production_config.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/</code></li></ul>
+  <details><summary><span class="file">flask_12_production_config.py</span><a class="raw" href="flask_12_production_config.py">open file</a></summary><pre><code><span class="c"># flask_12_production_config.py</span>
+<span class="c"># Section: Deploying to Production</span>
+<span class="c"># Demonstrates: loading secrets from environment variables, never hard-coding</span>
+<span class="c"># Run: python flask_12_production_config.py</span>
+<span class="c">#</span>
+<span class="c"># Set environment variables before running (macOS/Linux):</span>
+<span class="c">#   export SECRET_KEY=&quot;$(python -c &#x27;import secrets; print(secrets.token_hex(32))&#x27;)&quot;</span>
+<span class="c">#   export JWT_SECRET=&quot;$(python -c &#x27;import secrets; print(secrets.token_hex(32))&#x27;)&quot;</span>
+<span class="c">#   python flask_12_production_config.py</span>
+<span class="c">#</span>
+<span class="c"># Windows (PowerShell):</span>
+<span class="c">#   $env:SECRET_KEY = python -c &quot;import secrets; print(secrets.token_hex(32))&quot;</span>
+<span class="c">#   $env:JWT_SECRET = python -c &quot;import secrets; print(secrets.token_hex(32))&quot;</span>
+<span class="c">#</span>
+<span class="c"># Production server (after setting env vars):</span>
+<span class="c">#   macOS/Linux:  gunicorn --workers 4 --bind 127.0.0.1:8000 flask_12_production_config:app</span>
+<span class="c">#   Windows:      waitress-serve --port=8000 flask_12_production_config:app</span>
+
+import os
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+<span class="c"># Load secrets from environment variables; fall back to dev values only locally</span>
+app.secret_key = os.environ.get(&quot;SECRET_KEY&quot;, &quot;fallback-dev-key-change-in-production&quot;)
+JWT_SECRET     = os.environ.get(&quot;JWT_SECRET&quot;, &quot;fallback-jwt-key-change-in-production&quot;)
+
+@app.route(&quot;/&quot;)
+def index():
+    return jsonify({
+        &quot;message&quot;: &quot;App is running&quot;,
+        &quot;debug&quot;:   app.debug,
+        &quot;secret_key_set&quot;: app.secret_key != &quot;fallback-dev-key-change-in-production&quot;,
+    })
+
+if __name__ == &quot;__main__&quot;:
+    <span class="c"># Development only: never run with debug=True in production</span>
+    app.run(debug=True, host=&quot;127.0.0.1&quot;, port=5000)</code></pre></details>
+</article>
+<h2 id="s13">A Second Framework: FastAPI</h2>
+<article class="demo" id="fastapi_auth.py">
+  <h3><code>fastapi_auth.py</code></h3>
+  <p>The JWT-protected profile route in FastAPI, with <code>Depends</code> and <code>HTTPBearer</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>uvicorn fastapi_auth:app --reload</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:8000/docs</code></li></ul>
+  <details><summary><span class="file">fastapi_auth.py</span><a class="raw" href="fastapi_auth.py">open file</a></summary><pre><code><span class="c"># fastapi_auth.py</span>
+<span class="c"># Section: A Second Framework -- FastAPI</span>
+<span class="c"># Demonstrates: FastAPI routes, Depends, HTTPBearer, HTTPException, JWT</span>
+<span class="c"># Install: pip install fastapi uvicorn PyJWT</span>
+<span class="c"># Requires: flask_08a_jwt_helpers.py (in the same folder; it uses only PyJWT)</span>
+<span class="c"># Run:     uvicorn fastapi_auth:app --reload</span>
+<span class="c"># Try:     http://127.0.0.1:8000/docs   (interactive test page)</span>
+<span class="c">#</span>
+<span class="c">#   1. GET /token-demo                     -&gt; copy the token</span>
+<span class="c">#   2. Click &quot;Authorize&quot;, paste the token  (no &quot;Bearer &quot; prefix needed)</span>
+<span class="c">#   3. GET /profile                        -&gt; {&quot;user_id&quot;: 1, &quot;username&quot;: &quot;alice&quot;}</span>
+
+from fastapi import FastAPI, Depends, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from flask_08a_jwt_helpers import create_token, verify_token   <span class="c"># reuse 8a</span>
+
+app = FastAPI()
+bearer = HTTPBearer()          <span class="c"># reads &quot;Authorization: Bearer &lt;token&gt;&quot;</span>
+
+
+@app.get(&quot;/token-demo&quot;)
+def get_demo_token():
+    &quot;&quot;&quot;Helper endpoint: returns a valid token for testing (no password!).&quot;&quot;&quot;
+    return {&quot;token&quot;: create_token(1, &quot;alice&quot;)}
+
+
+@app.get(&quot;/profile&quot;)
+def read_profile(creds: HTTPAuthorizationCredentials = Depends(bearer)):
+    payload = verify_token(creds.credentials)    <span class="c"># decode and validate the JWT</span>
+    if payload is None:
+        raise HTTPException(status_code=401, detail=&quot;Invalid or expired token&quot;)
+    return {&quot;user_id&quot;: int(payload[&quot;sub&quot;]), &quot;username&quot;: payload[&quot;username&quot;]}</code></pre></details>
+</article>
+<h2 id="s14">Flask Code in the AI Era</h2>
+<article class="demo" id="ai_era">
+  <h3><code>ai_era/</code></h3>
+  <p><code>generated_hello.py</code>: the AI's insecure version (do not deploy). <code>hardened_hello.py</code>: the fixed version; needs the <code>SECRET_KEY</code> environment variable.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>cd ai_era
+python generated_hello.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li><code>http://127.0.0.1:5000/hello?name=Ada</code></li></ul>
+  <details><summary><span class="file">ai_era/generated_hello.py</span><a class="raw" href="ai_era/generated_hello.py">open file</a></summary><pre><code><span class="c"># ai_era/generated_hello.py</span>
+<span class="c"># Section: Flask Code in the AI Era -- the AI&#x27;s version (DO NOT DEPLOY)</span>
+<span class="c"># Three defects: debugger on, hard-coded secret, unescaped user input (XSS)</span>
+<span class="c"># Run:  python generated_hello.py</span>
+<span class="c"># Try:  http://127.0.0.1:5000/hello?name=Ada</span>
+<span class="c">#       http://127.0.0.1:5000/hello?name=&lt;script&gt;alert(1)&lt;/script&gt;   &lt;-- runs!</span>
+
+from flask import Flask, request, render_template_string
+app = Flask(__name__)
+app.secret_key = &quot;secret123&quot;                       <span class="c"># hard-coded secret</span>
+
+@app.route(&quot;/hello&quot;)
+def hello():
+    name = request.args.get(&quot;name&quot;, &quot;&quot;)
+    return render_template_string(&quot;&lt;h1&gt;Hello &quot; + name + &quot;&lt;/h1&gt;&quot;)  <span class="c"># XSS</span>
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)                            <span class="c"># debugger exposed</span></code></pre></details>
+<details><summary><span class="file">ai_era/hardened_hello.py</span><a class="raw" href="ai_era/hardened_hello.py">open file</a></summary><pre><code><span class="c"># ai_era/hardened_hello.py</span>
+<span class="c"># Section: Flask Code in the AI Era -- the hardened version</span>
+<span class="c"># Requires: templates/hello.html; the SECRET_KEY environment variable</span>
+<span class="c"># Run (macOS/Linux):</span>
+<span class="c">#   export SECRET_KEY=&quot;$(python -c &#x27;import secrets; print(secrets.token_hex(32))&#x27;)&quot;</span>
+<span class="c">#   python hardened_hello.py</span>
+<span class="c"># Run (Windows PowerShell):</span>
+<span class="c">#   $env:SECRET_KEY = python -c &quot;import secrets; print(secrets.token_hex(32))&quot;</span>
+<span class="c">#   python hardened_hello.py</span>
+
+import os
+from flask import Flask, request, render_template
+app = Flask(__name__)
+app.secret_key = os.environ[&quot;SECRET_KEY&quot;]          <span class="c"># 2. secret from env</span>
+
+@app.route(&quot;/hello&quot;)
+def hello():
+    name = request.args.get(&quot;name&quot;, &quot;&quot;).strip()
+    if not name:                                   <span class="c"># 1. validate input</span>
+        return &quot;Name is required.&quot;, 400
+    return render_template(&quot;hello.html&quot;, name=name)  <span class="c"># 1. autoescaped template</span>
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=False)                           <span class="c"># 2. debugger off</span></code></pre></details>
+<details><summary><span class="file">ai_era/templates/hello.html</span><a class="raw" href="ai_era/templates/hello.html">open file</a></summary><pre><code><span class="c">{# templates/hello.html : Jinja2 escapes the name variable automatically #}</span>
+&lt;h1&gt;Hello {{ name }}&lt;/h1&gt;</code></pre></details>
+</article>
+
+</main>
+<footer>Section titles follow the book chapter. Each demo's source is shown below its description; click a file name to open or close it.
+Generated by <code>build_demo_index.py</code>.</footer>
 </body>
 </html>

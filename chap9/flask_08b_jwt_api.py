@@ -2,6 +2,7 @@
 # Section: JSON Web Tokens - login API and protected routes
 # Demonstrates: token-based login, @token_required decorator, Bearer header
 # Install: pip install flask PyJWT
+# Requires: flask_08a_jwt_helpers.py (in the same folder)
 # Run: python flask_08b_jwt_api.py
 #
 # Test with curl:
@@ -14,14 +15,11 @@
 #     curl http://127.0.0.1:5000/api/profile \
 #          -H "Authorization: Bearer <token>"
 
-import jwt
-import datetime
 from functools import wraps
 from flask import Flask, request, jsonify
+from flask_08a_jwt_helpers import create_token, verify_token   # reuse 8a
 
 app = Flask(__name__)
-
-SECRET_KEY = "replace-with-a-long-random-secret"
 
 # ------------------------------------------------------------------
 # Simulated user store (use a real database with hashed passwords)
@@ -30,31 +28,6 @@ USERS = {
     1: {"username": "alice", "password": "password123"},
     2: {"username": "bob",   "password": "secret456"},
 }
-
-# ------------------------------------------------------------------
-# Token helpers
-# ------------------------------------------------------------------
-def create_token(user_id: int, username: str) -> str:
-    """Create a signed JWT that expires in 1 hour."""
-    payload = {
-        "sub":      user_id,
-        "username": username,
-        "exp":      datetime.datetime.now(datetime.timezone.utc)
-                    + datetime.timedelta(hours=1),
-        "iat":      datetime.datetime.now(datetime.timezone.utc),
-    }
-    return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
-
-
-def verify_token(token: str) -> dict | None:
-    """Decode and verify a JWT. Returns payload or None."""
-    try:
-        return jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-    except jwt.ExpiredSignatureError:
-        return None
-    except jwt.InvalidTokenError:
-        return None
-
 
 # ------------------------------------------------------------------
 # @token_required decorator: protects any route with JWT auth
@@ -81,7 +54,7 @@ def token_required(f):
 # ------------------------------------------------------------------
 @app.route("/api/login", methods=["POST"])
 def api_login():
-    data     = request.get_json()
+    data     = request.get_json(silent=True) or {}
     username = data.get("username", "")
     password = data.get("password", "")
 
@@ -105,7 +78,7 @@ def api_login():
 @token_required
 def api_profile(payload):
     return jsonify({
-        "user_id":  payload["sub"],
+        "user_id":  int(payload["sub"]),   # "sub" is stored as a string
         "username": payload["username"],
     })
 

@@ -2,7 +2,7 @@
 # Section: Form Handling
 # Demonstrates: request.form, server-side validation, PRG pattern, file uploads
 # Requires: templates/contact.html, templates/thanks.html
-# Run: python flask_05_forms.py
+# Run: cd flask_05_forms && python flask_05_forms.py
 
 import os
 from flask import Flask, request, render_template, redirect, url_for

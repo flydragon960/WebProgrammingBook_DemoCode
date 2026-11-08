@@ -2,7 +2,7 @@
 # Section: Blueprints - Organising a Larger Application
 # Demonstrates: register_blueprint, url_prefix, modular route organisation
 # Requires: auth.py, api.py (in the same directory)
-# Run: python flask_11_blueprints_app.py
+# Run: cd flask_11_blueprints && python flask_11_blueprints_app.py
 #
 # Routes registered:
 #   POST /auth/login

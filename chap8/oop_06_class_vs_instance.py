@@ -3,7 +3,7 @@
 #               @classmethod, @staticmethod, alternative constructors
 
 class Student:
-    school = "McGill University"    # class attribute: shared by all instances
+    school = "Concordia University" # class attribute: shared by all instances
     _count = 0                      # class attribute: track number of students
 
     def __init__(self, name, grade):
@@ -69,15 +69,15 @@ s2 = Student("Bob", 45)
 s3 = Student.from_string("Charlie, 73")
 
 # --- Instance methods ---
-s1.report()     # Alice | Grade: 88 | Pass | McGill University
-s2.report()     # Bob   | Grade: 45 | Fail | McGill University
-s3.report()     # Charlie | Grade: 73 | Pass | McGill University
+s1.report()     # Alice | Grade: 88 | Pass | Concordia University
+s2.report()     # Bob | Grade: 45 | Fail | Concordia University
+s3.report()     # Charlie | Grade: 73 | Pass | Concordia University
 
 print()
 
 # --- Class attributes and methods ---
-print(Student.school)           # McGill University
-print(Student.get_school())     # McGill University
+print(Student.school)           # Concordia University
+print(Student.get_school())     # Concordia University
 print(Student.get_count())      # 3  (three students created)
 
 print()

@@ -2,6 +2,7 @@
 # Section: Password Hashing
 # Demonstrates: bcrypt hash_password, check_password, register/login API
 # Install: pip install flask bcrypt PyJWT
+# Requires: flask_08a_jwt_helpers.py (in the same folder)
 # Run: python flask_09_password_hashing.py
 #
 # Test with curl:
@@ -15,13 +16,11 @@
 #          -H "Content-Type: application/json" \
 #          -d '{"username": "alice", "password": "mypassword"}'
 
-import jwt
 import bcrypt
-import datetime
 from flask import Flask, request, jsonify
+from flask_08a_jwt_helpers import create_token   # JWT helper from 8a
 
 app = Flask(__name__)
-SECRET_KEY = "replace-with-a-long-random-secret"
 
 # ------------------------------------------------------------------
 # Password helpers
@@ -49,19 +48,6 @@ def _demo_hashing():
 
 
 # ------------------------------------------------------------------
-# JWT helper
-# ------------------------------------------------------------------
-def create_token(user_id: int, username: str) -> str:
-    payload = {
-        "sub":      user_id,
-        "username": username,
-        "exp":      datetime.datetime.now(datetime.timezone.utc)
-                    + datetime.timedelta(hours=1),
-    }
-    return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
-
-
-# ------------------------------------------------------------------
 # Simulated database (replace with a real database in production)
 # ------------------------------------------------------------------
 user_db = {}   # {"alice": {"id": 1, "password_hash": "..."}}
@@ -74,7 +60,7 @@ next_id  = 1
 @app.route("/api/register", methods=["POST"])
 def register():
     global next_id
-    data     = request.get_json()
+    data     = request.get_json(silent=True) or {}
     username = data.get("username", "").strip()
     password = data.get("password", "")
 
@@ -96,7 +82,7 @@ def register():
 # ------------------------------------------------------------------
 @app.route("/api/login", methods=["POST"])
 def login():
-    data     = request.get_json()
+    data     = request.get_json(silent=True) or {}
     username = data.get("username", "")
     password = data.get("password", "")
 

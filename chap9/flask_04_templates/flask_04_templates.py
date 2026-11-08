@@ -3,7 +3,7 @@
 # Demonstrates: render_template, passing variables, Jinja2 control structures
 # Requires: templates/base.html, templates/index.html, templates/users.html
 #           templates/about.html
-# Run: python flask_04_templates.py
+# Run: cd flask_04_templates && python flask_04_templates.py
 
 from flask import Flask, render_template
 

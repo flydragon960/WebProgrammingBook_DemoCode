@@ -1,69 +1,913 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chap 8 — Demos</title>
+<title>Chapter 8: Python Fundamentals — Demo Code</title>
 <style>
-  :root { --navy:#16243b; --gold:#d6a23a; --ink:#1b2430; --muted:#5b6572; --bg:#ffffff; --card:#f5f3ef; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-          color: var(--ink); background: var(--bg); line-height:1.5; }
-  header { background: var(--navy); color:#fff; padding: 28px 24px; }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-  header .wrap { padding: 0; }
-  .kicker { color: var(--gold); font-size:.72rem; letter-spacing:.16em; font-weight:700; text-transform:uppercase; margin:0 0 6px; }
-  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 1.9rem; margin:.1rem 0 .2rem; }
-  header p { margin:.2rem 0 0; color:#c9d2df; font-size:.95rem; }
-  main { padding: 26px 0 40px; }
-  h2 { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:22px 0 10px; }
-  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap:14px; }
-  a.card { display:block; text-decoration:none; color:var(--ink); background:var(--card);
-            border:1px solid #e7e2d8; border-left:4px solid var(--gold); border-radius:10px;
-            padding:14px 16px; transition:transform .06s ease, box-shadow .12s ease; }
-  a.card:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(22,36,59,.10); }
-  a.card.dir { border-left-color: var(--navy); }
-  .name { font-weight:700; font-size:1.02rem; }
-  .file { color:var(--muted); font-size:.82rem; font-family: ui-monospace, Menlo, Consolas, monospace; margin-top:3px; }
-  .note { background:#fbf3d9; border:1px solid #efe2b8; border-radius:10px; padding:12px 16px; color:#5a4b1e; font-size:.92rem; }
-  footer { border-top:1px solid #e7e2d8; color:var(--muted); font-size:.85rem; padding:18px 0 40px; }
-  footer a { color: var(--navy); }
+:root { --navy:#1E2761; --gold:#B08D2A; --lgold:#D9C07A; --text:#222431; --muted:#5B6070;
+        --bg:#FFFFFF; --card:#F2F3F7; --border:#D3D7E6; --code:#F5F6FA; --comment:#2E7D32; color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root { --navy:#C9D1F5; --gold:#D9C07A; --text:#E6E8F0; --muted:#A3A9BD; --bg:#14172B;
+          --card:#1E2240; --border:#33395E; --code:#191C34; --comment:#7BC88A; color-scheme: dark; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 Calibri, "Segoe UI", system-ui, sans-serif; }
+header { background:#1E2761; color:#fff; padding:2.2rem 1.25rem 1.8rem; }
+header .wrap, main { max-width:62rem; margin:0 auto; }
+.kicker { color:#D9C07A; font-weight:700; letter-spacing:.18em; font-size:.8rem; text-transform:uppercase; margin:0 0 .4rem; }
+h1 { font-family:Georgia, "Times New Roman", serif; font-size:2rem; margin:0 0 .6rem; line-height:1.2; }
+header p { margin:.2rem 0; color:#C9CCE0; }
+header a { color:#D9C07A; }
+main { padding:1.25rem; }
+h2 { font-family:Georgia, "Times New Roman", serif; color:var(--navy); font-size:1.4rem; margin:2rem 0 .8rem;
+     padding-bottom:.3rem; border-bottom:2px solid var(--gold); }
+h3 { margin:0 0 .3rem; font-size:1.05rem; color:var(--navy); }
+.note { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.9rem 1.1rem; }
+.demo { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.1rem; margin:0 0 1rem; }
+.demo > p { margin:.2rem 0 .6rem; }
+.label { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:.6rem 0 .2rem; }
+pre { background:var(--code); border:1px solid var(--border); border-radius:8px; padding:.7rem .9rem; overflow-x:auto;
+      margin:.2rem 0 .6rem; font:13.5px/1.45 Consolas, "Courier New", monospace; }
+code { font-family:Consolas, "Courier New", monospace; font-size:.92em; }
+pre code { font-size:inherit; }
+.c { color:var(--comment); }
+ul.try { margin:.2rem 0 .6rem; padding-left:1.2rem; }
+ul.try li { margin:.15rem 0; overflow-wrap:anywhere; }
+details { margin:.4rem 0; }
+summary { cursor:pointer; font-weight:600; padding:.25rem 0; }
+summary .file { font-family:Consolas, "Courier New", monospace; }
+summary .raw { font-weight:400; font-size:.85rem; margin-left:.8rem; color:var(--gold); }
+nav.toc ol { columns:2; column-gap:2rem; padding-left:1.3rem; }
+nav.toc a { color:var(--navy); }
+footer { max-width:62rem; margin:2rem auto; padding:0 1.25rem 2rem; color:var(--muted); font-size:.85rem; }
+@media (max-width:640px) { nav.toc ol { columns:1; } h1 { font-size:1.6rem; } }
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <p class="kicker">SOEN 287 · Web Programming · Demo code</p>
-  <h1>Chap 8</h1>
-  <p>Front-end demos open in the browser. Server demos (Node.js / Flask) run locally.</p>
+  <h1>Chapter 8: Python Fundamentals</h1>
+  <p>Python for JavaScript programmers. Every file runs on its own with <code>python &lt;file&gt;.py</code> (on macOS and Linux you may need <code>python3</code>). No packages are needed for this chapter.</p>
+  <p><a href="../index.html">All chapters</a> · <a href="https://github.com/flydragon960/WebProgrammingBook_DemoCode/tree/main/chap8">View this folder on GitHub</a></p>
 </div></header>
-<main><div class="wrap">
-<div class="note"><strong>Server-side demo.</strong> These files run on a server (e.g. <code>node server.js</code> or <code>flask run</code>), not in the browser — see the README, and run them locally.</div>
-<h2>Source files</h2>
-<div class="grid">
-  <a class="card" href="ch08_01_basics.py"><span class="name">ch08_01_basics.py</span></a>
-  <a class="card" href="ch08_02_operators.py"><span class="name">ch08_02_operators.py</span></a>
-  <a class="card" href="ch08_03_data_types.py"><span class="name">ch08_03_data_types.py</span></a>
-  <a class="card" href="ch08_04_control_flow.py"><span class="name">ch08_04_control_flow.py</span></a>
-  <a class="card" href="ch08_05_functions_closures.py"><span class="name">ch08_05_functions_closures.py</span></a>
-  <a class="card" href="ch08_06_data_structures.py"><span class="name">ch08_06_data_structures.py</span></a>
-  <a class="card" href="ch08_07_exception_handling.py"><span class="name">ch08_07_exception_handling.py</span></a>
-  <a class="card" href="ch08_08_file_handling.py"><span class="name">ch08_08_file_handling.py</span></a>
-  <a class="card" href="ch08_09_modules_imports.py"><span class="name">ch08_09_modules_imports.py</span></a>
-  <a class="card" href="ch08_10_wsgi_app.py"><span class="name">ch08_10_wsgi_app.py</span></a>
-  <a class="card" href="ch08_11_flask_routes.py"><span class="name">ch08_11_flask_routes.py</span></a>
-  <a class="card" href="ch08_12_flask_sessions.py"><span class="name">ch08_12_flask_sessions.py</span></a>
-  <a class="card" href="ch08_13_jwt_tokens.py"><span class="name">ch08_13_jwt_tokens.py</span></a>
-  <a class="card" href="ch08_14_fastapi_auth.py"><span class="name">ch08_14_fastapi_auth.py</span></a>
-  <a class="card" href="oop_01_class_and_object.py"><span class="name">oop_01_class_and_object.py</span></a>
-  <a class="card" href="oop_02_encapsulation.py"><span class="name">oop_02_encapsulation.py</span></a>
-  <a class="card" href="oop_03_inheritance.py"><span class="name">oop_03_inheritance.py</span></a>
-  <a class="card" href="oop_04_polymorphism.py"><span class="name">oop_04_polymorphism.py</span></a>
-  <a class="card" href="oop_05_abstraction.py"><span class="name">oop_05_abstraction.py</span></a>
-  <a class="card" href="oop_06_class_vs_instance.py"><span class="name">oop_06_class_vs_instance.py</span></a>
-</div>
-</div></main>
-<footer><div class="wrap">
-  <a href="../index.html">← All chapters</a> &nbsp;·&nbsp; Companion code for <em>Web Programming: With Modern Full-Stack Technology</em>.
-</div></footer>
+<main>
+<nav class="toc"><h2>Sections</h2><ol><li><a href="#s0">Python Basics</a></li><li><a href="#s1">Python Data Types</a></li><li><a href="#s2">Control Flow Statements</a></li><li><a href="#s3">Functions and Closures</a></li><li><a href="#s4">Data Structures</a></li><li><a href="#s5">Exception Handling</a></li><li><a href="#s6">File Handling</a></li><li><a href="#s7">Modules and Imports</a></li><li><a href="#s8">Object-Oriented Programming in Python</a></li><li><a href="#s9">Python in the AI Era: Judging Generated Code</a></li></ol></nav>
+
+<h2 id="s0">Python Basics</h2>
+<article class="demo" id="ch08_01_basics.py">
+  <h3><code>ch08_01_basics.py</code></h3>
+  <p>Hello World, comments, docstrings, input and output, f-strings.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_01_basics.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li>Asks for your name</li></ul>
+  <details><summary><span class="file">ch08_01_basics.py</span><a class="raw" href="ch08_01_basics.py">open file</a></summary><pre><code><span class="c"># ch08_01_basics.py</span>
+<span class="c"># Section: Python Basics</span>
+<span class="c"># Topics: Hello World, comments, docstrings, input/output, f-strings</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Hello World</span>
+<span class="c"># ------------------------------------------------------------------</span>
+print(&quot;Hello, World!&quot;)
+print(&quot;The answer is&quot;, 42)   <span class="c"># multiple values: space-separated</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Single-line comments</span>
+<span class="c"># ------------------------------------------------------------------</span>
+print(&quot;Hello, World!&quot;)  <span class="c"># Output a greeting message to the console</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Docstrings and accessing them at runtime</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def add(a, b):
+    &quot;&quot;&quot;
+    Returns the sum of two numbers.
+
+    Parameters:
+        a (int or float): First number
+        b (int or float): Second number
+
+    Returns:
+        int or float: The sum of a and b
+    &quot;&quot;&quot;
+    return a + b
+
+<span class="c"># Access the docstring directly</span>
+print(add.__doc__)
+
+<span class="c"># Or show it formatted; this opens a pager -- press q to return</span>
+<span class="c"># help(add)</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Input and Output</span>
+<span class="c"># ------------------------------------------------------------------</span>
+name = input(&quot;Enter your name: &quot;)
+print(&quot;Hello&quot;, name)           <span class="c"># positional: space-separated</span>
+print(f&quot;Welcome, {name}!&quot;)     <span class="c"># f-string: inline expression</span>
+
+<span class="c"># f-string with format specifier</span>
+price = 12.3456
+print(f&quot;Formatted price: ${price:.2f}&quot;)  <span class="c"># Output: $12.35</span></code></pre></details>
+</article>
+<article class="demo" id="ch08_02_operators.py">
+  <h3><code>ch08_02_operators.py</code></h3>
+  <p>Arithmetic (<code>/</code>, <code>//</code>, <code>%</code>, <code>**</code>), comparison, logical and chained comparisons.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_02_operators.py</code></pre>
+  
+  <details><summary><span class="file">ch08_02_operators.py</span><a class="raw" href="ch08_02_operators.py">open file</a></summary><pre><code><span class="c"># ch08_02_operators.py</span>
+<span class="c"># Section: Python Basics - Operators</span>
+<span class="c"># Topics: arithmetic, comparison, logical, chained comparisons</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Arithmetic operators</span>
+<span class="c"># ------------------------------------------------------------------</span>
+print(7 / 2)    <span class="c"># 3.5  (true division)</span>
+print(7 // 2)   <span class="c"># 3    (floor division)</span>
+print(7 % 2)    <span class="c"># 1    (remainder / modulo)</span>
+print(2 ** 8)   <span class="c"># 256  (exponentiation)</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Comparison and logical operators</span>
+<span class="c"># ------------------------------------------------------------------</span>
+x = 5
+y = 10
+print(x &lt; y and y &gt; 5)   <span class="c"># True: both conditions are met</span>
+print(x == 5 or y == 5)  <span class="c"># True: first condition is met</span>
+print(not x == 5)         <span class="c"># False: x is 5, negated</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Chained comparisons</span>
+<span class="c"># ------------------------------------------------------------------</span>
+age = 20
+print(18 &lt; age &lt; 65)   <span class="c"># True: equivalent to age &gt; 18 and age &lt; 65</span></code></pre></details>
+</article>
+<h2 id="s1">Python Data Types</h2>
+<article class="demo" id="ch08_03_data_types.py">
+  <h3><code>ch08_03_data_types.py</code></h3>
+  <p><code>type()</code>, dynamic typing, type hints, converting <code>input()</code> with <code>int()</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_03_data_types.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li>Asks for your age</li></ul>
+  <details><summary><span class="file">ch08_03_data_types.py</span><a class="raw" href="ch08_03_data_types.py">open file</a></summary><pre><code><span class="c"># ch08_03_data_types.py</span>
+<span class="c"># Section: Python Data Types</span>
+<span class="c"># Topics: variable declaration, type(), dynamic typing, type hints, input conversion</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Variable declaration and assignment</span>
+<span class="c"># ------------------------------------------------------------------</span>
+x = 10            <span class="c"># int</span>
+name = &quot;Alice&quot;    <span class="c"># str</span>
+pi = 3.14         <span class="c"># float</span>
+is_active = True  <span class="c"># bool</span>
+
+<span class="c"># Confirm types at runtime</span>
+print(type(x))          <span class="c"># &lt;class &#x27;int&#x27;&gt;</span>
+print(type(name))       <span class="c"># &lt;class &#x27;str&#x27;&gt;</span>
+print(type(is_active))  <span class="c"># &lt;class &#x27;bool&#x27;&gt;</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Dynamic typing: same variable, different types</span>
+<span class="c"># ------------------------------------------------------------------</span>
+x = 10
+print(type(x))  <span class="c"># &lt;class &#x27;int&#x27;&gt;</span>
+
+x = &quot;Now I&#x27;m a string!&quot;
+print(type(x))  <span class="c"># &lt;class &#x27;str&#x27;&gt;</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Type hints (Python 3.5+): annotate without enforcing</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def add(a: int, b: int) -&gt; int:
+    return a + b
+
+print(add(3, 4))   <span class="c"># 7</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Input conversion: input() always returns str</span>
+<span class="c"># ------------------------------------------------------------------</span>
+age = int(input(&quot;Enter your age: &quot;))
+print(f&quot;Next year you will be {age + 1}.&quot;)</code></pre></details>
+</article>
+<h2 id="s2">Control Flow Statements</h2>
+<article class="demo" id="ch08_04_control_flow.py">
+  <h3><code>ch08_04_control_flow.py</code></h3>
+  <p><code>if</code>/<code>elif</code>/<code>else</code>, <code>for</code> with <code>range()</code>, <code>while</code>, <code>break</code> and <code>continue</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_04_control_flow.py</code></pre>
+  
+  <details><summary><span class="file">ch08_04_control_flow.py</span><a class="raw" href="ch08_04_control_flow.py">open file</a></summary><pre><code><span class="c"># ch08_04_control_flow.py</span>
+<span class="c"># Section: Control Flow Statements</span>
+<span class="c"># Topics: if/elif/else, for loop, while loop, break, continue</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># if / elif / else</span>
+<span class="c"># ------------------------------------------------------------------</span>
+age = 18
+if age &gt;= 18:
+    print(&quot;Adult&quot;)
+elif age &gt;= 13:
+    print(&quot;Teen&quot;)
+else:
+    print(&quot;Minor&quot;)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># for loop with range()</span>
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># range(5) produces 0, 1, 2, 3, 4</span>
+for i in range(5):
+    print(i)       <span class="c"># prints 0, 1, 2, 3, 4</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># while loop</span>
+<span class="c"># ------------------------------------------------------------------</span>
+count = 0
+while count &lt; 5:
+    print(count)   <span class="c"># prints 0, 1, 2, 3, 4</span>
+    count += 1     <span class="c"># equivalent to count = count + 1</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># break and continue</span>
+<span class="c"># ------------------------------------------------------------------</span>
+for i in range(10):
+    if i == 3:
+        continue   <span class="c"># skip 3</span>
+    if i == 7:
+        break      <span class="c"># stop at 7</span>
+    print(i)       <span class="c"># prints 0, 1, 2, 4, 5, 6</span></code></pre></details>
+</article>
+<h2 id="s3">Functions and Closures</h2>
+<article class="demo" id="ch08_05_functions_closures.py">
+  <h3><code>ch08_05_functions_closures.py</code></h3>
+  <p><code>def</code>, <code>return</code>, default parameters, a closure.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_05_functions_closures.py</code></pre>
+  
+  <details><summary><span class="file">ch08_05_functions_closures.py</span><a class="raw" href="ch08_05_functions_closures.py">open file</a></summary><pre><code><span class="c"># ch08_05_functions_closures.py</span>
+<span class="c"># Section: Functions and Closures</span>
+<span class="c"># Topics: def, return, default parameters, closures, lexical scoping</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Basic function</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def greet(name):
+    print(f&quot;Hello, {name}&quot;)
+
+greet(&quot;Alice&quot;)   <span class="c"># Output: Hello, Alice</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Function with return value</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(result)    <span class="c"># Output: 8</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Default parameter values</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def greet(name, greeting=&quot;Hello&quot;):
+    print(f&quot;{greeting}, {name}!&quot;)
+
+greet(&quot;Alice&quot;)             <span class="c"># Hello, Alice!</span>
+greet(&quot;Bob&quot;, &quot;Welcome&quot;)    <span class="c"># Welcome, Bob!</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Closure: inner function captures variable from enclosing scope</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def outer_function(msg):
+    def inner_function():
+        print(&quot;Message:&quot;, msg)    <span class="c"># &#x27;msg&#x27; is captured from outer scope</span>
+    return inner_function         <span class="c"># return the function, not its result</span>
+
+say_hello = outer_function(&quot;Hello from closure!&quot;)
+say_hello()    <span class="c"># Output: Message: Hello from closure!</span></code></pre></details>
+</article>
+<h2 id="s4">Data Structures</h2>
+<article class="demo" id="ch08_06_data_structures.py">
+  <h3><code>ch08_06_data_structures.py</code></h3>
+  <p>List, tuple, dictionary and set, with set operations.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_06_data_structures.py</code></pre>
+  
+  <details><summary><span class="file">ch08_06_data_structures.py</span><a class="raw" href="ch08_06_data_structures.py">open file</a></summary><pre><code><span class="c"># ch08_06_data_structures.py</span>
+<span class="c"># Section: Data Structures</span>
+<span class="c"># Topics: list, tuple, dictionary, set</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># LIST (Ordered and Mutable)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]
+print(fruits[0])           <span class="c"># Access by index -&gt; apple</span>
+print(fruits[-1])          <span class="c"># Negative index from end -&gt; cherry</span>
+fruits.append(&quot;orange&quot;)    <span class="c"># Add to end</span>
+fruits.insert(1, &quot;mango&quot;)  <span class="c"># Insert at position 1</span>
+print(fruits)              <span class="c"># [&#x27;apple&#x27;, &#x27;mango&#x27;, &#x27;banana&#x27;, &#x27;cherry&#x27;, &#x27;orange&#x27;]</span>
+print(len(fruits))         <span class="c"># Number of items -&gt; 5</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># TUPLE (Ordered and Immutable)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+coordinates = (10, 20)
+print(coordinates[1])      <span class="c"># Access by index -&gt; 20</span>
+<span class="c"># coordinates[0] = 5       # TypeError: tuples are immutable</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># DICTIONARY (Key-Value Pair Mapping)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+person = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25}
+print(person[&quot;name&quot;])        <span class="c"># Access by key -&gt; Alice</span>
+person[&quot;age&quot;] = 26           <span class="c"># Update existing key</span>
+person[&quot;email&quot;] = &quot;a@b.com&quot;  <span class="c"># Add new key</span>
+print(person)                <span class="c"># {&#x27;name&#x27;: &#x27;Alice&#x27;, &#x27;age&#x27;: 26, &#x27;email&#x27;: &#x27;a@b.com&#x27;}</span>
+
+<span class="c"># Safe access with .get() -- returns None instead of raising KeyError</span>
+print(person.get(&quot;phone&quot;))   <span class="c"># None</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># SET (Unordered Collection of Unique Items)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+colors = {&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;}
+colors.add(&quot;yellow&quot;)
+colors.add(&quot;red&quot;)            <span class="c"># Duplicate ignored</span>
+print(colors)                <span class="c"># {&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;} (order may vary)</span>
+
+<span class="c"># Membership test (very fast compared to lists)</span>
+print(&quot;green&quot; in colors)     <span class="c"># True</span>
+
+<span class="c"># Set operations</span>
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+print(a &amp; b)   <span class="c"># Intersection -&gt; {3, 4}</span>
+print(a | b)   <span class="c"># Union        -&gt; {1, 2, 3, 4, 5, 6}</span>
+print(a - b)   <span class="c"># Difference   -&gt; {1, 2}</span></code></pre></details>
+</article>
+<h2 id="s5">Exception Handling</h2>
+<article class="demo" id="ch08_07_exception_handling.py">
+  <h3><code>ch08_07_exception_handling.py</code></h3>
+  <p><code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code> and <code>raise</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_07_exception_handling.py</code></pre>
+  <p class="label">Try</p><ul class="try"><li>Enter 5, then 0, then abc</li></ul>
+  <details><summary><span class="file">ch08_07_exception_handling.py</span><a class="raw" href="ch08_07_exception_handling.py">open file</a></summary><pre><code><span class="c"># ch08_07_exception_handling.py</span>
+<span class="c"># Section: Exception Handling</span>
+<span class="c"># Topics: try/except/else/finally, multiple exceptions, raise</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Basic try / except / else / finally</span>
+<span class="c"># ------------------------------------------------------------------</span>
+try:
+    x = int(input(&quot;Enter a number: &quot;))
+    result = 10 / x
+except ZeroDivisionError:
+    print(&quot;Cannot divide by zero!&quot;)
+except ValueError:
+    print(&quot;Invalid input -- please enter a number.&quot;)
+else:
+    print(&quot;Result:&quot;, result)      <span class="c"># runs only if no exception occurred</span>
+finally:
+    print(&quot;Execution complete.&quot;)  <span class="c"># always runs, exception or not</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Raising custom exceptions to enforce business rules</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def set_age(age):
+    if age &lt; 0 or age &gt; 150:
+        raise ValueError(f&quot;Invalid age: {age}&quot;)
+    return age
+
+try:
+    set_age(-5)
+except ValueError as e:
+    print(e)    <span class="c"># Invalid age: -5</span></code></pre></details>
+</article>
+<h2 id="s6">File Handling</h2>
+<article class="demo" id="ch08_08_file_handling.py">
+  <h3><code>ch08_08_file_handling.py</code></h3>
+  <p><code>with open(...)</code>: write, read, read line by line, append. Creates <code>example.txt</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_08_file_handling.py</code></pre>
+  
+  <details><summary><span class="file">ch08_08_file_handling.py</span><a class="raw" href="ch08_08_file_handling.py">open file</a></summary><pre><code><span class="c"># ch08_08_file_handling.py</span>
+<span class="c"># Section: File Handling</span>
+<span class="c"># Topics: open(), with statement, write, read, encoding</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Writing to a file</span>
+<span class="c"># &quot;w&quot; mode creates the file or overwrites it if it already exists</span>
+<span class="c"># ------------------------------------------------------------------</span>
+with open(&quot;example.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    f.write(&quot;Hello, Python!\n&quot;)
+    f.write(&quot;Second line.\n&quot;)
+
+print(&quot;File written.&quot;)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Reading from a file</span>
+<span class="c"># &quot;r&quot; mode is the default; file must already exist</span>
+<span class="c"># ------------------------------------------------------------------</span>
+with open(&quot;example.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    content = f.read()    <span class="c"># read entire file as a single string</span>
+    print(content)
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Reading line by line (memory-efficient for large files)</span>
+<span class="c"># ------------------------------------------------------------------</span>
+with open(&quot;example.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line in f:
+        print(line.strip())   <span class="c"># strip() removes the trailing newline</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Appending to a file</span>
+<span class="c"># &quot;a&quot; mode adds to the end without overwriting existing content</span>
+<span class="c"># ------------------------------------------------------------------</span>
+with open(&quot;example.txt&quot;, &quot;a&quot;, encoding=&quot;utf-8&quot;) as f:
+    f.write(&quot;Appended line.\n&quot;)
+
+print(&quot;Line appended.&quot;)</code></pre></details>
+</article>
+<h2 id="s7">Modules and Imports</h2>
+<article class="demo" id="ch08_09_modules_imports.py">
+  <h3><code>ch08_09_modules_imports.py</code></h3>
+  <p><code>import</code>, <code>from ... import</code>, aliases, the <code>__name__</code> guard.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_09_modules_imports.py</code></pre>
+  
+  <details><summary><span class="file">ch08_09_modules_imports.py</span><a class="raw" href="ch08_09_modules_imports.py">open file</a></summary><pre><code><span class="c"># ch08_09_modules_imports.py</span>
+<span class="c"># Section: Modules and Imports</span>
+<span class="c"># Topics: import, from...import, alias, __name__ == &quot;__main__&quot;</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Importing the entire module</span>
+<span class="c"># ------------------------------------------------------------------</span>
+import math
+print(math.sqrt(25))     <span class="c"># 5.0</span>
+print(math.floor(3.7))   <span class="c"># 3</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Importing specific names from a module</span>
+<span class="c"># ------------------------------------------------------------------</span>
+from math import pi, sin
+print(pi)                <span class="c"># 3.141592653589793</span>
+print(sin(pi / 2))       <span class="c"># 1.0</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Module alias to reduce typing</span>
+<span class="c"># ------------------------------------------------------------------</span>
+import datetime as dt
+now = dt.datetime.now()
+print(now)    <span class="c"># e.g., 2025-09-01 14:23:05.123456</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># __name__ guard: run code only when executed directly, not imported</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def main():
+    print(&quot;Running as a script.&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()    <span class="c"># Only executes when this file is run directly</span></code></pre></details>
+</article>
+<h2 id="s8">Object-Oriented Programming in Python</h2>
+<article class="demo" id="oop_01_class_and_object.py">
+  <h3><code>oop_01_class_and_object.py</code></h3>
+  <p>A class, <code>__init__</code>, <code>self</code>, two objects.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python oop_01_class_and_object.py</code></pre>
+  
+  <details><summary><span class="file">oop_01_class_and_object.py</span><a class="raw" href="oop_01_class_and_object.py">open file</a></summary><pre><code><span class="c"># oop_01_class_and_object.py</span>
+<span class="c"># Demonstrates: Class definition, __init__ constructor, instance attributes, methods</span>
+
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name      <span class="c"># instance attribute</span>
+        self.breed = breed    <span class="c"># instance attribute</span>
+
+    def bark(self):
+        print(f&quot;{self.name} says: Woof!&quot;)
+
+    def describe(self):
+        print(f&quot;{self.name} is a {self.breed}.&quot;)
+
+
+<span class="c"># Create objects (instances) from the class</span>
+dog1 = Dog(&quot;Rex&quot;, &quot;Labrador&quot;)
+dog2 = Dog(&quot;Bella&quot;, &quot;Poodle&quot;)
+
+dog1.bark()       <span class="c"># Rex says: Woof!</span>
+dog2.bark()       <span class="c"># Bella says: Woof!</span>
+dog1.describe()   <span class="c"># Rex is a Labrador.</span>
+dog2.describe()   <span class="c"># Bella is a Poodle.</span>
+
+<span class="c"># Each object has its own independent data</span>
+print(dog1.name)  <span class="c"># Rex</span>
+print(dog2.name)  <span class="c"># Bella</span></code></pre></details>
+</article>
+<article class="demo" id="oop_02_encapsulation.py">
+  <h3><code>oop_02_encapsulation.py</code></h3>
+  <p>Public, <code>_internal</code> and <code>__private</code> names; name mangling.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python oop_02_encapsulation.py</code></pre>
+  
+  <details><summary><span class="file">oop_02_encapsulation.py</span><a class="raw" href="oop_02_encapsulation.py">open file</a></summary><pre><code><span class="c"># oop_02_encapsulation.py</span>
+<span class="c"># Demonstrates: Private attributes, name mangling, controlled access via methods</span>
+
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner          <span class="c"># public attribute</span>
+        self._bank = &quot;PyBank&quot;       <span class="c"># _single underscore: internal use by convention</span>
+        self.__balance = balance    <span class="c"># __double underscore: name-mangled (private)</span>
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self.__balance += amount
+            print(f&quot;Deposited ${amount}. New balance: ${self.__balance}&quot;)
+        else:
+            print(&quot;Deposit amount must be positive.&quot;)
+
+    def withdraw(self, amount):
+        if 0 &lt; amount &lt;= self.__balance:
+            self.__balance -= amount
+            print(f&quot;Withdrew ${amount}. New balance: ${self.__balance}&quot;)
+        else:
+            print(&quot;Invalid or insufficient funds.&quot;)
+
+    def get_balance(self):
+        return self.__balance       <span class="c"># controlled read access</span>
+
+
+account = BankAccount(&quot;Alice&quot;, 1000)
+account.deposit(500)                <span class="c"># Deposited $500. New balance: $1500</span>
+account.withdraw(200)               <span class="c"># Withdrew $200. New balance: $1300</span>
+print(account.get_balance())        <span class="c"># 1300</span>
+print(account.owner)                <span class="c"># Alice   (public, accessible directly)</span>
+print(account._bank)                <span class="c"># PyBank  (accessible but signals: don&#x27;t touch)</span>
+
+<span class="c"># Attempting to access the private attribute directly</span>
+try:
+    print(account.__balance)        <span class="c"># AttributeError</span>
+except AttributeError as e:
+    print(f&quot;Error: {e}&quot;)
+
+<span class="c"># Name mangling: Python renames __balance to _BankAccount__balance</span>
+print(account._BankAccount__balance)   <span class="c"># 1300 (accessible via mangled name, but avoid this)</span></code></pre></details>
+</article>
+<article class="demo" id="oop_03_inheritance.py">
+  <h3><code>oop_03_inheritance.py</code></h3>
+  <p>Inheritance, <code>super()</code>, overriding and extending methods, <code>isinstance</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python oop_03_inheritance.py</code></pre>
+  
+  <details><summary><span class="file">oop_03_inheritance.py</span><a class="raw" href="oop_03_inheritance.py">open file</a></summary><pre><code><span class="c"># oop_03_inheritance.py</span>
+<span class="c"># Demonstrates: Single inheritance, super(), method overriding, extending parent behaviour</span>
+
+class Animal:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def speak(self):
+        print(f&quot;{self.name} makes a sound.&quot;)
+
+    def describe(self):
+        print(f&quot;{self.name} is {self.age} years old.&quot;)
+
+
+class Dog(Animal):
+    def __init__(self, name, age, breed):
+        super().__init__(name, age)   <span class="c"># call parent constructor</span>
+        self.breed = breed            <span class="c"># add child-specific attribute</span>
+
+    def speak(self):                  <span class="c"># override parent method</span>
+        print(f&quot;{self.name} barks.&quot;)
+
+    def fetch(self):                  <span class="c"># new method specific to Dog</span>
+        print(f&quot;{self.name} fetches the ball!&quot;)
+
+
+class Cat(Animal):
+    def __init__(self, name, age, indoor):
+        super().__init__(name, age)
+        self.indoor = indoor
+
+    def speak(self):                  <span class="c"># override parent method</span>
+        print(f&quot;{self.name} meows.&quot;)
+
+    def describe(self):               <span class="c"># extend parent method</span>
+        super().describe()            <span class="c"># call parent version first</span>
+        status = &quot;indoor&quot; if self.indoor else &quot;outdoor&quot;
+        print(f&quot;{self.name} is an {status} cat.&quot;)
+
+
+<span class="c"># Using the classes</span>
+dog = Dog(&quot;Rex&quot;, 3, &quot;Labrador&quot;)
+cat = Cat(&quot;Whiskers&quot;, 5, indoor=True)
+
+dog.speak()       <span class="c"># Rex barks.</span>
+dog.describe()    <span class="c"># Rex is 3 years old.  (inherited from Animal)</span>
+dog.fetch()       <span class="c"># Rex fetches the ball!</span>
+
+cat.speak()       <span class="c"># Whiskers meows.</span>
+cat.describe()    <span class="c"># Whiskers is 5 years old. / Whiskers is an indoor cat.</span>
+
+<span class="c"># Check inheritance</span>
+print(isinstance(dog, Dog))     <span class="c"># True</span>
+print(isinstance(dog, Animal))  <span class="c"># True -- Dog IS an Animal</span>
+print(isinstance(cat, Dog))     <span class="c"># False</span></code></pre></details>
+</article>
+<article class="demo" id="oop_04_polymorphism.py">
+  <h3><code>oop_04_polymorphism.py</code></h3>
+  <p>Polymorphism through overriding, and duck typing.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python oop_04_polymorphism.py</code></pre>
+  
+  <details><summary><span class="file">oop_04_polymorphism.py</span><a class="raw" href="oop_04_polymorphism.py">open file</a></summary><pre><code><span class="c"># oop_04_polymorphism.py</span>
+<span class="c"># Demonstrates: Polymorphism via method overriding, duck typing</span>
+
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f&quot;{self.name} makes a sound.&quot;)
+
+
+class Dog(Animal):
+    def speak(self):
+        print(f&quot;{self.name} barks.&quot;)
+
+
+class Cat(Animal):
+    def speak(self):
+        print(f&quot;{self.name} meows.&quot;)
+
+
+class Bird(Animal):
+    def speak(self):
+        print(f&quot;{self.name} chirps.&quot;)
+
+
+<span class="c"># Polymorphism: the same interface (speak) works for all types</span>
+animals = [
+    Dog(&quot;Rex&quot;),
+    Cat(&quot;Whiskers&quot;),
+    Bird(&quot;Kiwi&quot;),
+    Animal(&quot;Unknown&quot;),
+]
+
+print(&quot;--- All animals speak ---&quot;)
+for animal in animals:
+    animal.speak()      <span class="c"># correct method called automatically based on type</span>
+
+<span class="c"># -------------------------------------------------------------------</span>
+<span class="c"># Duck typing: Python does not require a common base class.</span>
+<span class="c"># Any object with a speak() method works here.</span>
+<span class="c"># -------------------------------------------------------------------</span>
+
+class Robot:
+    def __init__(self, model):
+        self.model = model
+
+    def speak(self):
+        print(f&quot;{self.model} says: Beep boop.&quot;)
+
+
+print(&quot;\n--- Duck typing example ---&quot;)
+speakers = [Dog(&quot;Rex&quot;), Cat(&quot;Whiskers&quot;), Robot(&quot;RB-1&quot;)]
+
+for speaker in speakers:
+    speaker.speak()     <span class="c"># Robot is not an Animal, but it has speak() -- it works</span></code></pre></details>
+</article>
+<article class="demo" id="oop_05_abstraction.py">
+  <h3><code>oop_05_abstraction.py</code></h3>
+  <p>Abstract base classes with <code>ABC</code> and <code>@abstractmethod</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python oop_05_abstraction.py</code></pre>
+  
+  <details><summary><span class="file">oop_05_abstraction.py</span><a class="raw" href="oop_05_abstraction.py">open file</a></summary><pre><code><span class="c"># oop_05_abstraction.py</span>
+<span class="c"># Demonstrates: Abstract base classes, @abstractmethod, enforced interface</span>
+
+from abc import ABC, abstractmethod
+
+
+class Shape(ABC):
+    &quot;&quot;&quot;Abstract base class for all shapes. Cannot be instantiated directly.&quot;&quot;&quot;
+
+    @abstractmethod
+    def area(self):
+        &quot;&quot;&quot;Return the area of the shape.&quot;&quot;&quot;
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        &quot;&quot;&quot;Return the perimeter of the shape.&quot;&quot;&quot;
+        pass
+
+    def describe(self):
+        &quot;&quot;&quot;Concrete method shared by all shapes.&quot;&quot;&quot;
+        print(f&quot;Shape: {self.__class__.__name__}&quot;)
+        print(f&quot;  Area     : {self.area():.2f}&quot;)
+        print(f&quot;  Perimeter: {self.perimeter():.2f}&quot;)
+
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * 3.14159 * self.radius
+
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+
+class Triangle(Shape):
+    def __init__(self, a, b, c):
+        self.a = a   <span class="c"># three sides</span>
+        self.b = b
+        self.c = c
+
+    def area(self):
+        <span class="c"># Heron&#x27;s formula</span>
+        s = (self.a + self.b + self.c) / 2
+        return (s * (s - self.a) * (s - self.b) * (s - self.c)) ** 0.5
+
+    def perimeter(self):
+        return self.a + self.b + self.c
+
+
+<span class="c"># Attempting to instantiate the abstract class raises TypeError</span>
+try:
+    s = Shape()
+except TypeError as e:
+    print(f&quot;Cannot instantiate Shape: {e}\n&quot;)
+
+<span class="c"># All concrete subclasses work through the same interface</span>
+shapes = [Circle(5), Rectangle(4, 6), Triangle(3, 4, 5)]
+
+for shape in shapes:
+    shape.describe()
+    print()</code></pre></details>
+</article>
+<article class="demo" id="oop_06_class_vs_instance.py">
+  <h3><code>oop_06_class_vs_instance.py</code></h3>
+  <p>Class and instance attributes, <code>@classmethod</code>, <code>@staticmethod</code>.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python oop_06_class_vs_instance.py</code></pre>
+  
+  <details><summary><span class="file">oop_06_class_vs_instance.py</span><a class="raw" href="oop_06_class_vs_instance.py">open file</a></summary><pre><code><span class="c"># oop_06_class_vs_instance.py</span>
+<span class="c"># Demonstrates: Class attributes, instance attributes,</span>
+<span class="c">#               @classmethod, @staticmethod, alternative constructors</span>
+
+class Student:
+    school = &quot;Concordia University&quot; <span class="c"># class attribute: shared by all instances</span>
+    _count = 0                      <span class="c"># class attribute: track number of students</span>
+
+    def __init__(self, name, grade):
+        self.name = name            <span class="c"># instance attribute</span>
+        self.grade = grade          <span class="c"># instance attribute</span>
+        Student._count += 1         <span class="c"># update class attribute on every new instance</span>
+
+    <span class="c"># ----------------------------------------------------------------</span>
+    <span class="c"># Regular instance method: receives the instance (self)</span>
+    <span class="c"># ----------------------------------------------------------------</span>
+    def report(self):
+        status = &quot;Pass&quot; if self.grade &gt;= 50 else &quot;Fail&quot;
+        print(f&quot;{self.name} | Grade: {self.grade} | {status} | {Student.school}&quot;)
+
+    <span class="c"># ----------------------------------------------------------------</span>
+    <span class="c"># Class method: receives the class (cls), not the instance</span>
+    <span class="c"># Used here as an alternative constructor</span>
+    <span class="c"># ----------------------------------------------------------------</span>
+    @classmethod
+    def from_string(cls, data_string):
+        &quot;&quot;&quot;Create a Student from a comma-separated string: &#x27;Name,Grade&#x27;&quot;&quot;&quot;
+        name, grade = data_string.split(&quot;,&quot;)
+        return cls(name.strip(), int(grade.strip()))
+
+    @classmethod
+    def get_count(cls):
+        &quot;&quot;&quot;Return the total number of Student objects created.&quot;&quot;&quot;
+        return cls._count
+
+    @classmethod
+    def get_school(cls):
+        return cls.school
+
+    <span class="c"># ----------------------------------------------------------------</span>
+    <span class="c"># Static method: no access to class or instance</span>
+    <span class="c"># Used for utility functions related to the class</span>
+    <span class="c"># ----------------------------------------------------------------</span>
+    @staticmethod
+    def is_valid_grade(grade):
+        &quot;&quot;&quot;Return True if grade is between 0 and 100.&quot;&quot;&quot;
+        return 0 &lt;= grade &lt;= 100
+
+    @staticmethod
+    def letter_grade(grade):
+        &quot;&quot;&quot;Convert a numeric grade to a letter grade.&quot;&quot;&quot;
+        if grade &gt;= 90:
+            return &quot;A&quot;
+        elif grade &gt;= 80:
+            return &quot;B&quot;
+        elif grade &gt;= 70:
+            return &quot;C&quot;
+        elif grade &gt;= 60:
+            return &quot;D&quot;
+        else:
+            return &quot;F&quot;
+
+
+<span class="c"># --- Using regular constructor ---</span>
+s1 = Student(&quot;Alice&quot;, 88)
+s2 = Student(&quot;Bob&quot;, 45)
+
+<span class="c"># --- Using alternative constructor (class method) ---</span>
+s3 = Student.from_string(&quot;Charlie, 73&quot;)
+
+<span class="c"># --- Instance methods ---</span>
+s1.report()     <span class="c"># Alice | Grade: 88 | Pass | Concordia University</span>
+s2.report()     <span class="c"># Bob | Grade: 45 | Fail | Concordia University</span>
+s3.report()     <span class="c"># Charlie | Grade: 73 | Pass | Concordia University</span>
+
+print()
+
+<span class="c"># --- Class attributes and methods ---</span>
+print(Student.school)           <span class="c"># Concordia University</span>
+print(Student.get_school())     <span class="c"># Concordia University</span>
+print(Student.get_count())      <span class="c"># 3  (three students created)</span>
+
+print()
+
+<span class="c"># --- Static methods ---</span>
+print(Student.is_valid_grade(85))    <span class="c"># True</span>
+print(Student.is_valid_grade(110))   <span class="c"># False</span>
+print(Student.letter_grade(88))      <span class="c"># B</span>
+print(Student.letter_grade(45))      <span class="c"># F</span>
+
+<span class="c"># Static and class methods are also accessible via an instance</span>
+print(s1.letter_grade(s1.grade))     <span class="c"># B</span></code></pre></details>
+</article>
+<h2 id="s9">Python in the AI Era: Judging Generated Code</h2>
+<article class="demo" id="ch08_10_ai_judging.py">
+  <h3><code>ch08_10_ai_judging.py</code></h3>
+  <p>An AI-generated function with a shared mutable default and a bare <code>except</code>, then the hardened version.</p>
+  <p class="label">Run</p>
+  <pre class="run"><code>python ch08_10_ai_judging.py</code></pre>
+  
+  <details><summary><span class="file">ch08_10_ai_judging.py</span><a class="raw" href="ch08_10_ai_judging.py">open file</a></summary><pre><code><span class="c"># ch08_10_ai_judging.py</span>
+<span class="c"># Section: Python in the AI Era -- Judging Generated Code</span>
+<span class="c"># Topics: mutable default arguments, bare except, failing informatively</span>
+<span class="c"># Run: python ch08_10_ai_judging.py</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># AI&#x27;s version: one shared list, and a bare except that hides errors</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def collect_ai(value, bucket=[]):
+    try:
+        bucket.append(int(value))
+    except:
+        pass
+    return bucket
+
+print(collect_ai(&quot;1&quot;))        <span class="c"># [1]</span>
+print(collect_ai(&quot;2&quot;))        <span class="c"># [1, 2]  &lt;-- the list survived the first call!</span>
+print(collect_ai(&quot;three&quot;))    <span class="c"># [1, 2]  &lt;-- the error vanished silently</span>
+
+<span class="c"># ------------------------------------------------------------------</span>
+<span class="c"># Hardened version</span>
+<span class="c"># ------------------------------------------------------------------</span>
+def collect(value, bucket=None):
+    if bucket is None:              <span class="c"># no shared mutable default</span>
+        bucket = []
+    try:
+        bucket.append(int(value))
+    except ValueError:              <span class="c"># catch only what you expect</span>
+        raise ValueError(f&quot;Not an integer: {value!r}&quot;)   <span class="c"># fail informatively</span>
+    return bucket
+
+print(collect(&quot;1&quot;))           <span class="c"># [1]</span>
+print(collect(&quot;2&quot;))           <span class="c"># [2]  a fresh list on every call</span>
+
+try:
+    collect(&quot;three&quot;)
+except ValueError as e:
+    print(e)                  <span class="c"># Not an integer: &#x27;three&#x27;</span></code></pre></details>
+</article>
+
+</main>
+<footer>Section titles follow the book chapter. Each demo's source is shown below its description; click a file name to open or close it.
+Generated by <code>build_demo_index.py</code>.</footer>
 </body>
 </html>

@@ -1,0 +1,17 @@
+<!-- templates/base.html (forms demo) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Forms Demo{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <a href="{{ url_for('upload') }}">Upload</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

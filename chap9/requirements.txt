@@ -1,0 +1,7 @@
+flask>=3.0
+PyJWT>=2.10
+bcrypt>=4.0
+fastapi>=0.110
+uvicorn>=0.29
+gunicorn>=22.0 ; sys_platform != "win32"
+waitress>=3.0 ; sys_platform == "win32"

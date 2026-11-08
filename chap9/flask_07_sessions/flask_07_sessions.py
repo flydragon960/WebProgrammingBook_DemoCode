@@ -2,7 +2,7 @@
 # Section: Sessions
 # Demonstrates: session dict, secret_key, visit counter, login/logout flow
 # Requires: templates/login.html
-# Run: python flask_07_sessions.py
+# Run: cd flask_07_sessions && python flask_07_sessions.py
 
 import secrets
 from flask import Flask, session, request, redirect, url_for, render_template

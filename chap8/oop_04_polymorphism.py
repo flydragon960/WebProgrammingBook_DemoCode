@@ -28,7 +28,7 @@ class Bird(Animal):
 animals = [
     Dog("Rex"),
     Cat("Whiskers"),
-    Bird("Tweety"),
+    Bird("Kiwi"),
     Animal("Unknown"),
 ]
 
@@ -50,7 +50,7 @@ class Robot:
 
 
 print("\n--- Duck typing example ---")
-speakers = [Dog("Rex"), Cat("Whiskers"), Robot("R2D2")]
+speakers = [Dog("Rex"), Cat("Whiskers"), Robot("RB-1")]
 
 for speaker in speakers:
     speaker.speak()     # Robot is not an Animal, but it has speak() -- it works

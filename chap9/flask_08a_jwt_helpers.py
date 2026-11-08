@@ -13,7 +13,7 @@ SECRET_KEY = "replace-with-a-long-random-secret"
 def create_token(user_id: int, username: str) -> str:
     """Create a signed JWT that expires in 1 hour."""
     payload = {
-        "sub":      user_id,    # subject (standard JWT claim)
+        "sub":      str(user_id),  # subject: must be a string (PyJWT >= 2.10)
         "username": username,
         "exp":      datetime.datetime.now(datetime.timezone.utc)
                     + datetime.timedelta(hours=1),

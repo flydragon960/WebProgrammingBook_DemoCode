@@ -77,8 +77,10 @@ def items():
         return jsonify({"items": ["apple", "banana"]})
 
     if request.method == "POST":
-        data = request.get_json()           # parse JSON request body
-        name = data.get("name", "")
+        data = request.get_json(silent=True) or {}   # {} if body is not JSON
+        name = data.get("name", "").strip()
+        if not name:
+            return jsonify({"error": "Field 'name' is required"}), 400
         return jsonify({"created": name}), 201
 
 if __name__ == "__main__":
